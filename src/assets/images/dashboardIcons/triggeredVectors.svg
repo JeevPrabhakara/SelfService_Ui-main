@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="30px" height="21px" viewBox="0 0 30 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>triggeredVectors</title>
+    <defs>
+        <filter id="filter-1">
+            <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 0.074510 0 0 0 0 0.435294 0 0 0 0 0.835294 0 0 0 1.000000 0"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Page-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="triggeredVectors" transform="translate(-1000.000000, -278.000000)" filter="url(#filter-1)">
+            <g transform="translate(1000.000000, 278.000000)">
+                <g id="Group" fill="#000000" fill-rule="nonzero">
+                    <path d="M27.753,14.19 C27.753,15.675 26.532,16.896 25.047,16.896 L4.818,16.896 C3.333,16.896 2.112,15.675 2.112,14.19 L2.112,2.739 C2.112,1.254 3.333,0.033 4.818,0.033 L25.047,0.033 C26.532,0.033 27.753,1.254 27.753,2.739 L27.753,14.19 L27.753,14.19 Z M25.41,14.058 L25.41,2.739 C25.41,2.409 25.179,2.178 24.849,2.178 L4.851,2.178 C4.521,2.178 4.29,2.442 4.29,2.739 L4.29,14.058 C4.29,14.388 4.554,14.619 4.851,14.619 L24.849,14.619 C25.179,14.652 25.41,14.388 25.41,14.058 Z" id="Shape"></path>
+                    <path d="M29.568,18.81 C29.568,19.635 28.875,20.328 28.05,20.328 L1.65,20.328 C0.825,20.328 0.132,19.635 0.132,18.81 L0.132,17.688 L29.568,17.688 L29.568,18.81 L29.568,18.81 Z" id="Path"></path>
+                </g>
+                <g id="Group" transform="translate(7.590000, 4.620000)" fill="#000000" fill-rule="nonzero">
+                    <polygon id="Path" points="2.244 3.894 4.422 6.072 3.366 7.128 0.165 3.96 3.3 0.495 4.422 1.485"></polygon>
+                    <polygon id="Path" points="12.276 3.696 10.131 1.551 11.187 0.495 14.355 3.663 11.22 7.128 10.131 6.105"></polygon>
+                    <polygon id="Path" points="6.666 7.425 5.28 6.897 7.887 0.165 9.273 0.726"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

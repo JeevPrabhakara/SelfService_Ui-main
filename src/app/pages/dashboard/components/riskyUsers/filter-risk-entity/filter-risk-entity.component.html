@@ -1,0 +1,113 @@
+<div class="container-fluid mt-3 rightIntialPadding" *ngIf="filteredRiskyEntities.length > 0 ">
+    <div class="mb-1">
+        <span class="recordInfo h4">{{filteredRiskyEntities.length}} users found for your keyword
+            <b>"{{foundEntityName}}"</b></span>
+    </div>
+</div>
+
+<div class="container-fluid rightIntialPadding margin-bottom-30">
+    <div class="row mr-0">
+
+        <app-risky-entity-view class="col-md-2-5 mt-3"
+            *ngFor="let filteredRiskyEntity of filteredRiskyEntities;  let i = index"
+            [filteredRiskyEntity]="filteredRiskyEntity" [index]="i">
+        </app-risky-entity-view>
+    </div>
+</div>
+
+
+<div class="container-fluid mt-3 rightIntialPadding" *ngIf="filteredRiskyHosts.length > 0">
+    <div class="mb-1">
+        <span class="recordInfo h4">{{filteredRiskyHosts.length}} hosts found for your keyword
+            <b>"{{foundEntityName}}"</b></span>
+    </div>
+</div>
+
+
+<div class="container-fluid rightIntialPadding host-container">
+    <div class="row mr-0">
+        <div class="col-md-2-5 mt-3" *ngFor="let entity of filteredRiskyHosts">
+            <ng-container>
+                <mat-card [routerLink]="['/riskyHost', entity.hostName]">
+                    <mat-card-header>
+                        <div class="row">
+                            <div class="col-sm-4 text-center">
+                                <div class="pl-2">
+                                    <img class="user-img img-rounded"
+                                        src='../assets/images/dashboard_icons/hostname@2x.png' />
+                                </div>
+                            </div>
+                            <div class="col-sm-7 col-lg-8 text-center">
+                                <p class="user-name-text">{{entity.hostName}}</p>
+                                <div class="left-block">
+                                    <span class="risk-score-value"
+                                        [ngStyle]="{'color':getRiskScoreColor(entity.totalRiskScore)}">{{entity.totalRiskScore}}</span>
+                                    <span class="risk-score-text">Risk Score</span>
+                                </div>
+                            </div>
+                        </div>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <div class="row-block">
+                            <p class="text-style-1">First Seen Timestamp</p>
+                            <p class="text-style-2">{{entity.first_seen_at | date: 'dd/MM/yyyy hh:mm:ss'}}</p>
+                        </div>
+
+                        <div class="row-block">
+                            <p class="text-style-1">Last Seen Timestamp</p>
+                            <p class="text-style-2">{{entity.last_seen_at | date: 'dd/MM/yyyy hh:mm:ss'}}</p>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </ng-container>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid mt-3 rightIntialPadding" *ngIf="filteredRiskyIPAddress.length > 0">
+    <div class="mb-1">
+        <span class="recordInfo h4">{{filteredRiskyIPAddress.length}} IP Addresses found for your keyword
+            <b>"{{foundEntityName}}"</b></span>
+    </div>
+</div>
+
+<div class="container-fluid rightIntialPadding host-container">
+    <div class="row mr-0">
+        <div class="col-md-2-5 mt-3" *ngFor="let entity of filteredRiskyIPAddress">
+            <ng-container>
+                <mat-card [routerLink]="['/riskyIP', entity.ipValue]">
+                    <mat-card-header>
+                        <div class="row">
+                            <div class="col-sm-4 text-center">
+                                <div class="pl-2">
+                                    <img class="user-img img-rounded"
+                                        src='../assets/images/dashboard_icons/Ip@2x.png' />
+                                </div>
+                            </div>
+                            <div class="col-sm-7 col-lg-8 text-center">
+                                <p class="user-name-text">{{entity.ipValue}}</p>
+                                <div class="left-block">
+                                    <span class="risk-score-value"
+                                        [ngStyle]="{'color':getRiskScoreColor(entity.totalRiskScore)}">{{entity.totalRiskScore}}</span>
+                                    <span class="risk-score-text">Risk Score</span>
+                                </div>
+                            </div>
+                        </div>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <div class="row-block">
+                            <p class="text-style-1">First Seen Timestamp</p>
+                            <p class="text-style-2">{{entity.first_seen_at | date: 'dd/MM/yyyy hh:mm:ss'}}</p>
+                        </div>
+
+                        <div class="row-block">
+                            <p class="text-style-1">Last Seen Timestamp</p>
+                            <p class="text-style-2">{{entity.last_seen_at | date: 'dd/MM/yyyy hh:mm:ss'}}</p>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </ng-container>
+        </div>
+
+    </div>
+</div>

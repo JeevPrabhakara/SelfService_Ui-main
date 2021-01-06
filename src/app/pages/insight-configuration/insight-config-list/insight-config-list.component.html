@@ -1,0 +1,92 @@
+<div class="d-inline-block insightConfig mt-2 ml-2">
+  <h4 class="commonHeader mb-3 pull-left">Model-Ops</h4>
+
+  <span class="pull-right">
+    <input hidden type="file" #uploader />
+    <button type="button" class="btn btn-primary" placement="bottom" ngbTooltip="Add Insight Config"><i
+        class="fa fa-plus"></i></button>
+    <!-- <button type="button" class="btn btn-primary ml-2" placement="bottom" ngbTooltip="Import Insight Config"
+      (click)="deleteSelectedInsightConfigs()"><i class="fa fa-trash-o"></i></button> -->
+    <button type="button" class="btn btn-primary bg-success border-success" placement="bottom" ngbTooltip="Enable"><i
+        class="fa fa-unlock-alt"></i></button>
+    <button type="button" class="btn btn-primary ml-2 bg-danger border-danger" placement="bottom"
+      ngbTooltip="Disable"><i class="fa fa-lock"></i></button>
+  </span>
+
+  <div class="form-group has-search pull-right mr-4 w-25">
+    <span class="fa fa-search form-control-feedback m-auto"></span>
+    <input type="text" class="form-control" placeholder="Search By Models"
+      (input)="dt.filterGlobal($event.target.value, 'contains')">
+  </div>
+</div>
+
+<div class="mb-4 mt-2 col-4" *ngIf="!loading">
+  <span class="topStages Total">{{ allInsightConfigs.length }}</span>
+  <span class="labels">&nbsp;&nbsp;Records found</span>
+</div>
+
+<div class="row col-12">
+  <!-- style="margin: 15% 35%;" -->
+  <mat-spinner *ngIf="loading" class="mx-auto my-5">
+  </mat-spinner>
+</div>
+
+<div class="ml-2 mr-1" *ngIf="!loading">
+  <p-table #dt [value]="allInsightConfigs" styleClass="p-datatable-customers" [rowHover]="true" [rows]="8"
+    [loading]="loading" [paginator]="'true'" [rowHover]="true" [(selection)]="selectedInsights" dataKey="policyId"
+    [globalFilterFields]="['policyId','policy_name','entity','category_name','risk_score']">
+    <ng-template pTemplate="header">
+      <tr>
+        <!-- <th style="width: 3rem">
+          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+        </th> -->
+        <th [pSortableColumn]="header.field" *ngFor="let header of headers" [ngClass]="[header.header == 'Model Name' ? 'big-width' : '']">
+          <div class="p-d-flex p-jc-between p-ai-center"> {{ header.header }}
+            <p-sortIcon [field]="header.field"></p-sortIcon>
+          </div>
+        </th>
+        <th>Actions</th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-insightConfig>
+      <tr class="p-selectable-row">
+        <!-- <td>
+          <p-tableCheckbox [value]="insightConfig"></p-tableCheckbox>
+        </td> -->
+        <td> {{insightConfig.policyId}} </td>
+        <td> {{insightConfig.policy_name}} </td>
+        <td> {{insightConfig.policy_type=='Anomaly'? 'STATISTICAL' : 'RULE' }} </td>
+        <td> {{insightConfig.entity}} </td>
+        <td> {{insightConfig.risk_score}} </td>
+        <td> 
+          <button type="button" class="btn btn-sm" [ngClass]="[insightConfig.criticality === 'LOW' ? 'yellow-btn' : 'green-btn']">
+            {{insightConfig.criticality}} 
+          </button>
+        </td>
+        <td> {{insightConfig.dataSource?insightConfig.dataSource.dataSourceName:'-'}} </td>
+        <td> {{insightConfig.category_name}} </td>
+        <td>
+         <button type="button" class="btn btn-sm" [ngClass]="[insightConfig.enable ? 'green-btn' : 'gray-btn']">
+            {{insightConfig.enable ? 'Enabled' : 'Disabled'}} 
+          </button>
+        </td>
+        <td class="actions">
+          <!-- <a ngbPopover="View" triggers="mouseenter:mouseleave" container="body">
+            <i class="fa-lg fa fa-eye" [ngStyle]="{'color':actionColor }"></i>
+          </a> -->
+          <a ngbPopover="Edit" triggers="mouseenter:mouseleave" container="body" class="ml-2">
+            <i class="fa-lg fa fa-pencil" [ngStyle]="{'color':actionColor }"></i>
+          </a>
+          <a ngbPopover="Delete" (click)="confirmDelete(insightConfig)" triggers="mouseenter:mouseleave"
+            container="body" class="ml-2">
+            <i class="fa-lg fa fa-trash-o" [ngStyle]="{'color':actionColor }"></i>
+          </a>
+          <!-- <a ngbPopover="Copy" triggers="mouseenter:mouseleave" container="body" class="ml-2">
+            <i class="fa-lg fa fa-clone" [ngStyle]="{'color':actionColor, 'font-size': '.95rem' }"></i>
+          </a> -->
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

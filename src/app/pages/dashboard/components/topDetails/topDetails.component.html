@@ -1,0 +1,81 @@
+<!-- Risky Entities -->
+<div *ngIf="componentType === 'riskyEntities'" class="header row d-block">
+    <span>Top Risky Entities</span>
+    <span ngbDropdown placement="bottom-right" class="float-sm-right">
+        <button class="btn btn-sm buttonBg" id="dropdownBasic1" ngbDropdownToggle>
+            {{selectRiskyType}}
+        </button>
+        <div class="buttonBg actionDropDown" ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <button ngbDropdownItem (click)="changeRiskyType('user')" class="buttonBg">USER</button>
+            <button ngbDropdownItem (click)="changeRiskyType('ip address')" class="buttonBg">IP ADDRESS</button>
+            <button ngbDropdownItem (click)="changeRiskyType('host')" class="buttonBg">HOST</button>
+        </div>
+    </span>
+</div>
+<div *ngIf="componentType === 'riskyEntities'" class="top-riksy-users mt-2">
+    <ng-container *ngFor="let selectedRisky of selectedRiskies;let i=index;">
+        <div class="row user-item mx-auto" [ngStyle]="{'padding': riskyTypeSelected=='user'?'0.8rem':'0.9rem'}">
+            <div *ngIf="riskyTypeSelected=='user'" class="col-2 col-sm-2 col-md-2 pl-2">
+                <img class="profile-image rounded-circle align-self-center"
+                    src="./../../../../../assets/images/users/service_user.jpeg" />
+            </div>
+            <div *ngIf="riskyTypeSelected=='ip address'" class="col-2 col-sm-2 col-md-2 pl-2">
+                <img class="profile-image" src='./../../../../../assets/images/dashboard_icons/Ip@2x.png' />
+            </div>
+            <div *ngIf="riskyTypeSelected=='host'" class="col-2 col-sm-2 col-md-2 pl-2">
+                <img class="profile-image" src='./../../../../../assets/images/dashboard_icons/hostname@2x.png' />
+            </div>
+            <div class="centerAlign col-md-8 wordWrap">
+                <a *ngIf="selectedRisky.value" class="cursorPointer"
+                    (click)="viewRiskyEntityDetails(selectedRisky.entityId)">{{selectedRisky.value}}</a>
+                <!-- <a *ngIf="!user.userid" [routerLink]="['/riskyUser', selectedRisky.sourceAddress]">{{selectedRisky.sourceAddress}}</a> -->
+            </div>
+            <div class="col-2 col-sm-2 col-md-2 risk-count centerAlign">
+                <p></p>
+                <span [ngStyle]="{'color':getRiskScoreColor(selectedRisky.score)}">
+                    {{selectedRisky.score}}</span>
+            </div>
+        </div>
+        <div class="ml-1 mr-1 borderLine" *ngIf="i!=4">
+        </div>
+    </ng-container>
+</div>
+
+<!-- Top Violations -->
+<div *ngIf="componentType === 'topViolations'" class="header">
+    <div class="col-md-12">
+        <span>TOP VIOLATIONS</span>
+        <span class="float-right">Entities</span>
+    </div>
+</div>
+<div *ngIf="componentType === 'topViolations'" class="top-threats ">
+    <ng-container *ngFor="let violation of violations">
+        <div class="threat-item row">
+            <div class="col-10 col-md-10 threat-details centerAlign wordWrap">
+                <span>{{violation.policyName}}</span>
+            </div>
+            <div class="col-2 col-md-2 risk-count centerAlign">
+                <span [ngStyle]="{'color':'crimson'}">{{violation.noOfEntities}}</span>
+            </div>
+        </div>
+    </ng-container>
+</div>
+<!-- Top Threats -->
+<div *ngIf="componentType==='topThreats'" class="header">
+    <div class="col-md-12">
+        <span>TOP THREAT VECTORS</span>
+        <span class="float-right">Violations</span>
+    </div>
+</div>
+<div *ngIf="componentType ==='topThreats' " class="top-violations  mt-3">
+    <ng-container *ngFor="let threat of threats">
+        <div class="threat-item row pt-1 pb-2">
+            <div class="col-9 col-md-9 centerAlign wordWrap p-3">
+                <span>{{threat.threatCategory}}</span>
+            </div>
+            <div class="col-3 col-md-3 risk-count centerAlign" style="place-content: center;">
+                <span style="color: crimson;font-size:28px;">{{threat.riskCount}}</span>
+            </div>
+        </div>
+    </ng-container>
+</div>

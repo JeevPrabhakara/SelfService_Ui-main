@@ -1,0 +1,23 @@
+<div class="d-inline-block roleList mt-2 ml-2">
+  <h4 class="commonHeader mb-3 pull-left">Roles</h4>
+
+  <span class="pull-right" *ngIf="userRoles.includes('ROLE_ADMIN') && userPermissions.includes('Create_Profile')">
+    <button type="button" class="btn btn-primary" placement="bottom" ngbTooltip="Create Role" (click)="addRole()">Create
+      Role</button>
+  </span>
+
+  <div class="form-group has-search pull-right mr-4 w-25">
+    <span class="fa fa-search form-control-feedback m-auto"></span>
+    <input type="text" class="form-control" placeholder="Search By Roles Keywords" (keyup)="globalSearchRole()"
+      [(ngModel)]="globalSearchRoleKey">
+  </div>
+</div>
+
+<div class="commonAgGrid ml-2 mr-1">
+  <ag-grid-angular #grid [rowData]="roleList | async" [columnDefs]="columnDefs" class="ag-theme-material manoj"
+    [floatingFilter]="true" style="width: 100%; height: calc(100vh - 160px);" (gridReady)="onGridReady($event)"
+    [rowHeight]="38" [headerHeight]="40" [context]="context" [pagination]="true" [paginationAutoPageSize]="true"
+    [suppressCellSelection]="true" [frameworkComponents]="frameworkComponents" [rowSelection]="'multiple'"
+    [suppressRowClickSelection]="true" (firstDataRendered)="onGridReady($event)">
+  </ag-grid-angular>
+</div>

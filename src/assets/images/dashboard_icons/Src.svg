@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="26px" viewBox="0 0 20 26" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>61B3E9E1-D914-424A-BF02-AC54570467F0</title>
+    <defs>
+        <filter id="filter-1">
+            <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 0.000000 0 0 0 0 0.731403 0 0 0 0 0.707428 0 0 0 1.000000 0"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Page-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="Src" transform="translate(-1373.000000, -275.000000)" filter="url(#filter-1)">
+            <g transform="translate(1374.000000, 276.000000)">
+                <rect id="Rectangle" stroke="#47B280" stroke-width="0.756" x="0.1875" y="0.18984375" width="17.625" height="23.9203125"></rect>
+                <g id="Group" transform="translate(4.500000, 2.278125)" stroke="#47B280" stroke-width="0.756">
+                    <ellipse id="Oval" cx="4.5" cy="4.74609375" rx="4.5" ry="4.55625"></ellipse>
+                    <ellipse id="Oval" cx="4.5" cy="4.74609375" rx="1.36956525" ry="4.55625"></ellipse>
+                    <ellipse id="Oval" cx="4.5" cy="4.74609375" rx="4.5" ry="1.38668482"></ellipse>
+                </g>
+                <g id="Group" transform="translate(3.375000, 14.428125)" stroke="#47B280" stroke-width="0.756">
+                    <line x1="0" y1="0.18984375" x2="11.25" y2="0.18984375" id="Path"></line>
+                    <line x1="0" y1="2.84765625" x2="11.25" y2="2.84765625" id="Path"></line>
+                    <line x1="0" y1="2.84765625" x2="11.25" y2="2.84765625" id="Path"></line>
+                    <line x1="0" y1="5.50546875" x2="11.25" y2="5.50546875" id="Path"></line>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

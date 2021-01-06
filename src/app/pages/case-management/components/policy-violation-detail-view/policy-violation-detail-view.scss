@@ -1,0 +1,65 @@
+.pointerCursor {
+    cursor: pointer;
+    color: #0891A9;
+}
+
+.fa-angle-up:before {
+    font-size: larger;
+    color: #09ADC7;
+}
+
+.fa-angle-down:before {
+    font-size: larger;
+    color: #09ADC7;
+}
+
+.titleTiming {
+    color: #E2E4E4;
+}
+
+.card {
+    background-color: #243744;
+    .card-header {
+        span {
+            color: #8E8E8E;
+        }
+    }
+}
+
+.detailTitleBackground {
+    background: #8c8c8cb3;
+    color: #E2E4E4;
+    padding: 2px 4px;
+    font-size: smaller;
+    border-radius: 2px;
+}
+
+.detailValue {
+    color: #E2E4E4;
+    padding: 2px 4px;
+    font-size: smaller;
+}
+
+.card-body {
+    .fa {
+        font-size: x-large;
+        color: #09ADC7;
+        margin-right: 10px;
+    }
+}
+
+.nav-pills .nav-link {
+    border-radius: 2px;
+    padding: 2px 20px;
+    font-size: medium;
+}
+
+.SideButton {
+    .btn {
+        background-color: unset;
+        color: #099BB5;
+        border: 1px solid #099BB5;
+        border-radius: 4px;
+        min-width: 12rem;
+    }
+}

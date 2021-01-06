@@ -1,0 +1,20 @@
+<a *ngIf="viewButton" (click)="view($event)" ngbPopover="View" triggers="mouseenter:mouseleave" container="body">
+    <i class="fa-lg fa fa-eye" [ngStyle]="{'color':actionColor }"></i>
+</a>
+
+<a *ngIf="editButton" (click)="edit($event)" ngbPopover="Edit" triggers="mouseenter:mouseleave" container="body">
+    <i class="fa-lg fa fa-pencil" [ngStyle]="{'color':actionColor }"></i>
+</a>
+
+<a *ngIf="deleteButton" (click)="delete($event)" ngbPopover="Delete" triggers="mouseenter:mouseleave" container="body">
+    <i class="fa-lg fa fa-trash-o" [ngStyle]="{'color':actionColor }"></i>
+</a>
+
+<a *ngIf="copyButton" (click)="copy($event)" ngbPopover="Copy" triggers="mouseenter:mouseleave" container="body">
+    <i class="fa-lg fa fa-clone" [ngStyle]="{'color':actionColor, 'font-size': '.95rem' }"></i>
+</a>
+
+<a *ngIf="changePasswordButton" (click)="changePassword($event)" ngbPopover="Change Password"
+    triggers="mouseenter:mouseleave" container="body">
+    <i class="fa fa-key" [ngStyle]="{'color':actionColor, 'font-size': '.95rem' }"></i>
+</a>

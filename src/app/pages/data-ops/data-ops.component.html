@@ -1,0 +1,94 @@
+<div class="mt-2">
+  <div class="row pageTitle ml-2 mr-2">
+    <div class="col-md-10 initialPadding" style="display: flex;align-items:center;">
+      <span>DATAOPS</span>
+    </div>
+  </div>
+</div>
+
+<div class="ml-2 mr-1 mt-4 mb-3">
+  <div class="tab-content">
+    <div role="tabpanel">
+      <div class="col-md-12 mb-3"  *ngIf="dataOps.length > 0 && !isLoading">
+        <div class="row incident-filter-row justify-content-between">
+          <!-- filter rows -->
+          <!-- <div class="mr-4 mb-4">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search by Keyword"
+                    (input)="entity.filterGlobal($event.target.value, 'contains')">
+                <div class="input-group-append">
+                    <span class="input-group-text"><i class="fa fa-search"></i></span>
+                </div>
+            </div>
+          </div> -->
+        <div class="mb-4 mt-2 col-4">
+          <span class="topStages Total">{{ dataOps.length }}</span>
+          <span class="labels">&nbsp;&nbsp;Records found</span>
+        </div>
+        <div class="right mb-4 mt-2 col-2">
+          <button class="topStages Total" (click)="onRefresh()">
+            <i class="fa fa-refresh" aria-hidden="true"></i>
+          </button>
+        </div>
+        </div>
+      </div>
+
+      <div class="row col-12">
+        <!-- style="margin: 15% 35%;" -->
+        <mat-spinner *ngIf="isLoading" class="mx-auto my-5">
+        </mat-spinner>
+      </div>
+      <!-- table -->
+      <div class="col-md-10"
+          style="padding: inherit; text-align: center; font-size: 20px;"
+          *ngIf="dataOps.length == 0 && !isLoading">
+          <p-table #entity [columns]="cols" [value]="dataOps" [resizableColumns]="true" sortMode="multiple" [globalFilterFields]= "filterFields"
+            [(selection)]="selectedItems" [paginator]="true" [rows]="12">
+            <ng-template pTemplate="header" let-columns>
+              <tr>
+                <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                  {{col.header}}
+                  <p-sortIcon [field]="col.field"></p-sortIcon>
+                </th>
+              </tr>
+            </ng-template>
+          </p-table>
+          <p>No DataOps found</p>
+
+      </div>
+
+      <div class="row ml-auto mr-auto entitiesTable " *ngIf="dataOps.length > 0 && !isLoading">
+        <p-table #entity [columns]="cols" [value]="dataOps" [resizableColumns]="true" sortMode="multiple" [globalFilterFields]= "filterFields"
+          [(selection)]="selectedItems" [paginator]="true" [rows]="12">
+          <!-- <ng-template pTemplate="caption">
+            Users List
+              </ng-template> -->
+          <ng-template pTemplate="header" let-columns>
+            <tr>
+              <!-- <th *ngFor="let col of columns">
+                {{col.header}}
+              </th> -->
+              <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                {{col.header}}
+                <p-sortIcon [field]="col.field"></p-sortIcon>
+              </th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-dataOps let-columns="columns">
+            <tr>
+              <td>{{ dataOps.resource }}</td>
+              <td><img src="../../../assets/images/{{dataOps.trendColor}}.png" alt="{{dataOps.trendColor}}" style="    height: 20px;
+                width: 14px;"></td>
+              <td>{{ intToString(dataOps.totalCount) }}</td>
+              <td>{{ dataOps.startDate | date:'MMM d y HH:mm:ss' }}</td>
+              <td>{{ dataOps.latestDate | date:'MMM d y HH:mm:ss' }}</td>
+              <td>{{ intToString(dataOps.latest24HCount) }}</td>
+              <td>{{ dataOps.attributeCount }}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+  </div>
+</div>
+

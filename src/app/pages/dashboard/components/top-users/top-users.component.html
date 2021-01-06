@@ -1,0 +1,30 @@
+<!-- Users list -->
+<div class="header row">
+    <div class="col-9 col-md-12 heading ">
+        TOP {{user}} USERS
+    </div>
+</div>
+
+<div class="top-riksy-users mt-2">
+    <ng-container *ngFor="let topUserDetail of topUserDetails;let last=last;">
+        <div class="row user-item blockPadding mx-auto" style="max-height: 4.5rem;align-content: center;">
+            <div class="col-md-2 pl-0 align-self-center">
+                <img class="profile-image rounded-circle"
+                    src='./../../../../../assets/images/users/service_user.jpeg' />
+            </div>
+            <div class="col-md-7 align-self-center wordWrap pointerCursor">
+                <a (click)="redirect(topUserDetail.entityId)" class="pointerCursor">{{topUserDetail.entityId}}</a>
+            </div>
+            <div class="col-md-3 risk-count initialPadding align-self-center">
+                <span [ngStyle]="{'color':getRiskScoreColor(topUserDetail.riskscorebygrp)}">
+                    {{user=='Orphan'?intToString(topUserDetail.riskscorebygrp):scoreRounder(topUserDetail.riskscorebygrp)}}</span>
+            </div>
+        </div>
+        <div class="ml-1 mr-1 borderLine" *ngIf="!last">
+        </div>
+    </ng-container>
+</div>
+
+<div *ngIf="topUserDetails && topUserDetails.length === 0" class="no-user">
+    No {{user}} Users found
+</div>

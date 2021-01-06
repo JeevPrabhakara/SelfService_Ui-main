@@ -1,0 +1,78 @@
+@import "../../../node_modules/bootstrap/scss/bootstrap";
+@import "../../../node_modules/bootswatch/dist/cosmo/bootswatch";
+$fa-font-path: "../../../node_modules/font-awesome/fonts";
+@import "../../../node_modules/font-awesome/scss/font-awesome";
+@import "../sass/mixins";
+@import "black_theme_variables";
+@import "../sass/font";
+@import "~@angular/material/theming";
+@include mat-core();
+
+$mat-light-blue: (
+  50: #0aadc8,
+  100: #0aadc8,
+  200: #0aadc8,
+  300: #0aadc8,
+  400: #0aadc8,
+  500: #0aadc8,
+  600: #0aadc8,
+  700: #0aadc8,
+  800: #0aadc8,
+  900: #0aadc8,
+  A100: #0aadc8,
+  A200: #0aadc8,
+  A400: #0aadc8,
+  A700: #0aadc8,
+  contrast: (
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: $black-87-opacity,
+    400: $black-87-opacity,
+    500: white,
+    600: white,
+    700: white,
+    800: $white-87-opacity,
+    900: $white-87-opacity,
+    A100: $black-87-opacity,
+    A200: white,
+    A400: white,
+    A700: white,
+  ),
+);
+
+$cyber-app-primary: mat-palette($mat-light-blue);
+$cyber-app-accent: mat-palette($mat-pink, A200, A100, A400);
+$cyber-app-theme: mat-light-theme($cyber-app-primary, $cyber-app-accent);
+
+@include mat-core-theme($cyber-app-theme);
+@include mat-button-theme($cyber-app-theme);
+@include mat-checkbox-theme($cyber-app-theme);
+
+.black-theme {
+  background: $theme-main-bg-color;
+  height: 100%;
+  @import "../sass/global";
+  @import "../sass/padding";
+  @import "../sass/margin";
+  @import "../sass/card";
+  @import "../sass/modal";
+  @import "../../app/pages/dashboard/dashboard.component";
+  @import "../../app/pages/dashboard/components/dashboard-count/dashboard-count.component";
+  @import "../../app/core/common/header/header.component";
+  @import "../../app/core/common/leftNav/leftNav.component";
+  @import "../../app/core/login/login";
+  @import "../../app/pages/dashboard/components/topDetails/topDetails.component";
+  @import "../../app/pages/dashboard/components/riskyUsers/riskyUsers.component";
+  @import "../../app/pages/case-management/case-management.component";
+  @import "../../app/pages/case-management/components/alerts/alerts.component";
+  // @import "../../app/pages/case-management/components/policy-violation-detail-view/policy-violation-detail-view.component";
+  @import "../../app/pages/dashboard/components/globe-chart/globe-chart-component";
+  @import "../../app/pages/case-management/components/pulse-globe/pulse-globe.component";
+  @import "../../app/pages/case-management/components/policy-violation-summary/policy-violation-summary.component";
+  @import "../../app/pages/case-management/components/pulse-globe/pulse-globe.component";
+  // @import "../../app/pages/insight-configuration/insight-configuration.component";
+  // @import "../../app/pages/insight-configuration/action-insight-configuration/action-insight-configuration.component";
+  @import "../../app/pages/global-search/entities/entities.component";
+  @import "../../app/pages/insight-configuration/insight-config-list/insight-config-list.component";
+}

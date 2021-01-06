@@ -1,0 +1,434 @@
+<div class="d-inline-block mt-2 ml-2" style="width: 99%;">
+    <h5 class="commonHeader mb-3 mt-1 pull-left">INC-{{incidentDetails.incId}}</h5>
+
+    <span class="pull-right">
+        <button type="button" class="btn btn-primary ml-2" placement="bottom" ngbTooltip="Investigate"
+            (click)="investigateClick()">
+            Investigate </button>
+    </span>
+</div>
+
+<!-- <div class="d-inline-block mr-2 ml-2 mb-2 mt-1">
+    <span class="commonHeader h5">INC-{{incidentDetails.incId}}</span>
+
+    <span class="pull-right">
+        <button type="button" class="btn btn-primary" placement="bottom" ngbTooltip="Investigate    "
+            (click)="addInsightConfiguration()">Investigate</button>
+    </span>
+    <div class="row">
+        <div class="col-md-9">
+            <h3 class="title">INC-{{incidentDetails.incId}} <span>- {{incidentDetails.incidentName}}</span>
+            </h3>
+        </div>
+        <div class="col-md-3 btn-block text-right">
+            <button class="assign-btn" *ngIf="showAssigMeButton" mat-raised-button
+                (click)="assignIncident(incidentDetails.incId)">Assign to Me
+            </button>
+            <button class="action-btn" mat-button [matMenuTriggerFor]="menu">Action <i
+                    class="fa fa-angle-up"></i></button>
+            <mat-menu #menu="matMenu">
+                <button class="action-menu-item" mat-menu-item
+                    (click)="fetchEnrichIndexKibanaURL(incidentDetails.shortenUrl)">Investigate</button>
+            </mat-menu>
+        </div>
+    </div>
+</div> -->
+
+<div class="d-inline-block mr-2 ml-2">
+    <div class="page-content summary-page mt-1">
+        <div class="row">
+            <div class="col-md-6 left-block" style="padding-top: .8rem;">
+                <!-- <div class="block-content">
+                    <div class="block-title"><i class="fa fa-caret-right"></i> <span>Description</span></div>
+                    <div class="block-description">
+                        {{incidentDetails.elasticPolicyDescription}}
+                    </div>
+                </div> -->
+                <!--     <div class="block-content mb-4">
+                        <div class="block-title "><i class="fa fa-caret-right"></i> <span class="recommendation-text"><a
+                                    href="#">Recommendation</a></span></div>
+                    </div> -->
+
+                <div class="data-list mb-4" style="border-top: none;padding-top: 0px;">
+                    <div class="row mt-1">
+                        <div class="col-11 col-sm-5 col-xl-4 dataTitle">Event Date</div>
+                        <b>&nbsp;:&nbsp;</b>
+                        <div class="col-sm-6 dataValue">{{incidentDetails.eventDate | date: 'dd/MM/yyyy'}}
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-11 col-sm-5 col-xl-4 dataTitle">Incident Creation Date</div>
+                        <b>&nbsp;:&nbsp;</b>
+                        <div class="col-sm-6 dataValue">
+                            {{incidentDetails.incidentCreatedTime | date: 'dd/MM/yyyy HH:mm:ss'}}
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-11 col-sm-5 col-xl-4 dataTitle">Risk Score</div>
+                        <b>&nbsp;:&nbsp;</b>
+                        <div class="col-sm-6 dataValue">
+                            {{incidentDetails.elasticRiskScore}}
+                        </div>
+                        <!-- <div class="col-sm-6 dataValue">
+                            <mat-form-field class="dropdown-priority" style="margin-top: -1rem;">
+                                <mat-select [(ngModel)]="incidentDetails.priority"
+                                    (ngModelChange)="incidentDataChange()" name="priority"
+                                    placeholder="Select Priority">
+                                    <mat-option value="HIGH">High</mat-option>
+                                    <mat-option value="MEDIUM">Medium</mat-option>
+                                    <mat-option value="LOW">Low</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div> -->
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-11 col-sm-5 col-xl-4 dataTitle">Number of Models</div>
+                        <b>&nbsp;:&nbsp;</b>
+                        <div class="col-sm-6 dataValue">{{incidentDetails.indicatorsCount}}</div>
+                    </div>
+                    <!-- <div class="row mt-3">
+                        <div class="col-11 col-sm-5 col-xl-4 dataTitle">Status</div>
+                        <b>&nbsp;:&nbsp;</b>
+                        <div class="col-sm-6 dataValue">
+                            <mat-form-field class="dropdown-priority">
+                                <mat-select [(ngModel)]="incidentDetails.status" (ngModelChange)="incidentDataChange()"
+                                    name="status" placeholder="Select Status">
+                                    <mat-option value="NEW">New</mat-option>
+                                    <mat-option value="IN_PROGRESS">In Progress</mat-option>
+                                    <mat-option value="PERFORM_REMIDIATION">Perform Remediation</mat-option>
+                                    <mat-option value="CLOSED">Closed</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div> -->
+                    <div class="row mt-3">
+                        <!-- [hidden]="incidentDetails.status !== 'CLOSED'" -->
+                        <div class="col-11 col-sm-5 col-xl-4 dataTitle">Outcome</div>
+                        <b>&nbsp;:&nbsp;</b>
+                        <div class="col-sm-6 dataValue">
+                            <mat-form-field class="dropdown-priority w-100">
+                                <mat-select [(ngModel)]="incidentDetails.outcome" name="outcome" (ngModelChange)="incidentOutcomeChange()"
+                                    placeholder="Select Outcome" [disabled]="initialOutcome!='OPEN'">
+                                    <mat-option value="TRUE_POSITIVE">True Positive</mat-option>
+                                    <mat-option value="FALSE_POSITIVE_RIGHT_DETECTION">False Positive Correct
+                                        Detection</mat-option>
+                                    <mat-option value="FALSE_POSITIVE_WRONG_DETECTION">False Positive Wrong Detection
+                                    </mat-option>
+                                    <mat-option value="OPEN">Open</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-11 col-sm-5 col-xl-4 dataTitle">Case Owner</div>
+                        <b>&nbsp;:&nbsp;</b>
+                        <div class="col-sm-6 dataValue">
+                            <mat-form-field class="case-owner-input w-100">
+                                <input type="text" placeholder="Select reviewer" matInput [formControl]="myControl"
+                                    [matAutocomplete]="auto">
+                                <mat-autocomplete #auto="matAutocomplete" (optionSelected)='selectedCaseOwner()'
+                                    [displayWith]="displayFn">
+                                    <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                                        {{option.name}}
+                                    </mat-option>
+                                </mat-autocomplete>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-11 col-sm-5 col-xl-4 dataTitle">&nbsp;</div>
+                        <div class="col-sm-6 dataValue">
+                            <button class="update-btn" *ngIf="showUpdateButton" mat-raised-button
+                                (click)="closeIncident()">Update
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="block-content mt-2">
+                    <div class="block-title "><i class="fa fa-caret-right"></i> <span>News Feed</span></div>
+                    <div class="block-description">
+                        <ng-scrollbar trackY="true" barClass="custom-scroll">
+                            <ul class="feed-list" style="height: 300px">
+                                <li *ngFor="let activity of incidentDetails.incidentactivities">
+                                    <span class="time mb-3">{{activity.actionTime | timeAgo}}</span>
+                                    <img src='../../../../../assets/images/plus.png' width="30" />
+                                    <span class="news-title">
+                                        <!-- {{activity.incActor.firstName}}
+                                        {{activity.incActor.lastName}}  -->{{activity.feed}}</span>
+                                </li>
+                            </ul>
+                        </ng-scrollbar>
+                        <hr class="mt-4" />
+                    </div>
+
+                </div>
+
+                <!-- <div class="block-content mb-1">
+                    <div class="block-title "><i class="fa fa-caret-right"></i> <span>Attachments</span></div>
+                    <div class="block-description mt-3 attachments">
+                        <div *ngFor="let attachedFile of incidentDetails.attachFiles"
+                             (click)="getIncidentAttachmentFile(attachedFile.incidentSummaryAttachmentId, attachedFile.fileName)">
+                            {{attachedFile.uploadFile}}</div>
+
+                        <div class="attachBox text-center">
+                            <input type="file" class="custom-upload"
+                                   (change)="uploadIncidentSummaryFile($event.target.files)">
+                            <img src="../../../../../assets/images/upload.png" alt="Upload Icon" class="mb-3"/><br/>
+                            Drop files here to upload &nbsp;&nbsp; OR &nbsp;&nbsp; Browse from your computer<br/>
+                            <button mat-stroked-button class="custom-upload-btn mt-3">Browse</button>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+
+            <div class="col-md-6 right-block pb-4">
+                <div class="block-content mb-3">
+                    <div class="listedItem">
+                        <div class="block-title"><span>Threat Categorization</span></div>
+                        <!-- <div class="block-description mt-3">
+                            <div class="row mt-2 threatRow">
+                                <div class="col-11 col-sm-5 col-lg-3 threatTitle">
+                                    Kill Chain
+                                </div>
+                                <b>&nbsp;:&nbsp;</b>
+                                <div class="col-sm-6 threatValue">
+                                    {{ incidentDetails.elasticKillChainName }}
+                                </div>
+                            </div>
+                            <div class="row mt-2 threatRow">
+                                <div class="col-11 col-sm-5 col-lg-3 threatTitle">
+                                    Threat Category
+                                </div>
+                                <b>&nbsp;:&nbsp;</b>
+                                <div class="col-sm-6 threatValue">
+                                    {{ incidentDetails.elasticCategory }}
+                                </div>
+                            </div>
+                            <div class="row mt-2 threatRow">
+                                <div class="col-11 col-sm-5 col-lg-3 threatTitle">
+                                    Sub Category
+                                </div>
+                                <b>&nbsp;:&nbsp;</b>
+                                <div class="col-sm-6 threatValue">
+                                    {{ incidentDetails.elasticSubCategory }}
+                                </div>
+                            </div>
+                        </div> -->
+                        <div class="row ng-star-inserted mx-auto mt-2">
+                            <ul class="kill-chain-list">
+                                <li class="mr-2" *ngFor="let threatCategorizationImage of threatCategorizationImages"
+                                    [style.background-image]="'url(../../../../../assets/images/kill-arrow.png)'">
+                                    <div class="img-wrap">
+                                        <img src="../../../../../assets/images/{{threatCategorizationImage.icon}}"
+                                            alt="Complete Mission" />
+                                    </div>
+                                    <span
+                                        style="min-width: 5.5rem;word-break: initial;min-height: 2.4rem;">{{threatCategorizationImage.title}}</span>
+                                </li>
+                            </ul>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="block-content mb-5">
+                    <div class="killChain">
+                        <div class="block-title text-left"><span>Kill Chain</span></div>
+                        <ul class="kill-chain-list">
+                            <li class="mr-2" *ngFor="let killchainImage of killChainImages"
+                                [style.background-image]="'url(../../../../../assets/images/kill-arrow.png)'">
+                                <div class="img-wrap">
+                                    <img src="../../../../../assets/images/{{killchainImage.icon}}"
+                                        alt="Complete Mission" />
+                                </div>
+                                <span
+                                    style="min-width: 5.5rem;word-break: initial;min-height: 2.4rem;background: grey;color: white;">{{killchainImage.title}}</span>
+                            </li>
+                        </ul>
+                        <div class="clear"></div>
+                        <!-- <div class="wizard"> 
+                            <div class="item" [ngClass]="{'kill-chain': killchain.isKill === 1 }" *ngFor="let killchain of killChainProcess" >
+                                <div class="chain-reaction" *ngIf="killchain.isKill" ></div>
+                                {{killchain.title}}
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+
+                <form [formGroup]="commentFormGroup" class="row user-item pt-2">
+                    <div class="col-2 col-sm-1 col-md-2 col-lg-1 pl-0">
+                        <img class="profile-image img-round" src="./../../../../../assets/images/user.png">
+                    </div>
+                    <div class="col-sm-11 col-md-10 col-lg-11 mt-2 mt-sm-0">
+                        <div class="form-group input-group">
+                            <textarea class="form-control rounded" formControlName="commentValue" id="commentValue"
+                                placeholder="Enter your comments here..." matInput cdkTextareaAutosize #autosize
+                                cdkAutosizeMinRows="1" cdkAutosizeMaxRows="4"> </textarea>
+                        </div>
+                        <!-- <div class="row" [hidden]="commentValue.value.trim()==''">
+                            <div class="col-md-2" class="tag-user-label">Tag Users:</div>
+                            <div class="col-md-10">
+                                <mat-form-field class="example-chip-list">
+                                    <mat-chip-list #chipList aria-label="Tag Users">
+                                        <mat-chip *ngFor="let user of taggedUsers" [selectable]="selectable"
+                                            [removable]="removable" (removed)="remove(user)">
+                                            {{user.userName}}
+                                            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                                        </mat-chip>
+                                        <input class="form-control" placeholder="Tag Users" #taggedUserInput
+                                            [formControl]="taggedUserCtrl" [matAutocomplete]="autoForTaggedUser"
+                                            [matChipInputFor]="chipList"
+                                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                            [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)">
+                                    </mat-chip-list>
+                                    <mat-autocomplete #autoForTaggedUser="matAutocomplete"
+                                        (optionSelected)="selected($event)">
+                                        <mat-option *ngFor="let user of filteredUsers | async" [value]="user">
+                                            {{user.userName}}
+                                        </mat-option>
+                                    </mat-autocomplete>
+                                </mat-form-field>
+                            </div>
+                        </div> -->
+
+                    </div>
+                    <div class="col-12 text-right">
+                        <button color="primary" class="btn-main" mat-raised-button
+                            [disabled]="commentValue.value.trim()==''" type="submit" (click)="submitComment(0)">Post
+                        </button>
+                    </div>
+
+                    <div class="comment-wrap">
+
+                        <ng-scrollbar trackY="true" barClass="custom-scroll">
+                            <div class="user-item mt-3 mb-4" *ngFor="let comment of incidentDetails.incidentComments"
+                                [hidden]="comment.deleted">
+                                <div class="profile-pic">
+                                    <img class="profile-image img-round" src="./../../../../../assets/images/user.png">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="row mb-1">
+                                        <div class="col-md-12 comment user-info">
+                                            <span class="commentUser">{{comment.incCommentor.userName}}</span>
+                                            &emsp;&emsp;
+                                            {{comment.commentTime | timeAgo}}
+                                        </div>
+                                    </div>
+                                    <div class="row comment" style="word-break: break-all;">
+                                        {{comment.comment}}
+                                    </div>
+                                    <div class="row tagged-users">
+
+                                        <mat-chip-list aria-label="taggedUsers">
+                                            <mat-chip *ngFor="let taggedUser of comment.taggedUserList"
+                                                class="tag-user-chip">{{taggedUser.userName}}</mat-chip>
+                                        </mat-chip-list>
+                                    </div>
+                                    <div class="row mt-1 comment-action"><span class="reply"
+                                            (click)="comment.reply= !comment.reply">Reply</span>
+                                        &nbsp;|&nbsp; <span class="delete"
+                                            (click)="deleteComment(comment);">Delete</span>
+                                    </div>
+                                    <div class="row mt-4" *ngIf="comment.reply">
+                                        <div class="col-md-10">
+                                            <textarea type="text" autosize class="form-control"
+                                                formControlName="replyComment" id="replyComment"
+                                                [(ngModel)]="comment.childContent" required name="content"
+                                                placeholder="Enter your comments here..."></textarea>
+                                        </div>
+                                        <div class="col-md-3 mt-3">
+                                            <button class="btn btn-sm" [disabled]="replyComment.value.trim()==''"
+                                                type="submit" (click)="submitReply(comment,comment.incCmtId)">
+                                                &emsp;Post&emsp;
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="margin-left: 10%;" class="user-item mt-3 mb-4"
+                                    *ngFor="let childComment of comment.childCommentsModel"
+                                    [hidden]="childComment.deleted">
+                                    <div class="profile-pic">
+                                        <img class="profile-image img-round"
+                                            src="./../../../../../assets/images/user.png">
+                                    </div>
+                                    <div class="comment-content">
+                                        <div class="row mb-1">
+                                            <div class="col-md-12 comment user-info">
+                                                <span class="commentUser">{{childComment.incCommentor.userName}}</span>
+                                                &emsp;&emsp;
+                                                {{childComment.commentTime | timeAgo}}
+                                            </div>
+                                        </div>
+                                        <div class="row comment" style="word-break: break-all;">
+                                            {{childComment.comment}}
+                                        </div>
+                                        <div class="row mt-1 comment-action">
+                                            <!--< span class="reply"
+                                                                                   (click)="childComment.reply= !childComment.reply">Reply</spa
+                                            &nbsp;|&nbsp; n> --><span class="delete"
+                                                (click)="deleteComment(childComment);">Delete</span>
+                                        </div>
+                                        <div class="row mt-4" *ngIf="childComment.reply">
+                                            <div class="col-md-10">
+                                                <textarea type="text" autosize class="form-control"
+                                                    formControlName="replyComment" id="replyComment"
+                                                    [(ngModel)]="comment.childContent" required name="content"
+                                                    placeholder="Enter your comments here..."></textarea>
+                                            </div>
+                                            <div class="col-md-3 mt-3">
+                                                <button class="btn btn-sm" [disabled]="replyComment.value.trim()==''"
+                                                    type="submit" (click)="submitReply(comment.cmtId)">
+                                                    &emsp;Post&emsp;
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-scrollbar>
+                    </div>
+                </form>
+            </div><!-- End Right Block -->
+        </div>
+    </div>
+
+    <div class="page-footer">
+        <div class="row align-items-center">
+            <!--      <div class="col-md-3 page-viewer">
+                <img src="../../../../../assets/images/circle.png"/>
+                <div class="viewer-info">
+                    <span class="view-count">52</span>
+                    viewing this page now
+                </div>
+            </div> -->
+            <!-- Tagged People -->
+            <!-- <div class="col-md-4">
+                <div class="ml-md-5">
+                    <h3>Tagged People</h3>
+                    <p>
+                        <span *ngFor="let taggedUser of taggedUsersForIncident; let i = index" [attr.data-index]="i">
+                            #{{taggedUser.userName}}<span *ngIf="i !== (taggedUsersForIncident.length-1)">,</span>
+                        </span>
+                    </p>
+                </div>
+            </div> -->
+            <!-- 
+            <div class="col-md-5">
+                <nav aria-label="Page navigation">
+                  <ul class="pagination justify-content-end">
+                    <li class="page-item disabled">
+                      <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                    </li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                      <a class="page-link" href="#">Next</a>
+                    </li>
+                  </ul>
+                </nav>
+            </div>    -->
+        </div>
+    </div>
+</div>

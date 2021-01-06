@@ -1,0 +1,107 @@
+.mat-button-toggle-group-appearance-standard {
+    border: solid 1px#787E98;
+
+    .mat-button-toggle-appearance-standard {
+        color: #787e98;
+        background: transparent;
+        // border-right: 1px solid #787E98;
+        // line-height: 35px;
+
+        // .mat-button-toggle-button .mat-button-toggle-label-content {
+        //     line-height: 33px !important;
+        //     padding: 0 12px;
+        // }
+
+        ::ng-deep {
+            .mat-button-toggle-label-content {
+                line-height: 33px;
+                padding: 0 4.2em;
+            }
+        }
+    }
+    .mat-button-toggle-checked.mat-button-toggle-appearance-standard {
+        background: #787e98;
+        color: #000000;
+    }
+    .mat-button-toggle + .mat-button-toggle {
+        border-left: solid 1px #787e98;
+    }
+}
+
+tr {
+    //#000000
+    background-color: #060818 !important;
+    color: #bdbdbd !important;
+}
+
+th {
+    color: #787E98 !important;
+    background-color: #0D1726 !important;
+}
+.red{
+    color: red;
+}
+.green{
+    color: green;
+}
+.orange {
+    color: rgb(252, 152, 39);
+}
+
+.emp-id{
+    color: rgb(90, 191, 224);
+}
+.big-font{
+    // font-size: 1.7em;
+    font-size: medium;
+}
+
+.mat-button-toggle-button:focus {
+    outline: none !important; }
+.mat-button-toggle-label-content:focus {
+    outline: none !important;
+}
+
+
+.entitiesTable {
+    .ui-table {
+        .ui-paginator-bottom {
+            display: block !important;
+        }
+        .ui-paginator {
+            background-color: rgba(0, 0, 0, 0.6);
+            border: 1px solid #4b5965;
+            width: auto;
+            float: left;
+            margin: 15px 0px;
+            font-size: 14px;
+
+            .ui-paginator-pages .ui-paginator-page.ui-state-active {
+                background-color: #099bb5;
+                color: #ffffff;
+            }
+
+            .ui-paginator-pages .ui-paginator-page:not(.ui-state-active):hover,
+            .ui-paginator-first:not(.ui-state-disabled):not(.ui-state-active):hover,
+            .ui-paginator-prev:not(.ui-state-disabled):not(.ui-state-active):hover,
+            .ui-paginator-next:not(.ui-state-disabled):not(.ui-state-active):hover,
+            .ui-paginator-last:not(.ui-state-disabled):not(.ui-state-active):hover {
+                background-color: rgba(0, 0, 0, 0.9);
+                color: #099bb5;
+            }
+        }
+    }
+}
+
+.black-theme .ui-table .ui-paginator-bottom {
+    display: block !important;
+}
+
+// .chart-container{
+    // height: 300px;
+    // background-color: $top-details-bg-color;
+    // border: 1px solid #1D2D41;
+    // // padding: 1.25rem;
+    // border-radius: 2px;
+    
+//   }

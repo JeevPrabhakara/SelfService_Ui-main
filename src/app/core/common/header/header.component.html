@@ -1,0 +1,120 @@
+<ng-progress [meteor]="options.meteor" [color]="options.color" [spinner]="options.spinner"
+    [spinnerPosition]="options.spinnerPosition" [direction]="options.direction" [thick]="options.thick"
+    [ease]="options.ease">
+</ng-progress>
+<nav class="navbar row header-container">
+    <div class="col-md-8 initialPadding">
+        <a href (click)="changeMenuOpen()" class="menu ion-navicon" href="javascript:void(0)">
+            <span class="ion ion-md-menu"></span>
+        </a>
+        <a class="clearfix d-inline-block" style="margin-left: 16px" (click)="goToWebSite()">
+            <!-- <img src="../../../../assets/images/{{themeName}}-logo.png" alt="CyberNetiz Logo" /> -->
+            <img src="../../../../assets/images/new-logo.png" class="pointerCursor" alt="CyberNetiz Logo"
+                style="width:40%;" />
+        </a>
+        <div class="pl-3 d-inline-block">
+            <mat-button-toggle-group multiple="false" appearance="legacy" [(ngModel)]="activeOption" (ngModelChange)="changeEntity($event)">
+                <mat-button-toggle *ngFor="let item of toggleOptions;" [value]="item">{{item}}</mat-button-toggle>
+              </mat-button-toggle-group>
+        </div>
+    </div>
+
+    <div class="col-md-3 row">
+        <div class="col-md-12 input-group initialPadding">
+            <input type="text" class="form-control search-box" [(ngModel)]="searchEntity"
+                 (keyup.enter)="filterRiskEntities()">
+            <div class="input-group-append search-icon-container" (click)="filterRiskEntities()">
+                <span class="input-group-text">
+                    <i class="fa fa-search" style="font-size: initial;"></i>
+                </span>
+            </div>
+        </div>
+
+        <!-- <div class="col-md-1 input-group initialPadding"
+             style="display: flex;align-items:center; position:relative;padding-top:20px;display:inline-block;">&lt;!&ndash;
+            <a class="al-logo clearfix" (click)="displayNotifications()">                
+                <span *ngIf="notificationCount > 0" class="notify-badge">{{notificationCount}}</span>
+                <img class="notify" src="../../../../assets/images/notification.png" alt="CyberNetiz Logo"/>
+            </a> &ndash;&gt;
+            <button matBadge="{{notificationCount}}" mat-icon-button [matMenuTriggerFor]="menu" class="notification-btn"
+                    (click)="markAsRead()">
+                <img class="notify" src="../../../../assets/images/notification.png" alt="CyberNetiz Logo"/>
+            </button>
+
+            <mat-menu #menu="matMenu" class="notification-container">
+                <ng-scrollbar trackY="true" barClass="custom-scroll">
+                <div class="notification-list">
+                    <div mat-menu-item *ngFor="let notification of notifications">
+                        <div class="row" [routerLink]="['/incidentSummary', notification.incId]">
+                            <div class="col-1">
+                                <mat-icon [ngStyle]="{'color':'white'}">account_circle</mat-icon>
+                            </div>
+                            <div class="col-7">
+                                <span
+                                    class="notification-username">{{notification.userName}}</span> {{notification.message}}
+                            </div>
+                            <div class="col-4">{{notification.createdDate | timeAgo}}</div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                </ng-scrollbar>
+            </mat-menu>
+        </div>-->
+
+    </div>
+
+    <!-- <div class="col-md-1 input-group initialPadding">
+        <a routerLink="/dashboard" class="al-logo clearfix">
+            <img src="../../../../assets/images/notification.png" alt="CyberNetiz Logo" />
+        </a>
+    </div> -->
+
+    <div class="user-profile">
+        <div class="dropdown al-user-profile pl-3">
+            <a class="profile-toggle-link dropdown-toggle" id="user-profile-dd" data-toggle="dropdown"
+                aria-expanded="false">
+                <!-- <div class="col-md-3 row ">
+                    <img class="logged-user-img" src="../assets/images/users/service_user.jpeg">
+                </div> -->
+                <div class="col-md-3 row logged-user-name">
+                    <img class="logged-user-img" src="../assets/images/users/signed-in-user.png">
+                    <!-- <span
+                        class="shortLoginUserName text-uppercase rounded-circle p-2">{{loggedInUserDetails?.shortLoginUserName}}</span> -->
+                </div>
+            </a>
+
+            <ul class="dropdown-menu top-dropdown-menu profile-dropdown" aria-labelledby="user-profile-dd">
+                <!--<li class="dropdown-item"><a href><i class="fa fa-user m-r-sm"></i>{{'global.profile' | translate}}</a></li>-->
+                <!--     <li class="dropdown-item"><a (click)="showSettings(settingsModal)"><i
+                                class="fa fa-cog m-r-sm"></i>{{'global.settings' | translate}}</a></li> -->
+                <li class="dropdown-item"><a (click)="signout()" class="signout"><i
+                            class="fa fa-power-off m-r-sm"></i>{{'actions.signOut' | translate}}</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--User settings modal template-->
+<ng-template #settingsModal>
+    <div class="modal-header">
+        <h4 class="modal-title">{{'global.settings' | translate}}</h4>
+        <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="theme-selection">
+            <h6>{{'global.themeLabel' | translate}}</h6>
+            <label class="m-r-sm" (click)="themeName='black'">
+                <input type="radio" ([ngModal])="themeName" name="themeGroup" [checked]="themeName === 'black'">
+                {{'global.themes.dark' | translate}}
+            </label>
+            <label (click)="themeName='blue'">
+                <input type="radio" ([ngModal])="themeName" name="themeGroup" [checked]="themeName === 'blue'">
+                {{'global.themes.blue' | translate}}
+            </label>
+        </div>
+    </div>
+</ng-template>

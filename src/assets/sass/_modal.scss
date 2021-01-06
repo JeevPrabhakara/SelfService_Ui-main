@@ -1,0 +1,16 @@
+.modal-dialog {
+    .modal-header {
+        background-color: $brand-color;
+        color: $brand-white;
+        button:focus {
+            outline: none; 
+        }
+    }
+    .modal-body {
+        .theme-selection {
+            input {
+                margin-right: 5px;
+            }
+        }
+    }
+}

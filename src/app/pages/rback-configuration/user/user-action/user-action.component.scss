@@ -1,0 +1,162 @@
+.userForm {
+  padding: 0.8rem;
+
+  .basicColor {
+    color: #a0a0a0;
+  }
+
+  button.btn {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    background-color: #050606;
+  }
+
+  .btn:focus {
+    outline: 1px solid blue !important;
+  }
+
+  // entering value
+  input {
+    color: #bdbdbd !important;
+  }
+
+  // place holder
+  input::placeholder {
+    color: #bdbdbd !important;
+  }
+
+  .form-control {
+    color: #bdbdbd !important;
+    border: 1px solid #6e7a86;
+    border-radius: 5px;
+  }
+
+  .form-control:focus {
+    color: #bdbdbd;
+    background-color: transparent;
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+
+  .contentCenter {
+    display: inline-grid;
+    align-items: center;
+  }
+}
+
+// angular2-multiselect-dropdown box
+:host ::ng-deep {
+  .c-btn {
+    border: 1px solid #6e7a86 !important;
+    border-radius: 5px !important;
+    color: #bdbdbd !important;
+    font-size: 1rem;
+  }
+
+  .c-btn:focus {
+    color: #bdbdbd;
+    background-color: transparent;
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25) !important;
+  }
+
+  .selected-list .c-angle-down svg,
+  .selected-list .c-angle-up svg {
+    fill: #bdbdbd !important;
+    display: flex;
+    align-items: center;
+  }
+
+  // selected box clear icon
+  c-icon {
+    fill: #b5b5b5 !important;
+  }
+
+  // filter text clear icon
+  .list-filter .c-clear svg {
+    display: flex;
+  }
+
+  // filter search box edge top
+  .arrow-down,
+  .arrow-up {
+    border-bottom: 16px solid #b5b5b5;
+  }
+
+  // list filter input
+  .list-filter input {
+    background: #b5b5b5;
+    color: #211e1e !important;
+  }
+
+  // list filter input placeholder
+  .list-filter input::placeholder {
+    color: #211e1e !important;
+  }
+
+  // entire list area other than filter input box
+  .list-area {
+    background: #b5b5b5;
+  }
+
+  // selected box label
+  .pure-checkbox input[type="checkbox"] + label {
+    color: black;
+  }
+
+  // search icon
+  .list-filter .c-search svg {
+    fill: #000000a8;
+  }
+
+  // filter check box
+  .pure-checkbox input[type="checkbox"] + label:before {
+    border: 1px solid rebeccapurple;
+  }
+
+  // disabled box
+  .c-btn.disabled {
+    background: transparent;
+  }
+
+  // search icon on filter
+  .list-filter .c-search svg {
+    display: flex;
+    align-items: center;
+  }
+
+  // selected items
+  .selected-list .c-list .c-token {
+    background: #524a4a8c;
+    color: white;
+    margin-right: 0.5rem;
+  }
+
+  // space b/w selected items and clear button
+  .selected-list .c-list .c-token .c-label {
+    display: block;
+    float: left;
+    margin-right: 0.4rem;
+  }
+}
+
+// all group (entire buttons)
+.mat-button-toggle-group {
+  height: 2.2rem;
+  align-items: center;
+  border-radius: 5px;
+}
+
+// not-selected
+.mat-button-toggle {
+  background: white;
+  color: red;
+}
+
+// selected
+.mat-button-toggle-checked {
+  background: green;
+  color: black !important;
+}

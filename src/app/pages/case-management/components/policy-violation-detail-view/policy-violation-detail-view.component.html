@@ -1,0 +1,161 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="mx-auto titleTiming">
+            {{dateTitle}}
+            <span class="p-4 pointerCursor" (click)="chartOpen = !chartOpen">
+                    &emsp;&emsp;Auto&nbsp;&nbsp;<i *ngIf="chartOpen" class="fa fa-angle-up"></i> <i *ngIf="!chartOpen" class="fa fa-angle-down"></i>
+            </span>
+        </div>
+    </div>
+    <div class="row" style="margin-top:1.4rem;">
+        <div class="card">
+            <div class="row card-header" style="margin: inherit;">
+                <span class="col-md-3" style="padding: unset;font-size: medium;">
+                   Time
+                </span>
+                <span class="col-md-9" style="padding: unset;font-size: medium;">
+                    _source
+                </span>
+            </div>
+            <div class="row card-body p-2" style="margin: inherit;">
+                <div class="col-md-3" style="padding: unset;font-size: medium;">
+                    <span class="p-2 pointerCursor" (click)="firstCardShowObject.accord = !firstCardShowObject.accord">
+                                &emsp;<i *ngIf="firstCardShowObject.accord" class="fa fa-angle-up"></i> <i *ngIf="!firstCardShowObject.accord" class="fa fa-angle-down"></i>
+                        </span>
+                    <span style="color:#E2E4E4;">{{firstCardShowObject.date}}</span>
+                </div>
+
+                <div class="col-md-9" style="padding: initial;">
+                    <div class="row" *ngFor="let detail of firstCardShowObject.details">
+                        <div class="col-md-2 p-1" style="display: flex;place-content: center;"><span class="detailTitleBackground">Flightnum : </span> <span class="detailValue"> &nbsp;{{detail.flightNum}}</span></div>
+                        <div class="col-md-2 p-1" style="display: flex;place-content: center;"><span class="detailTitleBackground">DestCountry : </span> <span class="detailValue"> &nbsp;{{detail.destCountry}}</span></div>
+                        <div class="col-md-2 p-1" style="display: flex;place-content: center;"><span class="detailTitleBackground">OriginWeather : </span> <span class="detailValue"> &nbsp;{{detail.originWeather}}</span></div>
+                        <div class="col-md-2 p-1" style="display: flex;place-content: center;"><span class="detailTitleBackground">AvgTicketPrice : </span> <span class="detailValue"> &nbsp;{{detail.avgTicketPrice1}}</span></div>
+                        <div class="col-md-2 p-1" style="display: flex;place-content: center;"><span class="detailTitleBackground">DistanceMiles : </span> <span class="detailValue"> &nbsp;{{detail.distanceMiles}}</span></div>
+                        <div class="col-md-2 p-1" style="display: flex;place-content: center;"><span class="detailTitleBackground">AvgTicketPrice : </span> <span class="detailValue"> &nbsp;{{detail.avgTicketPrice2}}</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <hr *ngIf="firstCardShowObject.accord" style="background: #979797;margin: 0px 10px;">
+
+            <div class="row p-3" *ngIf="firstCardShowObject.accord">
+                <div class="col-md-7 pt-2 pb-2">
+                    <ul class="nav nav-pills mb-5 btn-sm" id="pills-tab" role="tablist" style="width: fit-content;background: #099BB5;border: 1px solid #099BB5;border-radius:4px;padding: initial;">
+                        <li class="nav-item active">
+                            <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">&emsp;Table&emsp;</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">&nbsp;&nbsp;Vurnability&nbsp;&nbsp;</a>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content p-2" id="pills-tabContent">
+                        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                            <div *ngFor="let accordDetail of firstCardShowObject.accordDetails" class="row" style="margin: -14px 0px -14px 0px;">
+                                <div class="mr-4">
+                                    <span class="mr-2">{{accordDetail.text}}</span>
+                                </div>
+                                <div class="mr-4" style="color: #099BB5;">
+                                    <span class="mr-3"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    <span class="mr-3"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i></span>
+                                    <span class="mr-3"><i class="fa fa-star-o" aria-hidden="true"></i></span>
+                                </div>
+                                <div class="mr-1">
+                                    <span class="mr-3">{{accordDetail.value1}} </span>
+                                    <span class="mr-3">{{accordDetail.flightNum1}} </span>
+                                    <span class="mr-3">{{accordDetail.value2 }}</span>
+                                    <span class="mr-3">{{accordDetail.flightNum2}} </span>
+                                    <span class="mr-3">{{accordDetail.day}} </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-home-tab">
+                            Second Table
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-5 pt-2">
+                    <div class="pull-right SideButton">
+                        <button type="button" class="btn btn-primary btn-sm mr-3">View Surrounding Documents</button>
+                        <button type="button" class="btn btn-secondary btn-sm mr-3">View Signal Documents</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row" style="margin-top:1.4rem;" *ngFor="let remainingCardObject of remainingCardObjects">
+        <div class="card">
+            <div class="row card-body p-2" style="margin: inherit;">
+                <div class="col-md-3" style="padding: unset;font-size: medium;">
+                    <span class="p-2 pointerCursor" (click)="remainingCardObject.accord = !remainingCardObject.accord">
+                                    &emsp;<i *ngIf="remainingCardObject.accord" class="fa fa-angle-up"></i> <i *ngIf="!remainingCardObject.accord" class="fa fa-angle-down"></i>
+                            </span>
+                    <span style="color:#E2E4E4;">{{remainingCardObject.date}}</span>
+                </div>
+
+                <div class="col-md-9" style="padding: initial;">
+                    <div class="row" *ngFor="let detail of remainingCardObject.details">
+                        <div class="col-md-2 p-1" style="display: flex;place-content: center;"><span class="detailTitleBackground">Flightnum : </span> <span class="detailValue"> &nbsp;{{detail.flightNum}}</span></div>
+                        <div class="col-md-2 p-1" style="display: flex;place-content: center;"><span class="detailTitleBackground">DestCountry : </span> <span class="detailValue"> &nbsp;{{detail.destCountry}}</span></div>
+                        <div class="col-md-2 p-1" style="display: flex;place-content: center;"><span class="detailTitleBackground">OriginWeather : </span> <span class="detailValue"> &nbsp;{{detail.originWeather}}</span></div>
+                        <div class="col-md-2 p-1" style="display: flex;place-content: center;"><span class="detailTitleBackground">AvgTicketPrice : </span> <span class="detailValue"> &nbsp;{{detail.avgTicketPrice1}}</span></div>
+                        <div class="col-md-2 p-1" style="display: flex;place-content: center;"><span class="detailTitleBackground">DistanceMiles : </span> <span class="detailValue"> &nbsp;{{detail.distanceMiles}}</span></div>
+                        <div class="col-md-2 p-1" style="display: flex;place-content: center;"><span class="detailTitleBackground">AvgTicketPrice : </span> <span class="detailValue"> &nbsp;{{detail.avgTicketPrice2}}</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <hr *ngIf="remainingCardObject.accord" style="background: #979797;margin: 0px 10px;">
+
+            <div class="row p-3" *ngIf="remainingCardObject.accord">
+                <div class="col-md-7 pt-2 pb-2">
+                    <ul class="nav nav-pills mb-5 btn-sm" id="pills-tab" role="tablist" style="width: fit-content;background: #099BB5;border: 1px solid #099BB5;border-radius:4px;padding: initial;">
+                        <li class="nav-item active">
+                            <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">&emsp;Table&emsp;</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">&emsp;Vurnability&emsp;</a>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content p-2" id="pills-tabContent">
+                        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                            <div *ngFor="let accordDetail of remainingCardObject.accordDetails" class="row" style="margin: -14px 0px -14px 0px;">
+                                <div class="mr-4">
+                                    <span class="mr-2">{{accordDetail.text}}</span>
+                                </div>
+                                <div class="mr-4" style="color: #099BB5;">
+                                    <span class="mr-3"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    <span class="mr-3"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i></span>
+                                    <span class="mr-3"><i class="fa fa-star-o" aria-hidden="true"></i></span>
+                                </div>
+                                <div class="mr-1">
+                                    <span class="mr-3">{{accordDetail.value1}} </span>
+                                    <span class="mr-3">{{accordDetail.flightNum1}} </span>
+                                    <span class="mr-3">{{accordDetail.value2 }}</span>
+                                    <span class="mr-3">{{accordDetail.flightNum2}} </span>
+                                    <span class="mr-3">{{accordDetail.day}} </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-home-tab">
+                            Second Table
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-5 pt-2">
+                    <div class="pull-right SideButton">
+                        <button type="button" class="btn btn-primary btn-sm mr-3">View Surrounding Documents</button>
+                        <button type="button" class="btn btn-secondary btn-sm mr-3">View Signal Documents</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

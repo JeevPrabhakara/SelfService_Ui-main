@@ -1,0 +1,57 @@
+<div class="modal-header">
+  <h4>Confidence Metrics</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body riskScore-view">
+  <table class="table table-striped riskScore">
+    <tbody>
+      <tr>
+        <th colspan="2">DNS Query from DGA domain from
+          Host</th>
+      </tr>
+      <tr>
+        <td class="greyBg">
+          <span>Confidence</span>
+        </td>
+        <td>
+          <span>98%</span>
+        </td>
+      </tr>
+      <tr>
+        <th colspan="2">Domain Access Within Org</th>
+      </tr>
+      <tr>
+        <td class="greyBg">
+          <span>google.com</span>
+        </td>
+        <td>
+          <span> 80%</span>
+        </td>
+      </tr>
+      <tr>
+        <td class="greyBg">
+          <span>yahoo.com</span>
+        </td>
+        <td>
+          <span>10%</span>
+        </td>
+      </tr>
+      <tr>
+        <th colspan="2">Threshold</th>
+      </tr>
+      <tr>
+        <td class="greyBg">
+          <span>godaddy.com</span>
+        </td>
+        <td>
+          <span> 0.0000%</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!-- <div class="modal-footer">
+  <button type="button" class="btn btn-outline btn-info" (click)="activeModal.close('Close click')">Close</button>
+</div> -->

@@ -1,0 +1,464 @@
+ngb-modal-window.modal.fade.show.d-block {
+  background: #a9b9c708;
+  margin-top: 5rem;
+}
+
+// button#dropdownBasic1 {
+//   background: $buttonBackGround !important;
+// }
+
+.container-fluid.showActivity {
+  background: $black-bg-color;
+  margin-top: 5px;
+  .media {
+    margin: auto;
+    place-content: center;
+  }
+  .pagetitle {
+    color: $risky-user-text-color;
+    font-size: 22px;
+  }
+  .btn {
+    background: transparent;
+    border: 0.6px solid $risky-user-btn-text;
+    border-radius: 15px;
+    padding: 4px 24px;
+    margin-right: 16px !important;
+    color: $risky-user-btn-text;
+    font-size: small;
+  }
+  .active-btn {
+    background-color: $buttonBackGround !important;
+    color: #ffffff;
+  }
+  .row {
+    margin: auto;
+  }
+  .media-body {
+    max-width: fit-content;
+    .value {
+      text-align: center;
+      // font-family: Roboto-Light;
+      font-size: 2.2rem;
+      color: #d3d3d3;
+      margin-bottom: -2px;
+      // margin-top: 4px;
+      font-weight: 300;
+    }
+    .title {
+      text-align: center;
+      font-size: 20px;
+      // font-family: Roboto-Medium;
+      color: #d3d3d3;
+    }
+  }
+}
+
+.container-fluid.chartBg {
+  background: $risky-chart-bg;
+  padding: 0px 55px 0px 45px;
+}
+
+#heatMapChart {
+  width: 100%;
+  height: 500px;
+}
+
+#zoomableBubbleChart {
+  width: 100%;
+  height: 500px;
+}
+
+.guageChartBlock {
+  padding-right: initial;
+  overflow: hidden;
+  height: 8rem;
+}
+
+/* #chartGuageDiv {
+  width: 100%;
+  height: unset !important;
+} */
+
+.initialPadding {
+  padding: initial;
+}
+
+.captionTitle {
+  font-size: 16px;
+  color: #a7a7a7;
+  letter-spacing: -0.26px;
+}
+
+.captionData {
+  color: #d3d3d3;
+}
+
+#bubbleChartdiv {
+  width: 100%;
+  height: 65vh;
+  tspan {
+    fill: #a0a0a0;
+    font-size: 16px;
+    letter-spacing: -0.26px;
+  }
+  /* circle {
+        r: 8px; // make all bubble size same
+    } */
+  path {
+    stroke: #cac0c0;
+  }
+}
+
+#lineChartDiv {
+    width: 100%;
+    height: 55vh;
+    tspan {
+        fill: #6e6e6e;
+        font-size: 16px;
+        letter-spacing: -0.26px;
+    }
+}
+
+h6 {
+  font-size: large;
+}
+
+.greyBackground {
+  background: #1e364a !important;
+  color: $brand-white;
+}
+
+.btn:focus {
+  border: none;
+}
+
+/* .risky-actionDropDown {
+  top: -2px !important;
+    left: 1.1px !important;
+    border-radius: 0px;
+    border-top: aliceblue;
+    border-bottom-left-radius: 5px !important;
+    border-top-left-radius: 5px !important;
+    border-bottom-right-radius: 5px !important; 
+  margin-top: -2px;
+  border-radius: 0;
+  border-top: 1px solid $buttonBackGround;
+  border-bottom-left-radius: 5px !important;
+  border-top-left-radius: 5px !important;
+  border-bottom-right-radius: 5px !important;
+  left: 1.1px !important;
+  top: -2px !important;
+} */
+
+.btn:active {
+  outline: none;
+  border: none;
+}
+
+.greyBackground:hover {
+  background: $buttonBackGround;
+}
+
+button.greyBackground.dropdown-item:hover {
+  color: $brand-white;
+}
+
+.heatMapChart {
+  background: $ngxChart;
+}
+
+.ngx-charts {
+  text {
+    fill: $ngxChart-text-color;
+  }
+  rect {
+    stroke: $ngxChart-border-color;
+  }
+}
+
+.amcharts-main-div {
+  .amcharts-chart-div {
+    a {
+      display: none !important;
+    }
+    text {
+      fill: #6e6e6e !important;
+    }
+    path {
+      stroke: #0c202f !important; //$ngxChart-border-color;
+      stroke-width: 0;
+      stroke-opacity: 0;
+    }
+  }
+}
+
+#zoomableBubbleChart {
+  text {
+    fill: #6e6e6e !important;
+  }
+  /* rect {
+        stroke: #6FA8DD !important;
+    } */
+  path {
+    stroke: #6e6e6e !important; // zoom border line
+    fill: #b78868 !important; // zoom border inside
+  }
+}
+
+table {
+  border-collapse: separate;
+  border: solid 0.1px #6c6c6c;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  background: #cecccc40;
+}
+
+.table td {
+  border-top: none;
+  background: $black-bg-color;
+  width: 50%;
+  word-wrap: break-word;
+  color: $case-alert-text-color;
+}
+
+table td,
+table th {
+  padding: 10px;
+  /* Apply cell padding */
+}
+
+.table th {
+  border-top: none;
+  background: $risk-accord-th-color;
+  border-radius: 2px;
+  color: $case-alert-text-color;
+  width: 50%;
+  word-wrap: break-word;
+}
+
+.table th.mainTh {
+  background: #000000;
+}
+
+.tableBlackBackGround {
+  background: #041421;
+  color: $riksy-user-detail-dd;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  background-color: $nav-pills-active-bg;
+}
+
+.nav-pills .nav-link {
+  border-radius: 0;
+  background: $nav-pills-bg;
+  color: $nav-pills-color;
+}
+
+.btn:focus {
+  box-shadow: none;
+  outline: 0;
+}
+
+.btn-row {
+  margin: 10px 0 15px -15px;
+  .btn {
+    background-color: transparent;
+    color: $case-btn-text-color;
+    padding: 6px 25px;
+    outline: none;
+    border: 1px solid $case-btn-text-color;
+    border-radius: 20px;
+    font-size: 11px;
+    margin-left: 25px;
+  }
+  /* .btn:focus {
+        box-shadow: none;
+        border-radius: 0%;
+        outline: 0px;
+    } */
+}
+
+.media {
+  padding: inherit;
+}
+
+.fa-angle-up:before {
+  font-size: x-large;
+  color: $risky-separator-bg-color;
+}
+
+.fa-angle-down:before {
+  font-size: x-large;
+  color: $risky-separator-bg-color;
+}
+
+.pointerCursor {
+  cursor: pointer;
+  color: $case-alert-text-color;
+  font-weight: 500;
+}
+
+.risky-users-list {
+  background-color: $risky-users-bg-color;
+  border-radius: 6px;
+  box-shadow: $black-bg-box-shadow;
+  color: $risky-users-text-color;
+  .row {
+    margin: 0;
+    > div {
+      border-right: 1px solid $cnetiz-gray-70;
+      &:last-child {
+        border-right: none;
+      }
+    }
+  }
+  .header-row {
+    background-color: $risky-user-header-bg-color;
+    border-radius: 6px 6px 0 0;
+  }
+  .data-row {
+    border-bottom: 1px solid $cnetiz-gray-70;
+    color: $text-white;
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+  a {
+    color: $risky-user-link-color;
+  }
+}
+
+.load-more-link {
+  margin-top: 10px;
+  a {
+    color: $brand-color;
+  }
+}
+
+dt {
+  color: $case-alert-text-color;
+}
+
+dd {
+  padding-left: 12px;
+  padding-top: 5px;
+  color: $riksy-user-detail-dd;
+}
+
+.riskAccordBorder {
+  border-right: 1px solid $risk-accord-border-color;
+}
+
+.tab-content p {
+  color: $riksy-user-detail-dd;
+}
+
+button.btn.btn-sm {
+  padding: 0.25rem 0.5rem !important;
+  width: auto !important;
+}
+
+.risky-user-violations {
+  .risk-date-stamp{
+    font-weight: 600;
+    color: #bdbdbd;
+  }
+  .risk-time-stamp {
+    margin-top: 2rem;
+    margin-right: 2rem;
+    color: $risk-time-stamp-color;
+  }
+  .risky-separator {
+    height: 100%;
+    width: 3px;
+    margin-right: 2.5rem;
+    background-color: #0891a9;
+    .risk-dot {
+      display: inline-block;
+      position: relative;
+      width: 15px;
+      height: 15px;
+      border: 1.5px solid #041421;
+      background-color: #0891a9;
+      left: -5.5px;
+      margin-top: 2rem;
+    }
+  }
+  .violationTitle {
+    color: $risk-title-text-color;
+    width: inherit;
+    border-radius: 10px;
+    border: $riksy-user-detail-risk-title-border;
+    background-color: $risk-dot-border-color;
+    margin-top: 1rem;
+    height: auto;
+    .pvValue {
+      color: #FF5A5A;
+      font-size: 17px;
+      margin-right: 0.8rem;
+      margin-left: 0.8rem;
+      margin-top: .2rem;
+    }
+    .pvText {
+      font-size: 17px;
+      margin-top: .2rem;
+    }
+    .risk-score {
+      background-color: #3a4751;
+      min-width: 34px;
+      min-height: 32px;
+      color: limegreen;
+      font-size: 16px;
+      text-align: center;
+      margin-bottom: 0.5rem;
+      margin-left: 1.2rem;
+      font-weight: 500;
+      cursor: pointer;
+      margin-right: calc(100%- 10%);
+      border-radius: 15px;
+      padding: 4px 15px;
+    }
+    .violationInfo {
+      .riskAccordBorder {
+        border-right: 1px solid $risk-accord-border-color;
+      }
+      .details{
+        color: #8E8E8E;
+      }
+    }
+  }
+}
+
+.fa {
+  margin-top: 0.2rem;
+}
+
+.custom-container {
+  margin-right: 6%;
+  margin-left: 6%;
+  margin-top: 1%;
+}
+
+.rscore{
+  font-size: 55px;
+  letter-spacing: -0.47px;
+  margin-bottom: -20px;
+  margin-top: 25px;
+  font-weight: 400;
+}
+
+.riskscore{
+  font-size: 18px;
+  color: #A7A7A7;
+  font-weight: 550;
+  margin-top: 9px;
+}
+.chartContainer{
+  width: 100%;
+  height: 300px;
+  display: block;
+  border-radius: 6px;
+}

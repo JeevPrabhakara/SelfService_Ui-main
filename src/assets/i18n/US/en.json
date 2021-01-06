@@ -1,0 +1,58 @@
+{
+    "global": {
+        "settings": "Settings",
+        "profile": "Profile",
+        "themeLabel": "Themes",
+        "themes": {
+            "dark": "Dark",
+            "blue": "Blue"
+        },
+        "riskScore": "Risk Score",
+        "viewAll": "View All",
+        "riskyUsers": "Risky Users",
+        "topThreats": "Top Violations",
+        "topViolations": "Top Threat Vectors",
+        "topPrivilegedUsers": "Top Privileged Users",
+        "topDormantUsers": "Top Dormant Users",
+        "topServiceAcoount": "Top Service Account",
+        "topWatchlistedUsers" : "Top Flight Users",
+        "topTerminatedUsers": "Top Terminated Users",
+        "topOrphanUsers": "Top Orphan Users",
+        "topExternalUsers": "Top External Users",
+        "topRiskyCloud" : "Top Cloud Users",
+        "sno": "S.No",
+        "userInfo": "User Info",
+        "bytes": "Bytes",
+        "riskyUser": {
+            "user": "Risky User",
+            "allUsers": "All Risky Users",
+            "employeeId": "Employee Id",
+            "employeeName": "Employee Name",
+            "employeeUserId": "Employee UserId",
+            "employeeDepartment": "Department"
+        }
+    },
+    "actions": {
+        "signOut": "Sign out"
+    },
+    "dashboard": {
+        "liveThreatHunting": "Live Threat Hunting",
+        "feed": "Policy Violation Based On Severity",
+        "monthlyViolations": "Monthly Comparisons of 2016-17 Violations Caught"
+    },
+    "login": {
+        "title": "Sign in",
+        "email": "Email",
+        "username": "Username",
+        "password": "Password",
+        "sign_in": "Sign in"
+    },
+    "general": {
+        "menu": {
+            "dashboard": "Dashboard",
+            "entity": "Entities",
+            "insights": "Insights",
+            "identity360": "Identity 360"
+        }
+    }
+}

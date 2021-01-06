@@ -1,0 +1,34 @@
+$btn-main: black;
+.btn-outline-blue {
+    color: $btn-main;
+    border-color: #ced4da;
+}
+
+.btn-outline-blue:hover {
+    background-color: $btn-main;
+    color: white;
+}
+
+:host /deep/ .btn-link {
+    color: $btn-main;
+}
+
+/* .dropdown-item:active {
+    background-color: $btn-main;
+} */
+
+.btn-main {
+    background-color: $btn-main;
+    color: white;
+    min-width: 300px;
+}
+
+//dataset style
+datalist {
+    display: none;
+}
+
+input::-webkit-calendar-picker-indicator {
+    opacity: 100;
+    color: $btn-main;
+}

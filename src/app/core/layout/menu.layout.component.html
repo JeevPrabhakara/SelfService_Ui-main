@@ -1,0 +1,9 @@
+<app-header></app-header>
+<app-menu></app-menu>
+<div class="container-fluid" 
+[ngClass]="{
+    'content-container-shrink':!utilService.isMenuOpened,
+    'content-container-spread':utilService.isMenuOpened
+  }">
+    <router-outlet></router-outlet>
+</div>

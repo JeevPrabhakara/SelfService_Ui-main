@@ -1,0 +1,86 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{name}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div *ngIf="name === 'Close as Risk Accepted'">
+      <div class="container">
+          <form>
+              <div class="form-group">
+                <label>Date:</label>
+                <div class="input-group">
+                  <input class="form-control" placeholder="yyyy-mm-dd"
+                         name="dp"  ngbDatepicker #d="ngbDatepicker">
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-blue" (click)="d.toggle()" type="button"><i class="fa fa-calendar"></i></button>
+                  </div>
+                </div>
+              </div>
+  
+              <div class="form-group">
+                  <label for="cra">Comment:</label>
+                  <textarea class="form-control" id="cra" rows="3"></textarea>
+                </div>
+            </form>
+      </div>
+       
+    </div>
+
+    <div *ngIf="name === 'Assign'">
+      <div class="container">
+          <div class="form-group">
+              <label>Assign To:</label>
+              <div class="input-group">
+                  <input list="assign" class="form-control">
+                  <datalist id="assign">
+                    <option value="paul@hotmail.com">
+                    <option value="paul@hotmail.com">
+                    <option value="paul@hotmail.com">
+                  </datalist>
+              </div>
+            </div>
+
+            <div class="form-group">
+                <label for="asng">Comment:</label>
+                <textarea class="form-control" id="asng" rows="3"></textarea>
+              </div>
+      </div>
+
+    </div>
+
+    <div *ngIf="name === 'Block'">
+      <div class="container">
+          <div class="form-group">
+              <label>Block To:</label>
+              <div class="input-group">
+                  <input list="block" class="form-control">
+                  <datalist id="block">
+                    <option value="paul@hotmail.com">
+                    <option value="paul@hotmail.com">
+                    <option value="paul@hotmail.com">
+                  </datalist>
+              </div>
+            </div>  
+
+            <div class="form-group">
+                <label for="blc">Comment:</label>
+                <textarea class="form-control" id="blc" rows="3"></textarea>
+              </div>
+      </div>
+    </div>
+
+    <div *ngIf="name === 'Close the Case'">
+        <div class="container">
+              <div class="form-group">
+                  <label for="cc">Comment:</label>
+                  <textarea class="form-control" id="cc" rows="3"></textarea>
+                </div>
+        </div>
+      </div>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-info" (click)="activeModal.close('Close click')">Close</button>
+  </div>

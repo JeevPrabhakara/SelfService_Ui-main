@@ -1,0 +1,47 @@
+<ng-container>
+    <mat-card [routerLink]="['/riskyUser', entity?.u_userId]">
+        <mat-card-header>
+            <div class="row">
+                <div class="col-sm-4 text-center">
+                    <div class="pl-2">
+                        <img class="user-img img-rounded" src='../assets/images/users/service_user.jpeg' />
+                    </div>
+                </div>
+                <div class="col-sm-7 col-lg-8 text-center">
+                    <p class="user-name-text">
+                        {{entity?.u_firstName ? (entity?.u_firstName+' '+(entity?.u_lastName ? entity?.u_lastName:'' )) : entity?.u_userId}}
+                    </p>
+                    <div class="left-block">
+                        <span class="risk-score-value"
+                            [ngStyle]="{'color':getRiskScoreColor(entity?.totalRiskScore)}">{{entity?.totalRiskScore}}</span>
+                        <span class="risk-score-text">Risk Score</span>
+                    </div>
+                </div>
+            </div>
+        </mat-card-header>
+
+        <mat-card-content>
+            <div class="row-block">
+                <p class="text-style-1">Role : </p>
+                <p class="text-style-2">{{entity?.u_title}}</p>
+            </div>
+
+            <div class="row-block">
+                <p class="text-style-1">Location : </p>
+                <p class="text-style-2">{{entity?.u_country}}</p>
+            </div>
+        </mat-card-content>
+
+        <mat-card-actions *ngIf="entity.lastViolatedViolationId">
+            <div class="row-block">
+                <p class="text-style-1">Last Violation</p>
+                <div class="violation-box">
+                    <span class="warning-img"><img src='../../../../../../../assets/images/warning.png' /></span>
+                    <span class="violation-text"
+                        [routerLink]="['/policyViolationSummary', entity.lastViolatedViolationId]">{{entity.lastViolatedPolicyName}}</span>
+                </div>
+            </div>
+        </mat-card-actions>
+
+    </mat-card>
+</ng-container>

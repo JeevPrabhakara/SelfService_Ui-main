@@ -1,0 +1,31 @@
+<div class="mt-2">
+    <div class="row pageTitle ml-2 mr-2">
+        <div class="col-md-10 initialPadding" style="display: flex;align-items:center;">
+            <span>{{'general.menu.dashboard' | translate}}</span>
+        </div>
+
+        <div class="col-md-2 initialPadding" *ngIf="userPermissions.includes('Kibanaaccess_Control')">
+            <!-- <a href="{{kibanaUrl}}" target="_blank">
+                <button mat-raised-button color="primary"
+                    class="pull-right">{{'dashboard.liveThreatHunting' | translate}}</button>
+            </a> -->
+            <button mat-raised-button (click)="kibanaRedirection()"
+                class="pull-right btn-color">{{'dashboard.liveThreatHunting' | translate}}</button>
+        </div>
+    </div>
+</div>
+
+<div class="dashboard-page mt-4 ml-2 mr-2">
+    <div class="card-col-4">
+        <app-dashboard-count></app-dashboard-count>
+    </div>
+
+ 
+    <div class="chart-details row">
+        <globe-chart class="chart-details-container2" componentType="riskByTitle">chart</globe-chart>
+        <globe-chart class="chart-details-container2" componentType="riskByDept">chart</globe-chart>
+        <globe-chart class="chart-details-container2" componentType="riskByLocation">globe</globe-chart>
+    </div>
+
+
+</div>

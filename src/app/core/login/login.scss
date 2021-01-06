@@ -1,0 +1,305 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap");
+.auth-main {
+  overflow: hidden;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+
+  @media (max-width: 767px) {
+    overflow-y: auto;
+  }
+
+  /*
+  &:before {
+    content: "";
+    background: rgba(0,0,0,0.4);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+  }
+  */
+  video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: 0;
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    object-fit: cover;
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    opacity: 0.7;
+    z-index: 1;
+  }
+
+  .text-block {
+    margin: 0 auto;
+    max-width: 700px;
+    font-family: "Roboto", sans-serif;
+
+    @media (max-width: 1449px) {
+      padding: 0 5%;
+    }
+
+    .font-style-1 {
+      color: #fff;
+      font-size: 40px;
+
+      @media (max-width: 1449px) {
+        font-size: 28px;
+      }
+
+      @media (max-width: 767px) {
+        font-size: 22px;
+      }
+    }
+    .font-style-2 {
+      color: #b5b5b5;
+      font-size: 30px;
+      font-style: italic;
+
+      @media (max-width: 1449px) {
+        font-size: 20px;
+      }
+
+      @media (max-width: 767px) {
+        font-size: 18px;
+      }
+    }
+  }
+
+  .content {
+    position: absolute;
+    display: flex;
+    height: 100%;
+    align-items: center;
+    width: 100%;
+    margin-left: 0;
+    left: 0;
+    top: 0;
+    z-index: 10;
+  }
+
+  .login-block {
+    background-color: rgba(13, 37, 68, 0.87);
+    height: 100%;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px 40px;
+    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.6);
+
+    .logo-container {
+      margin-bottom: 4em;
+    }
+
+    .alert {
+      color: #fff;
+      font-size: 13px;
+      background: #f44336;
+
+      font-weight: 500;
+      line-height: 1.2;
+      p {
+        margin-bottom: 0;
+      }
+    }
+
+    @media (max-width: 1449px) {
+      img {
+        width: 100%;
+        max-width: 388px;
+      }
+    }
+
+    .input-group {
+      background: #223149;
+      color: #9b9b9b;
+      border-radius: 6px;
+      border: 1px solid #556c8f;
+      margin-bottom: 40px;
+      align-items: center;
+
+      @media (max-width: 1449px) {
+        margin-bottom: 30px;
+      }
+
+      .input-group-addon {
+        font-size: 28px;
+        padding: 3px 10px;
+
+        @media (max-width: 1449px) {
+          font-size: 25px;
+        }
+      }
+
+      .form-control {
+        padding: 0 5px;
+        line-height: 1;
+        font-size: 22px;
+        font-family: "Roboto", sans-serif;
+        border: none;
+        height: 65px;
+        max-height: 4em;
+        color: #fff;
+
+        @media (max-width: 1449px) {
+          height: 50px;
+        }
+
+        @media (max-width: 1449px) {
+          font-size: 18px;
+        }
+
+        @media (max-width: 767px) {
+          font-size: 16px;
+        }
+
+        &::-webkit-input-placeholder {
+          color: #9b9b9b;
+          opacity: 1;
+          font-size: 100%;
+        }
+        &::-moz-placeholder {
+          color: #9b9b9b;
+          opacity: 1;
+          font-size: 100%;
+        }
+        &:-ms-input-placeholder {
+          color: #9b9b9b;
+          opacity: 1;
+          font-size: 100%;
+        }
+        &:-moz-placeholder {
+          color: #9b9b9b;
+          opacity: 1;
+          font-size: 100%;
+        }
+      }
+    }
+
+    .btn-auth {
+      background: #099bb5;
+      display: block;
+      text-transform: uppercase;
+      width: 100%;
+      height: 65px;
+      border-radius: 6px;
+      opacity: 1;
+      font-size: 20px;
+      font-family: "Roboto", sans-serif;
+      font-weight: 700;
+      color: #fff;
+      cursor: pointer;
+
+      @media (max-width: 1449px) {
+        height: 50px;
+      }
+
+      &:hover {
+        background: #23b6d0;
+      }
+    }
+  }
+
+  .mat-form-field {
+    width: 100%;
+    color: #9b9b9b;
+    .mat-form-field-wrapper {
+      margin: 10px 0;
+      background: #223149;
+      border-radius: 6px;
+      border: 1px solid #556c8f;
+      padding-bottom: 0;
+    }
+    .mat-form-field-outline-thick {
+      color: transparent;
+    }
+    .mat-form-field-infix {
+      padding: 20px 2px 15px;
+      margin: 0;
+      border: none;
+    }
+    input.mat-input-element {
+      padding: 0 5px;
+      line-height: 1;
+      font-size: 22px;
+      font-family: "Roboto", sans-serif;
+      border: none;
+      color: #fff;
+
+      @media (max-width: 1449px) {
+        font-size: 18px;
+      }
+
+      &::-webkit-input-placeholder {
+        color: #9b9b9b;
+        opacity: 1;
+        font-size: 100%;
+      }
+      &::-moz-placeholder {
+        color: #9b9b9b;
+        opacity: 1;
+        font-size: 100%;
+      }
+      &:-ms-input-placeholder {
+        color: #9b9b9b;
+        opacity: 1;
+        font-size: 100%;
+      }
+      &:-moz-placeholder {
+        color: #9b9b9b;
+        opacity: 1;
+        font-size: 100%;
+      }
+    }
+  }
+}
+
+.btn {
+  margin-top: 0.5rem;
+}
+
+/* Change Autocomplete styles in Chrome*/
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+input[type="search"],
+input[type="number"],
+input[type="tel"],
+input[type="range"],
+input[type="date"],
+input[type="month"],
+input[type="week"],
+input[type="time"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="color"],
+textarea,
+select {
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus {
+    background: transparent;
+    -webkit-box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0) inset;
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: #fff;
+  }
+}

@@ -1,0 +1,71 @@
+<div class="modal-header">
+    <h4 class="modal-title">Policy Violation Details</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+
+    <div class="violation-switch text-right ">
+        <span (click)="switchViolationView('riskScore')" [class.selected]="selectedView==='riskScore'">
+            Risk Score
+        </span>
+        <span (click)="switchViolationView('violation')" [class.selected]="selectedView==='violation'">
+            Violations
+        </span>
+        <span (click)="switchViolationView('rawInfo')" [class.selected]="selectedView==='rawInfo'">
+            UserInfo
+        </span>
+    </div>
+
+    <div class="riskScore-view" [hidden]="selectedView != 'riskScore'">
+        
+    </div>
+
+    <div class="violation-view" [hidden]="selectedView != 'violation'">
+        <div class="tblHeight">
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <th>Violation Date</th>
+                        <th>Transaction</th>
+                    </tr>
+                    <tr *ngFor="let data of violationSummary?.data">
+                        <td>{{data.generatedTimestamp != null ? data.generatedTimestamp : data.timestamp | date}}</td>
+                        <td> <span>UserId: {{data.userid}} </span> | <span>Source Address: {{data.sourceAddress}}
+                            </span> |
+                            <span>Destination Address: {{data.destinationAddress}} </span> |
+                            <span>Bytes Recived: {{data.bytesReceived}} </span> | <span>Attack Type:
+                                {{data.attacktype}} </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="rawInfo-view" [hidden]="selectedView != 'rawInfo'">
+        <table #rawTable class="row-border hover stripe compact " style="width:100%">
+            <thead class="tbl-header">
+                <tr>
+                    <th>UserId</th>
+                    <th>RuleId</th>
+                    <th>RiskScore</th>
+                    <th>AttackType</th>
+
+                </tr>
+            </thead>
+            <!-- <tbody>
+                  <tr *ngFor="let data of demoTableData">
+                      <td>{{data.name}}</td>
+                      <td>{{data.department}}</td>
+                      <td>{{data.riskScore}}</td>
+                      <td>{{data.icon}}</td>
+                  </tr>
+                  
+              </tbody> -->
+        </table>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline btn-info" (click)="activeModal.close('Close click')">Close</button>
+</div>

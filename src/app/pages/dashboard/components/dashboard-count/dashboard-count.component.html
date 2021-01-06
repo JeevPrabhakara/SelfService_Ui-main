@@ -1,0 +1,623 @@
+<div class="row top-detail-data">
+    <!-- <div class="col-md-4 ingested-data">
+        <div class="head">Ingested Data</div>
+        <div *ngIf="!isLoading">
+            <div class="row mt-2">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body pointer" (click)="kibanaRedirection()">
+                            <div class="data-container">
+                                <div class="chart-info">
+                                    <div class="count" style="color: #25d5e4">
+                                        {{ ingestedData.events }}
+                                    </div>
+                                    <div class="title">Events</div>
+                                </div>
+                                <div class="ico mt-2 mb-3">
+                                    <img
+                                        class="imagePixelate"
+                                        src="./../../../../../assets/images/dashboardIcons/events.svg"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div
+                            class="card-body pointer"
+                            [routerLink]="['/global-search/entities']"
+                            [queryParams]="{ type: 'USER' }"
+                        >
+                            <div class="data-container">
+                                <div class="chart-info">
+                                    <div class="count" style="color: #25d5e4">
+                                        {{ ingestedData.users }}
+                                    </div>
+                                    <div class="title">Users</div>
+                                </div>
+                                <div class="ico mt-2 mb-3">
+                                    <img
+                                        class="imagePixelate"
+                                        src="./../../../../../assets/images/dashboardIcons/users.svg"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body pointer" [routerLink]="['/dataOps']">
+                            <div class="data-container">
+                                <div class="chart-info">
+                                    <div class="count" style="color: #25d5e4">
+                                        {{ ingestedData.resources }}
+                                    </div>
+                                    <div class="title">Resources</div>
+                                </div>
+                                <div class="ico mt-2 mb-3">
+                                    <img
+                                        class="imagePixelate"
+                                        src="./../../../../../assets/images/dashboardIcons/resources.svg"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="data-container">
+                                <div class="chart-info">
+                                    <div class="count" style="color: #25d5e4">
+                                        {{ ingestedData.entitlements }}
+                                    </div>
+                                    <div class="title">Entitlements</div>
+                                </div>
+                                <div class="ico mt-2 mb-3">
+                                    <img
+                                        class="imagePixelate"
+                                        src="./../../../../../assets/images/dashboardIcons/entitlements.svg"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-entities">
+                <div class="title">Entities</div>
+                <div class="row">
+                    <div
+                        class="col-md-4 center-text card-border-right pointer"
+                        [routerLink]="['/global-search/entities']"
+                        [queryParams]="{ type: 'IP' }"
+                    >
+                        <div class="count" style="color: #25d5e4">
+                            {{ ingestedData.srcIP }}
+                        </div>
+                        <div class="title">IP</div>
+                    </div>
+                    <div
+                        class="col-md-4 center-text card-border-right pointer"
+                        [routerLink]="['/global-search/entities']"
+                        [queryParams]="{ type: 'HOST' }"
+                    >
+                        <div class="count" style="color: #25d5e4">
+                            {{ ingestedData.hosts }}
+                        </div>
+                        <div class="title">Host</div>
+                    </div>
+                    <div
+                        class="col-md-4 center-text pointer"
+                        [routerLink]="['/global-search/entities']"
+                        [queryParams]="{ type: 'URL' }"
+                    >
+                        <div class="count" style="color: #25d5e4">
+                            {{ ingestedData.url }}
+                        </div>
+                        <div class="title">URL</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <mat-spinner class="mx-auto my-5" *ngIf="isLoading"></mat-spinner>
+    </div> -->
+    <div class="col-md-4">
+        <div class="head" style="color: #ff5a5a">RISK TREND</div>
+        <div class="ai-predict pointer mt-2">
+        <div id="aiTrend"></div>
+    </div>
+    </div>
+    <div class="col-md-8">
+        <div class="head" style="color: #ff5a5a">RISKY DATA</div>
+        <div *ngIf="!isLoading">
+            <div class="row-risky mt-2">
+                <div class="card">
+                    <div class="card-body pointer"
+                        [routerLink]="['/insights']"
+                        [queryParams]="{ type: 'ALERTS' }">
+                        <div class="data-container">
+                            <div class="chart-info">
+                                <!-- <div class="count" style="color: #ffd42a"> -->
+                                <div class="count" style="color: #ff5a5a">
+                                    {{ riskyData.alert }}
+                                </div>
+                                <div class="title">Alerts</div>
+                            </div>
+                            <div class="ico mt-2 mb-3">
+                                <img
+                                    class="imagePixelate"
+                                    src="./../../../../../assets/images/dashboardIcons/Alerts.png"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div
+                        class="card-body pointer"
+                        [routerLink]="['/global-search/entities']"
+                        [queryParams]="{ type: 'USER', riskScore: '85' }"
+                    >
+                        <div class="data-container">
+                            <div class="chart-info">
+                                <div class="count" style="color: #ff5a5a">
+                                    {{ riskyData.riskyUsers }}
+                                </div>
+                                <div class="title">Risky Users</div>
+                            </div>
+                            <div class="ico mt-2 mb-3">
+                                <img
+                                    class="imagePixelate"
+                                    src="./../../../../../assets/images/dashboardIcons/riskyusers.svg"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div
+                        class="card-body pointer"
+                        [routerLink]="['/global-search/entities']"
+                        [queryParams]="{ type: 'HOST', riskScore: '85' }"
+                    >
+                        <div class="data-container">
+                            <div class="chart-info">
+                                <!-- <div class="count" style="color: #136fd5"> -->
+                                <div class="count" style="color: #ff5a5a">
+                                    {{ riskyData.riskyHostname }}
+                                </div>
+                                <div class="title">Risky Host</div>
+                            </div>
+                            <div class="ico mt-2 mb-3">
+                                <img
+                                    class="imagePixelate"
+                                    src="./../../../../../assets/images/dashboardIcons/riskyHost.svg"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div
+                        class="card-body pointer"
+                        [routerLink]="['/global-search/entities']"
+                        [queryParams]="{ type: 'URL', riskScore: '85' }"
+                    >
+                        <div class="data-container">
+                            <div class="chart-info">
+                                <!-- <div class="count" style="color: #f5a623"> -->
+                                <div class="count" style="color: #ff5a5a">
+                                    {{ riskyData.riskyURL }}
+                                </div>
+                                <div class="title">Risky URL</div>
+                            </div>
+                            <div class="ico mt-2 mb-3">
+                                <img
+                                    class="imagePixelate"
+                                    src="./../../../../../assets/images/dashboardIcons/RiskyURLS.svg"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div
+                        class="card-body pointer"
+                        [routerLink]="['/global-search/entities']"
+                        [queryParams]="{ type: 'IP', riskScore: '85' }"
+                    >
+                        <div class="data-container">
+                            <div class="chart-info">
+                                <!-- <div class="count" style="color: #00bbb4"> -->
+                                <div class="count" style="color: #ff5a5a">
+                                    {{ riskyData.riskySrcIP }}
+                                </div>
+                                <div class="title">Risky IP</div>
+                            </div>
+                            <div class="ico mt-2 mb-3">
+                                <img
+                                    class="imagePixelate"
+                                    src="./../../../../../assets/images/dashboardIcons/SrcIP.svg"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-risky">
+                <div class="row">
+                    <div class="col-md-4 center-text card-border-right">
+                        <div class="title-c">Open Incidents</div>
+                        <div class="content d-flex">
+                            <div class="left content-top-margin">
+                                <!-- <div class="count" style="color: #25d5e4"> -->
+                                <div class="count pointer" 
+                                [routerLink]="['/insights']"
+                                [queryParams]="{ type: 'INCIDENTS', incidentByType: 'Auto' }" style="color: #f5a623">
+                                    {{ riskyData.oIncAuto }}
+                                </div>
+                                <div class="title">Auto</div>
+                            </div>
+    
+                            <div class="right content-top-margin">
+                                <div class="count pointer" 
+                                [routerLink]="['/insights']"
+                                [queryParams]="{ type: 'INCIDENTS', incidentByType: 'Manual' }" style="color: #f5a623">
+                                    {{ riskyData.oIncManual }}
+                                </div>
+                                <div class="title">Manual</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 center-text card-border-right">
+                        <div class="title-c">Remediations</div>
+                        <div class="content d-flex">
+                            <div class="left content-top-margin">
+                                <!-- <div class="count" style="color: #25d5e4"> -->
+                                <div class="count" style="color: #f5a623">
+                                    <!-- {{riskyData.remdAuto}} -->
+                                    12
+                                </div>
+                                <div class="title">Auto</div>
+                            </div>
+    
+                            <div class="right content-top-margin">
+                                <div class="count" style="color: #f5a623">
+                                    4
+                                    <!-- {{riskyData.remdManual}} -->
+                                </div>
+                                <div class="title">Manual</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 center-text">
+                        <div class="title-c">Threat Categories</div>
+                        <div class="content d-flex">
+                            <div class="left content-top-margin">
+                                <!-- <div class="count" style="color: #25d5e4"> -->
+                                <div class="count" style="color: #f5a623">
+                                    {{riskyData.trtCatMitre}}
+                                </div>
+                                <div class="title">MITRE</div>
+                            </div>
+    
+                            <div class="right content-top-margin">
+                                <div class="count" style="color: #f5a623">
+                                    {{riskyData.trtCatNist}}
+                                </div>
+                                <div class="title">NIST</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <mat-spinner class="mx-auto my-5" *ngIf="isLoading"></mat-spinner>
+    </div>
+</div>
+
+<div class="row mt-4 col-card-2 top-detail-data">
+    <div class="col-md-6">
+        <div class="head" style="color: #007ad9;">Top AI-Predictions</div>
+        <div class="ai-predict pointer mt-2" [routerLink]="['/insights']" 
+            [queryParams]="{ type: 'PREDICTIONS' }">
+            <div id="aiPrediction"></div>
+        </div>
+        <!-- <div class="i-responder">
+            <div class="row ml-0">
+                <div class="col-md-12">
+                    <div class="card" style="width: 100%">
+                        <div class="card-body" style="background: #0d1726 ;">
+                            <div class="data-container">
+                                <div class="chart-info">
+                                    <div class="count" style="color: #00bbb4">
+                                        {{ incidentResponder.aiPrediction }}
+                                    </div>
+                                    <div class="text">AI Prediction</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    </div>
+    <div class="col-md-6">
+        <div class="head" style="color: #007ad9;">Top Triggered Model Patterns</div>
+        <div class="ai-predict mt-2">
+            <div id="aichart"></div>
+        </div>
+    </div>
+</div>
+<div class="row mt-4 col-card-2 top-detail-data">
+    <div class="col-md-8">
+        <div class="head">Incident Responder</div>
+        <div class="i-responder mt-2">
+            <!-- <div class="title">Incident Responder</div> -->
+            <div *ngIf="!isLoading">
+                            <!-- <div class="row mt-2">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body" style="background: linear-gradient(315deg, #496366 0%, #1F4244 100%);">
+                            <div class="data-container">
+                                <div class="chart-info">
+                                    <div class="count" style="color: #00BBB4">{{incidentResponder.aiPrediction}}</div>
+                                    <div class="text">AI Prediction</div>
+                                </div>
+                                <div class="ico mt-2 mb-3"><img class="imagePixelate"
+                                        src="./../../../../../assets/images/dashboard_icons/events.svg">
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body" style="background: linear-gradient(315deg, #3E1515 0%, #352516 100%);">
+                            <div class="data-container">
+                                <div class="chart-info">
+                                    <div class="count" style="color: #FF5A5A">{{incidentResponder.disabledModels}}</div>
+                                    <div class="text">Disabled Models</div>
+                                </div>
+                                <div class="ico mt-2 mb-3"><img class="imagePixelate"
+                                        src="./../../../../../assets/images/dashboard_icons/warning.svg">
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>  -->
+
+            <div class="mt-4 mi-oval d-flex justify-content-between">
+                <div class="ec-oval pointer" [routerLink]="['/modelOps']"
+                [queryParams]="{ filterByStatus: 'Enabled' }">
+                    <span class="text">Enabled Models</span>
+                    <span class="count" style="color: #00bbb4">{{
+                        incidentResponder.enabledModels
+                    }}</span>
+                </div>
+                <div class="content pointer" [routerLink]="['/modelOps']"
+                [queryParams]="{ confidence: 'High' }">
+                    <span class="text">High Confidence</span>
+                    <span class="count" style="color: #02ba21">{{
+                        incidentResponder.highConfidence
+                    }}</span>
+                </div>
+                <div class="content pointer" [routerLink]="['/modelOps']"
+                [queryParams]="{ confidence: 'Low' }">
+                    <span class="text">Low Confidence</span>
+                    <span class="count" style="color: #ff5a5a">{{
+                        incidentResponder.lowConfidence
+                    }}</span>
+                </div>
+            </div>
+
+            <div class="mt-5 mi-oval d-flex justify-content-between">
+                <div class="ec-oval pointer" [routerLink]="['/insights']"
+                [queryParams]="{ type: 'ALERTS' }" style="background: #ffd42a">
+                    <span class="text">Triggered Models</span>
+                    <span class="count" style="color: #ffd42a">{{
+                        incidentResponder.triggeredModels
+                    }}</span>
+                </div>
+                <div class="content pointer" [routerLink]="['/insights']"
+                [queryParams]="{ type: 'ALERTS', confidence: 'High' }">
+                    <span class="text">High Confidence</span>
+                    <span class="count" style="color: #02ba21">{{
+                        incidentResponder.highConfidenceTriggeredModels
+                    }}</span>
+                </div>
+                <div class="content pointer" [routerLink]="['/insights']"
+                [queryParams]="{ type: 'ALERTS', confidence: 'Low' }">
+                    <span class="text">Low Confidence</span>
+                    <span class="count" style="color: #ff5a5a">{{
+                        incidentResponder.lowConfidenceTriggeredModels
+                    }}</span>
+                </div>
+            </div>
+
+            <div class="mt-5 mi-oval d-flex justify-content-between">
+                <div class="ec-oval pointer" [routerLink]="['/insights']"
+                [queryParams]="{ type: 'INCIDENTS', filterByStatus: 'Closed' }" style="background-color: #02ba21">
+                    <span class="text">Closed Incidents</span>
+                    <span class="count" style="color: #02ba21">{{
+                        incidentResponder.closedIncidents
+                    }}</span>
+                </div>
+                <div class="content pointer" [routerLink]="['/insights']"
+                [queryParams]="{ type: 'INCIDENTS', filterByClosedStatus: 'truePositive' }">
+                    <span class="text">True Positive</span>
+                    <span class="count" style="color: #02ba21">{{
+                        incidentResponder.truePositive
+                    }}</span>
+                </div>
+                <div class="content pointer" [routerLink]="['/insights']"
+                [queryParams]="{ type: 'INCIDENTS', filterByClosedStatus: 'falsePositive' }">
+                    <span class="text">False Positive</span>
+                    <span class="count" style="color: #f5a623">{{
+                        incidentResponder.falsePositive
+                    }}</span>
+                </div>
+                <div class="content pointer" [routerLink]="['/insights']"
+                [queryParams]="{ type: 'INCIDENTS', filterByClosedStatus: 'wrongDetection' }">
+                    <span class="text">Wrong Detection</span>
+                    <span class="count" style="color: #ff5a5a">{{
+                        incidentResponder.wrongDetection
+                    }}</span>
+                </div>
+            </div>
+            </div>
+            <mat-spinner class="mx-auto my-5" *ngIf="isLoading"></mat-spinner>
+        </div>
+    </div>
+    <div class="col-md-4 ingested-data">
+        <div class="head">Ingested Data</div>
+        <div *ngIf="!isLoading">
+            <div class="row mt-2">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body pointer" (click)="kibanaRedirection()">
+                            <div class="data-container">
+                                <div class="chart-info">
+                                    
+                                    <!-- <div class="count" style="color: #50e3c2"> -->
+                                    <div class="count" style="color: #25d5e4">
+                                        {{ ingestedData.events }}
+                                    </div>
+                                    <div class="title">Events</div>
+                                </div>
+                                <!-- <div class="ico mt-2 mb-3"><img class="imagePixelate"
+                                        src="./../../../../../assets/images/dashboard_icons/events.svg">
+                                </div> -->
+                                <div class="ico mt-2 mb-3">
+                                    <img
+                                        class="imagePixelate"
+                                        src="./../../../../../assets/images/dashboardIcons/events.svg"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div
+                            class="card-body pointer"
+                            [routerLink]="['/global-search/entities']"
+                            [queryParams]="{ type: 'USER' }"
+                        >
+                            <div class="data-container">
+                                <div class="chart-info">
+                                    <!-- <div class="count" style="color: #f5a623"> -->
+                                    <div class="count" style="color: #25d5e4">
+                                        {{ ingestedData.users }}
+                                    </div>
+                                    <div class="title">Users</div>
+                                </div>
+                                <div class="ico mt-2 mb-3">
+                                    <img
+                                        class="imagePixelate"
+                                        src="./../../../../../assets/images/dashboardIcons/users.svg"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body pointer" [routerLink]="['/dataOps']">
+                            <div class="data-container">
+                                <div class="chart-info">
+                                    <!-- <div class="count" style="color: #ff5a5a"> -->
+                                    <div class="count" style="color: #25d5e4">
+                                        {{ ingestedData.resources }}
+                                    </div>
+                                    <div class="title">Resources</div>
+                                </div>
+                                <div class="ico mt-2 mb-3">
+                                    <img
+                                        class="imagePixelate"
+                                        src="./../../../../../assets/images/dashboardIcons/resources.svg"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="data-container">
+                                <div class="chart-info">
+                                    <!-- <div class="count" style="color: #02ba21"> -->
+                                    <div class="count" style="color: #25d5e4">
+                                        {{ ingestedData.entitlements }}
+                                    </div>
+                                    <div class="title">Entitlements</div>
+                                </div>
+                                <div class="ico mt-2 mb-3">
+                                    <img
+                                        class="imagePixelate"
+                                        src="./../../../../../assets/images/dashboardIcons/entitlements.svg"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-entities">
+                <div class="title">Entities</div>
+                <div class="row">
+                    <div
+                        class="col-md-4 center-text card-border-right pointer"
+                        [routerLink]="['/global-search/entities']"
+                        [queryParams]="{ type: 'IP' }"
+                    >
+                        <div class="count" style="color: #25d5e4">
+                            {{ ingestedData.srcIP }}
+                        </div>
+                        <div class="title">IP</div>
+                    </div>
+                    <div
+                        class="col-md-4 center-text card-border-right pointer"
+                        [routerLink]="['/global-search/entities']"
+                        [queryParams]="{ type: 'HOST' }"
+                    >
+                        <!-- <div class="count" style="color: #f5a623"> -->
+                        <div class="count" style="color: #25d5e4">
+                            {{ ingestedData.hosts }}
+                        </div>
+                        <div class="title">Host</div>
+                    </div>
+                    <div
+                        class="col-md-4 center-text pointer"
+                        [routerLink]="['/global-search/entities']"
+                        [queryParams]="{ type: 'URL' }"
+                    >
+                        <!-- <div class="count" style="color: #ff5a5a"> -->
+                        <div class="count" style="color: #25d5e4">
+                            {{ ingestedData.url }}
+                        </div>
+                        <div class="title">URL</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <mat-spinner class="mx-auto my-5" *ngIf="isLoading"></mat-spinner>
+    </div>
+</div>
+<br />

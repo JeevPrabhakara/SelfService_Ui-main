@@ -1,0 +1,361 @@
+<div class="custom-container">
+    <!-- <ng-container *ngIf="selectedUser === null">
+        <div class="risky-users-container">
+            <h5 class="page-heading">{{'global.riskyUser.allUsers' | translate}}</h5>
+            <div class="risky-users-list">
+                <div class="row header-row">
+                    <div class="col-2 col-sm-2 col-md-2 p-l-md p-t-sm">{{'global.sno' | translate}}</div>
+                    <div class="col-8 col-sm-8 col-md-8 p-sm">{{'global.userInfo' | translate}}</div>
+                    <div class="col-2 col-sm-2 col-md-2 p-sm">{{'global.bytes' | translate}}</div>
+                </div>
+                <div class="row data-row" *ngFor="let user of allUsers; let i = index">
+                    <div class="col-2 col-sm-2 col-md-2 p-l-md p-t-sm">{{ i + 1}}</div>
+                    <div class="col-8 col-sm-8 col-md-8 p-sm">
+                        <a *ngIf="user.userid" [routerLink]="['/riskyUser', user.userid]">{{user.userid}}</a>
+                        <a *ngIf="!user.userid"
+                            [routerLink]="['/riskyUser', user.sourceAddress]">{{user.sourceAddress}}</a>
+                    </div>
+                    <div class="col-2 col-sm-2 col-md-2 p-sm">{{user.riskscore}}</div>
+                </div>
+            </div>
+            <div class="load-more-link" *ngIf="recordsReturned < totalRecords">
+                <a href="javascript:void(0);" (click)="loadMoreUsers()">Load More</a>
+            </div>
+        </div>
+    </ng-container> -->
+
+    <ng-container *ngIf="selectedUser">
+        <!--<h5 class="page-heading">{{'global.riskyUser.user' | translate}}: {{selectedUser}}</h5>-->
+        <div class="risky-user-container">
+            <div class="risky-user-header">
+                <div class="row m-auto" style="background: #2C4255;">
+                    <div class="col-md-2" style="text-align: center;background: #0D1726;">
+                        <!-- <div>
+                            <img (click)="openUserInfo(selectedUserDetails.userInfo)"
+                                class="profile-image rounded-circle mt-4"
+                                src='./../../../../../assets/images/users/service_user.jpeg' style="width: 4rem;" />
+                            <div style="color:#D3D3D3;size:26px;font-weight: 600">{{userData.user.u_employeeId}}</div>
+                        </div> -->
+                        <img (click)="openUserInfo(userData?.user)" class="profile-image rounded-circle mt-4"
+                            src='./../../../../../assets/images/users/service_user.jpeg' style="width: 4rem;" />
+                        <div class="user-info m-t-sm">
+                            <span class="wordWrap"
+                                style="color:#D3D3D3;size:26px;font-weight: 600;text-transform: capitalize;">{{userData?.user.u_userId}}</span>
+                            <p></p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-7 mt-1 d-flex initialPadding">
+                        <div class="col-md-5 mr-1">
+                            <div class="mt-2">
+                                <span class="captionTitle">Role</span>
+                                <p class="captionData" *ngIf="userData?.user.u_title">{{userData?.user.u_title}}
+                                </p>
+                                <p class="captionData" *ngIf="!userData?.user.u_title">NA
+                                </p>
+                            </div>
+                            <div>
+                                <span class="captionTitle">Department</span>
+                                <p class="captionData" *ngIf="userData?.user.u_departmentName">
+                                    {{userData?.user.u_departmentName}}
+                                </p>
+                                <p class="captionData" *ngIf="!userData?.user.u_departmentName">NA
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-7 d-flex" style="margin-left: -1.5rem;">
+                            <div class="col-md-7">
+                                <div class="mt-2">
+                                    <span class="captionTitle">Location</span>
+                                    <p class="captionData" *ngIf="userData?.user.u_country">{{userData?.user.u_country}}
+                                    </p>
+                                    <p class="captionData" *ngIf="!userData?.user.u_country">NA
+                                    </p>
+                                </div>
+
+                                <div>
+                                    <span class="captionTitle">Reporting
+                                        Manager</span>
+                                    <p class="captionData" *ngIf="userData?.user.u_immediateManagerLevel1">
+                                        {{userData?.user.u_immediateManagerLevel1}}
+                                    </p>
+                                    <p class="captionData" *ngIf="!userData?.user.u_immediateManagerLevel1">NA
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mt-2">
+                                    <span class="captionTitle">Creation
+                                        Date</span>
+                                    <p class="captionData">{{userData?.user.u_startDate}}</p>
+                                </div>
+
+                                <div>
+                                    <span class="captionTitle">Last
+                                        Working Day</span>
+                                    <p class="captionData" *ngIf="userData?.user.u_employeeTerminationDate">
+                                        {{userData?.user.u_employeeTerminationDate}}</p>
+                                    <p class="captionData" *ngIf="!userData?.user.u_employeeTerminationDate">NA
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-1" style="margin-left: -1rem;">
+                        <p [ngStyle]="{'color':getRiskScoreColor(userData?.riskScore)}" class="rscore text-center">
+                            {{userData?.riskScore}}
+                        </p>
+                        <p class="riskscore">
+                            RiskScore
+                        </p>
+                    </div>
+
+                    <div class="col-md-2 mt-1 guageChartBlock">
+                        <div id="chartGuageDiv"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+
+    <div class="container-fluid showActivity initialPadding">
+        <!-- <div class="row pt-3 pb-3">
+                <div class="col-md-2">
+                    <span class="pagetitle">Show Activity</span>
+                </div>
+                <div class="col-md-10 p-1">
+                    <button type="button" class="btn" [ngClass]="{'active-btn' : selectedDateRange === dateRange}"
+                        (click)="changeChartDateRange(dateRange)"
+                        *ngFor="let dateRange of dateRanges">{{dateRange}}</button>
+                    <button type="button" class="btn">Date Range</button>
+                </div>
+            </div> -->
+
+        <!-- Show Activity Images With Values -->
+        <div class="row pt-3 pb-3">
+            <div class="col-sm" *ngFor="let activity of activities">
+                <div class="media">
+                    <img class="align-self-center" src='../assets/images/{{activity.image}}' />
+                    <div class="media-body pl-3">
+                        <p class="value">{{activity.value}}</p>
+                        <span *ngIf="selectedUser !== 'AWendler' || activity.title !== 'Resources'"
+                            class="title">{{activity.title}}</span>
+                        <span *ngIf="selectedUser == 'AWendler' && activity.title == 'Resources' "
+                            class="title">Applications</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--zoomable bubble chart -->
+    <div class="container-fluid chartBg pb-4">
+        <div class="row pr-3 pl-3 pb-3" style="height: 64vh;overflow:hidden;">
+            <div #bubbleChartdiv id="bubbleChartdiv" class="mt-3"></div>
+        </div>
+    </div> 
+
+    <ng-container *ngFor="let policyViolation of policyViolations; let ind = index">
+        <div class="risky-user-violations container-fluid initialPadding mt-3 mb-4" *ngIf="selectedView === 'timeline'">
+            <div class="risk-date-stamp w-100 d-inline-block">
+                <span>{{policyViolation.violationEventDate | date: 'dd MMM yyyy' }}</span>
+
+                <button *ngIf="policyViolation.actionButtonName"
+                    class="btn btn-primary pull-right" (click)="actionButtonClick(policyViolation)"
+                    [ngStyle]="stylePolicyActionButton(policyViolation.actionButtonName)">{{policyViolation.actionButtonName}}</button>
+            </div>
+            <div class="row initialPadding" *ngFor="let timeLine of policyViolation.timeLines; let i = index">
+                <div class="col-md-12 d-flex">
+                    <div class="risk-time-stamp">
+                        <span>{{timeLine.violationTime | date : 'HH:mm'}}</span>
+                    </div>
+
+                    <div class="risky-separator mt-1">
+                        <span class="risk-dot rounded-circle">&nbsp;</span>
+                    </div>
+
+                    <div class="violationTitle">
+                        <div class="row mt-1 mb-2 ml-3 mr-1">
+                            <div class="col-sm-12">
+                                <span class="pointerCursor" (click)="toggleAccord(timeLine)">
+                                    &emsp;<i *ngIf="timeLine.accord" class="fa fa-angle-up"></i> <i
+                                        *ngIf="!timeLine.accord" class="fa fa-angle-down"></i>
+                                </span>
+                                <span class="pointerCursor pvValue" (click)="timeLine.accord = !timeLine.accord">PV
+                                    {{timeLine.ruleId}}</span>
+                                <span class="pointerCursor pvText" (click)="timeLine.accord = !timeLine.accord">
+                                    {{timeLine.ruleName}}</span>
+
+                                <!-- <span (click)="open(item.ruleInfo.ruleid, item.userId,item.isotimestamp)"
+                                      class="risk-score mr-5">{{item.riskScore}}</span>  -->
+
+                                <span class="risk-score mr-2"
+                                    (click)="fetchKibanaRawEventindex(timeLine.lastViolationId)">{{timeLine.noOfEvents}}</span>
+
+                                    <span class="risk-score" *ngIf="timeLine?.timelineStats?.modelRiskscore">
+                                        <span class="pointerCursor pvText mr-2">Risk</span>
+                                        <span [ngStyle]="{'color':getRiskColor(timeLine.timelineStats.modelRiskscore)}">{{timeLine.timelineStats.modelRiskscore}}</span>
+                                    </span>
+                                    <span class="risk-score" *ngIf="timeLine?.timelineStats?.modelConfidence">
+                                        <span class="pointerCursor pvText mr-2">Confidence</span>
+                                        <span [ngStyle]="{'color':getConfidenceColor(timeLine.timelineStats.modelConfidence)}">{{timeLine.timelineStats.modelConfidence}}</span>
+                                    </span>
+                                <!-- <a [routerLink]="['/incidentSummary', timeLine.pvId]"
+                                    *ngIf="timeLine.incId !== 0">INC-{{timeLine.incId}}</a> -->
+                                <!-- <span ngbDropdown placement="bottom-right" class="float-right mt-1"
+                                    *ngIf="timeLine.accord">
+                                    <button class="btn btn-sm greyBackground" id="dropdownBasic1" ngbDropdownToggle>
+                                        Actions
+                                    </button>
+                                    <div class="greyBackground actionDropDown" ngbDropdownMenu
+                                        aria-labelledby="dropdownBasic1">
+                                        <button ngbDropdownItem class="greyBackground"
+                                            (click)="fetchKibanaRawEventindex(timeLine.lastViolationId)">
+                                            Investigate
+                                        </button>
+                                        <button ngbDropdownItem class="greyBackground"
+                                            (click)="timelineCreateIncident(timeLine)" *ngIf="timeLine.incId === 0">
+                                            Create an Incident
+                                        </button>
+                                        // comment this button - Manoj
+                                        <button ngbDropdownItem class="greyBackground">
+                                            Perform Remediation
+                                        </button>
+                                        <button [routerLink]="['/policyViolationSummary', timeLine.lastViolationId]"
+                                            ngbDropdownItem class="greyBackground"
+                                            *ngIf="!policyViolation.dataAggregated">
+                                            View Summary
+                                        </button>
+                                    </div>
+                                </span> -->
+                            </div>
+                        </div>
+
+                        <div class="row col-md-12 violationInfo " *ngIf="timeLine.accord">
+                            <div class="mt-3 d-flex mb-3">
+                                <div class="col-md-3 riskAccordBorder">
+                                    <dl>
+                                        <dt><i class="fa fa-caret-right"></i>&nbsp;&nbsp;Description</dt>
+                                        <dd class="mt-2">{{timeLine.ruleDescription}}</dd>
+                                    </dl>
+                                </div>
+
+                                <div class="col-5 col-sm-5 riskAccordBorder">
+                                    <dl>
+                                        <dt><i class="fa fa-caret-right"></i>&nbsp;&nbsp;Threat Categorization</dt>
+                                    </dl>
+
+                                    <div class="ml-4">
+                                        <div class="row mt-1 details">
+                                            <div class="col-md-5">
+                                                Kill Chain
+                                            </div>
+                                            <b>&nbsp;:&nbsp;</b>
+                                            <div class="col-md-6">
+                                                {{timeLine.killChain}}
+                                            </div>
+                                        </div>
+                                        <div class="row mt-1 details">
+                                            <div class="col-md-5">
+                                                Threat Category
+                                            </div>
+                                            <b>&nbsp;:&nbsp;</b>
+                                            <div class="col-md-6">
+                                                {{timeLine.threatCategory}}
+                                            </div>
+                                        </div>
+                                        <div class="row mt-1 details">
+                                            <div class="col-md-5">
+                                                Sub Category
+                                            </div>
+                                            <b>&nbsp;:&nbsp;</b>
+                                            <div class="col-md-6">
+                                                {{timeLine.subCategory}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-4 col-sm-4">
+                                    <dl>
+                                        <dt><i class="fa fa-caret-right"></i>&nbsp;&nbsp;Additional Info</dt>
+                                    </dl>
+                                    <div class="ml-4">
+                                        <div class="row mt-1 details">
+                                            <div class="col-md">
+                                                Affected Entity
+                                            </div>
+                                            <b>&nbsp;:&nbsp;</b>
+                                            <div class="col-md wordWrap rightPaddingInitial">
+                                                {{policyViolation.entityId}}
+                                            </div>
+                                        </div>
+                                        <div class="row mt-1 details">
+                                            <div class="col-md">
+                                                Locations
+                                            </div>
+                                            <b>&nbsp;:&nbsp;</b>
+                                            <div class="col-md wordWrap rightPaddingInitial">
+                                                {{policyViolation.location}}
+                                            </div>
+                                        </div>
+                                        <div class="row mt-1 details">
+                                            <div class="col-md">
+                                                Status
+                                            </div>
+                                            <b>&nbsp;:&nbsp;</b>
+                                            <div class="col-md wordWrap rightPaddingInitial">
+                                                {{timeLine.status}}
+                                            </div>
+                                        </div>
+                                        <div class="row mt-1 details">
+                                            <div class="col-md">
+                                                Resources
+                                            </div>
+                                            <b>&nbsp;:&nbsp;</b>
+                                            <div class="col-md wordWrap rightPaddingInitial">
+                                                {{timeLine.resource}}
+                                            </div>
+                                        </div>
+                                        <div class="row mt-1 details">
+                                            <div class="col-md">
+                                                Indicators
+                                            </div>
+                                            <b>&nbsp;:&nbsp;</b>
+                                            <div class="col-md wordWrap rightPaddingInitial">
+                                                {{timeLine.ruleIndicators}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                             <!-- chart section -->
+                        <div class="row mt-5 ml-3" >
+                            <div class="col-sm-12">
+                              <div class="pointerCursor" (click)="showChart(timeLine, ind, i)">
+                                  &emsp;<i *ngIf="timeLine.subAccord" class="fa fa-angle-up"></i> <i *ngIf="!timeLine.subAccord"
+                                      class="fa fa-angle-down"></i>
+                              </div>
+                            </div></div>
+                          
+                      <div class="row" *ngIf="timeLine.subAccord">
+                      
+                          <div class="col-md-12">
+                              <div class="col-md-4"><div class="chartContainer" id="container1{{ind}}{{i}}"></div>
+                              </div>
+                              <div class="col-md-4"><div class="chartContainer" id="container2{{ind}}{{i}}"></div></div>
+                              <div class="col-md-4"><div class="chartContainer" id="container3{{ind}}{{i}}"></div></div>
+                          </div>
+                      </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</div>

@@ -1,0 +1,15 @@
+  <i class="material-icons" (click)="close()" style="cursor: pointer;float:right" >
+    close
+  </i>
+  <h1 mat-dialog-title>Delete Confirmation</h1>
+  <div mat-dialog-content>
+    <p>Do you really want to Delete the Model?</p>
+    <!-- <mat-form-field>
+      <mat-label>Favorite Animal</mat-label>
+      <input matInput [(ngModel)]="data.animal">
+    </mat-form-field> -->
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button class="btn btn-md btn-secondary" (click)="close()">CANCEL</button>
+    <button mat-button class="btn btn-md btn-danger" [mat-dialog-close]="true" cdkFocusInitial>DELETE</button>
+  </div>

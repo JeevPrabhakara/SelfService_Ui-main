@@ -1,0 +1,39 @@
+.main-container { 
+    /* .dropdown-item {
+        padding: 0.25rem 1rem;
+        a {
+            padding: 0 .5rem;
+        }
+        &:active {
+            background-color: unset;
+        }
+    } */
+    /* .content-container {
+        padding: 82px 0px 0px 34px;  // 100px 0 10px 50px;
+    } */
+    .btn {
+        background-color: $button-bg-color;
+        color: $brand-white;
+    }
+    a {
+        &:hover {
+            text-decoration: none;
+        }
+    }
+    h5.page-heading {
+        color: $text-white;
+        margin: 15px 0 25px 0;
+    }
+}
+@media only screen and (max-width: 600px) {
+    .main-container{
+        .content-container{
+            padding: 100px 0 10px 10px;
+        }
+    }
+    }
+
+mat-dialog-container{
+    background-color: #0b141f;
+    color: #787E98;
+}

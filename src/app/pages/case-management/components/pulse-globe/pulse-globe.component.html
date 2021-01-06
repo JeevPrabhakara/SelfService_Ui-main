@@ -1,0 +1,65 @@
+<!-- <div class="container-fluid" style="background: aliceblue;">
+    <div class="row globeBg">
+        <div class="col-md-12">
+            <div id="globeChartDiv"></div>
+        </div>
+    </div>
+</div> -->
+<div class="bg-map" #fs fullscreen-able [style.background-image]="'url(../../../../../assets/images/map-background.jpg)'">
+    <div class="container-fluid">
+        <div class="row globeBg pt-4">
+            <div class="col-md-12"> 
+                <div id="pulseGlobeChartDiv"  ></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid globeBg pb-3 pt-2">
+        <div class="row">
+            <div class="media-body col-md-10 pl-4">
+                <p-table #attack class="globePulse" [value]="datas"   [paginator]="true" [rows]="5">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="width:14%">Date</th>
+                            <th style="width:15%">Attacker IP</th>
+                            <th style="width:13%">Attacker Country</th>
+                            <th style="width:12%">Target Ip</th>
+                            <th style="width:12%">Target Port</th>
+                            <th style="width:17%">Target Country</th>
+                            <th style="width:17%">Threat Vector</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template class="globePulse" pTemplate="body" let-rowData let-attack let-rowIndex="rowIndex"
+                        style="margin-left:5px;margin-right:5px;padding:5px 5px;">
+                        <tr [pSelectableRow]="rowData">
+                            <td>{{attack.timpestamp}}</td>
+                            <td>{{attack.attackIp}}</td>
+                            <td>{{attack.attackerGeo}}</td>
+                            <td>{{attack.targetIp}}</td>
+                            <td>{{attack.port}}</td>
+                            <td>{{attack.targetGeo}}</td>
+                            <td>{{attack.type}}</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+            <div class="action-wrap col-md-2" pr-4>
+                <div class="icon-wrap mb-4">
+                    <ul class="action-icons">
+                        <li *ngIf="!isFullscreen"><button (click)="openFullscreen()" title="Click to Full View "><img src="../../../../../assets/images/fullview@1x.png" alt="Full View Icon"></button></li>
+                        <li *ngIf="isFullscreen"><button (click)="closeFullscreen()" title="Click to Full View "><img src="../../../../../assets/images/fullview@1x.png" alt="Full View Icon"></button></li>
+                        <li><button (click)="zoomIn()" title="Click to Zoom "><img src="../../../../../assets/images/zoom@1x.png" alt="Zoom Icon"></button></li>
+                        <li><button (click)="zoomOut()" title="Click to Zoomout "><img src="../../../../../assets/images/zoomout@1x.png" alt="Zoomout Icon"></button></li>
+                    </ul>
+                </div>
+
+                <div class="icon-wrap">
+                    <ul>
+                        <li><img src="../../../../../assets/images/target@1x.png" alt="Target Icon"> Target</li>
+                        <li><img src="../../../../../assets/images/source@1x.png" alt="Source Icon"> Source</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

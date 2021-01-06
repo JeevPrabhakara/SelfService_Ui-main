@@ -1,0 +1,134 @@
+.roleForm {
+  padding: 0.8rem;
+
+  .basicColor {
+    color: #a0a0a0;
+  }
+
+  button.btn {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    background-color: #050606;
+  }
+
+  .btn:focus {
+    outline: 1px solid blue !important;
+  }
+
+  input[type="text"] {
+    border-right-color: #6e7a86 !important;
+    border-radius: 5px !important;
+  }
+
+  .form-control {
+    color: #bdbdbd !important;
+    border: 1px solid #6e7a86;
+  }
+
+  .form-control:focus {
+    color: #bdbdbd;
+    background-color: transparent;
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+
+  .contentCenter {
+    display: inline-grid;
+    align-items: center;
+  }
+}
+
+// angular2-multiselect-dropdown box
+:host ::ng-deep.c-btn {
+  border: 1px solid #6e7a86 !important;
+  border-radius: 5px !important;
+  color: #bdbdbd !important;
+  font-size: 1rem;
+}
+
+:host ::ng-deep.c-btn:focus {
+  color: #bdbdbd;
+  background-color: transparent;
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25) !important;
+}
+
+:host ::ng-deep.selected-list .c-angle-down svg,
+:host ::ng-deep.selected-list .c-angle-up svg {
+  fill: #bdbdbd !important;
+  display: flex;
+  align-items: center;
+}
+
+// selected box clear icon
+:host ::ng-deep c-icon {
+  fill: #b5b5b5 !important;
+}
+
+// filter text clear icon
+:host ::ng-deep .list-filter .c-clear svg {
+  display: flex;
+}
+
+// filter search box edge top
+:host ::ng-deep .arrow-down,
+:host ::ng-deep .arrow-up {
+  border-bottom: 16px solid #b5b5b5;
+}
+
+// list filter input
+:host ::ng-deep .list-filter input {
+  background: #b5b5b5;
+  color: #211e1e !important;
+}
+
+// list filter input placeholder
+:host ::ng-deep .list-filter input::placeholder {
+  color: #211e1e !important;
+}
+
+// entire list area other than filter input box
+:host ::ng-deep .list-area {
+  background: #b5b5b5;
+}
+
+// selected box label
+:host ::ng-deep .pure-checkbox input[type="checkbox"] + label {
+  color: black;
+}
+
+// search icon
+:host ::ng-deep .list-filter .c-search svg {
+  fill: #000000a8;
+}
+
+// filter check box
+:host ::ng-deep .pure-checkbox input[type="checkbox"] + label:before {
+  border: 1px solid rebeccapurple;
+}
+
+// disabled box
+:host ::ng-deep.c-btn.disabled {
+  background: transparent;
+}
+// search icon on filter
+:host ::ng-deep.list-filter .c-search svg {
+  display: flex;
+  align-items: center;
+}
+
+// selected items
+:host ::ng-deep.selected-list .c-list .c-token {
+  background: #524a4a8c;
+  color: white;
+  margin-right: 0.5rem;
+}
+
+// space b/w selected items and clear button
+:host ::ng-deep.selected-list .c-list .c-token .c-label {
+  display: block;
+  float: left;
+  margin-right: 0.4rem;
+}

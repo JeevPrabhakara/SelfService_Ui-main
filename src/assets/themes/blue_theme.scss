@@ -1,0 +1,33 @@
+@import "../../../node_modules/bootstrap/scss/bootstrap";
+@import "../../../node_modules/bootswatch/dist/cosmo/bootswatch";
+$fa-font-path: "../../../node_modules/font-awesome/fonts";
+@import "../../../node_modules/font-awesome/scss/font-awesome";
+@import "../sass/mixins";
+@import "blue_theme_variables";
+@import "../sass/font";
+.blue-theme {
+  background: $theme-main-bg-color;
+  height: 100%;
+  @import "../sass/global";
+  @import "../sass/padding";
+  @import "../sass/margin";
+  @import "../sass/card";
+  @import "../sass/modal";
+  @import "../../app/pages/dashboard/dashboard.component";
+  @import "../../app/pages/dashboard/components/dashboard-count/dashboard-count.component";
+  @import "../../app/core/common/header/header.component";
+  @import "../../app/core/common/leftNav/leftNav.component";
+  @import "../../app/core/login/login";
+  @import "../../app/pages/dashboard/components/topDetails/topDetails.component";
+  @import "../../app/pages/dashboard/components/riskyUsers/riskyUsers.component";
+  @import "../../app/pages/case-management/case-management.component";
+  @import "../../app/pages/case-management/components/alerts/alerts.component";
+  // @import "../../app/pages/case-management/components/policy-violation-detail-view/policy-violation-detail-view.component";
+  @import "../../app/pages/dashboard/components/globe-chart/globe-chart-component";
+  @import "../../app/pages/case-management/components/policy-violation-summary/policy-violation-summary.component";
+  @import "../../app/pages/case-management/components/pulse-globe/pulse-globe.component";
+  // @import "../../app/pages/insight-configuration/insight-configuration.component";
+  // @import "../../app/pages/insight-configuration/action-insight-configuration/action-insight-configuration.component";
+  @import "../../app/pages/global-search/entities/entities.component";
+  @import "../../app/pages/insight-configuration/insight-config-list/insight-config-list.component";
+}

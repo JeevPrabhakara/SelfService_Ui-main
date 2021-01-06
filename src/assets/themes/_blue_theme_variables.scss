@@ -1,0 +1,118 @@
+$font-family: 'Roboto',
+sans-serif;
+$brand-color: #0C3861;
+$brand-white: #ffffff;
+$brand-red: #ff0000;
+$brand-black: #000000;
+$cnetiz-boxShadow-1: 0 1px 2px 0 rgba(0, 0, 0, 0.2),
+0 2px 4px 0 rgba(0, 0, 0, 0.2);
+$cnetiz-boxShadow-2: 0 2px 4px 0 rgba(0, 0, 0, 0.2),
+0 4px 8px 0 rgba(0, 0, 0, 0.2);
+$cnetiz-boxShadow-3: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+0 8px 16px 0 rgba(0, 0, 0, 0.2);
+$cnetiz-boxShadow-4: 0 8px 16px 0 rgba(0, 0, 0, 0.2),
+0 20px 16px -8px rgba(0, 0, 0, 0.2);
+$cnetiz-boxShadow-5: 0 16px 24px 0 rgba(0, 0, 0, 0.2),
+0 32px 24px -16px rgba(0, 0, 0, 0.2);
+$cnetiz-white: #ffffff;
+$cnetiz-black: #000000;
+$cnetiz-gray-40: #c8d1e0;
+$cnetiz-gray-70: #C9C9C9;
+$cnetiz-gray-80: #58606e;
+//login
+$auth-block-bg-color: #fff;
+//Header & left Nav
+$menu-color: #0AADC8;
+$header-bg-color: #ffffff;
+$header-border-bottom: #00C7DA;
+$header-profile-dropdown-arrow: #D8D8D8;
+$left-nav-bg-color: #0C3861;
+$left-nav-active-bg-color: #012646;
+$left-nav-top-pos: 6rem ;
+// modal
+$modal-header-bg-color: #041421;
+// button
+$button-bg-color: #0C3861;
+// Card Component variables
+$card-box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.3);
+// $card-bg-color: rgba(255, 255, 255, 0.1);
+$card-bg-color: #FFFFFF;
+$card-text-color: #666666;
+// Top Details component
+$top-detail-seperator-color: #545454;
+$top-details-header-bg-color: #6FA8DD;
+$top-details-header-text-color: #ffffff;
+$top-details-header-settings-icon-color: #ffffff;
+$top-details-bg-color: $cnetiz-white;
+$top-details-box-shadow: 0 0 7px 0px rgba(0, 0, 0, 0.3);
+$top-details-border-color: #DDDDDD;
+$pie-card-text: #C6C7C8;
+//Theme specific
+$theme-main-bg-color: #f2f5f7;
+$black-bg-color: #f2f5f7;
+$black-bg-box-shadow: 0 0 13px 3px rgba(41, 41, 41, 0.14);
+$text-white: #666666;
+//risky users component
+$risky-user-text-color: blue;
+$risky-user-btn-text:#979797;
+$risky-chart-bg:#0F2231;
+
+
+$risky-user-header-bg-color: #6FA8DD;
+$risky-user-header-box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.25);
+$risky-users-text-color: $brand-black;
+$risky-users-bg-color: unset;
+$risky-user-bg-color: #fff;
+$risky-user-link-color: #044F8E;
+$risky-separator-bg-color: #9fb1bb;
+$risk-time-stamp-color:$risky-separator-bg-color;
+$risk-dot-bg-color: #6FA8DD;
+$risk-dot-border-color: #ffffff;
+$risk-title-bg-color: #d7eafd;
+$risk-title-text-color: #000;
+$risk-user-container-shadow: none;
+$risky-users-header-separator: #989898;
+$risky-users-sub-header-bg-color: #fff;
+$risky-users-sub-header-border-color: #ccc;
+$risky-users-log-date-bg-color: #6FA8DD;
+$risky-users-sub-header-separator: #ADADAD;
+$riksy-users-sub-header-risk-score: #FF6500;
+$riksy-user-detail-risk-title-border: 3px solid #2B4E6A;
+$riksy-user-detail-dd: black;
+$ngxChart:white;
+$ngxChart-text-color:rgb(231, 142, 142) !important;
+$ngxChart-border-color:#595959;
+$buttonBackGround:#6FA8DD;
+$risk-accord-border-color:rgb(85, 175, 240);
+$risk-accord-th-color:rgb(121, 66, 66);
+$nav-pills-active-bg:rgb(212, 81, 158);
+$nav-pills-bg:#1B2F41;
+$nav-pills-color:#099BB5;
+$risk-accord-action-dropdown-color:rgb(149, 80, 227);
+//Case management
+$active-nav-pills-bg:#099BB5;
+$drop-down-aero:#09ADC7;
+$filter-row-border:#34434E;
+$case-header-bg-color: #6FA8DD;
+$case-header-color: #FFFFFF;
+$case-text-color: #666666;
+$case-btn-text-color: #136FD5;
+$case-bg-color:#fff;
+$case-check-bg-color:#136FD5;
+$case-border-color:#c8c8c8;
+$case-filters-border-color:#BFBFBF;
+$case-alert-tspan-row-bg-color:#E6F3FF;
+$case-alert-texpand-row-bg-color:#E4EDF5;
+$case-alert-text-color: #666666;
+$case-table-head-bg:#f0ecec;
+$case-table-border-bottom:#656565;
+$case-critical:#f00;
+$case-medium:#FFFF00;
+$case-high:#FFA500;
+$case-low:#ADFF2F;
+
+//Policy-Violation-summary
+$header-text: #a0a0a0;
+$button-bg:#1E364A;
+$button-color:#F6F6F9;
+$hr-border: #4b5965;

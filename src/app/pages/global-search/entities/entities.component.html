@@ -1,0 +1,128 @@
+
+<!-- <div class="row ml-2 mr-1 mt-4 mb-3 d-inline-block"> -->
+<div class="ml-2 mr-1  mb-3">
+  <div class="tab-content">
+    <div role="tabpanel">
+      <div class="row">
+        <div class="col-8">
+              <!-- filter container -->
+              <div class="mt-2">
+                <div class="row pageTitle ml-2 mr-2">
+                  <div class="col-md-10 initialPadding" style="display: flex;align-items:center;">
+                    <span>{{'general.menu.entity' | translate}}</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class=" m-3">
+                <mat-button-toggle-group
+                (change)="onToggleGroupChange($event)"
+                [disabled]=disabled
+                [value]=value
+              >
+                <mat-button-toggle
+                  *ngFor="let toggle of toggles"
+                  [value]="toggle.value"
+                >{{ toggle.label }}</mat-button-toggle>
+              </mat-button-toggle-group>
+              </div>
+          <div class="col-md-12 mb-3"  *ngIf="entities.length > 0 && !isLoading">
+            <div class="row incident-filter-row">
+              <div class="mr-4 mb-4">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search by Keyword"
+                        (input)="entity.filterGlobal($event.target.value, 'contains')">
+                    <div class="input-group-append">
+                        <span class="input-group-text"><i class="fa fa-search"></i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-4 mt-2">
+              <span class="topStages Total">{{ totalRows }}</span>
+              <span class="labels">&nbsp;&nbsp;Records found</span>
+          </div>
+          <div class="ml-5 mb-4 mt-2" *ngIf="isRiskyCheck">
+            <span class="labels" style="color: red;"> RISKY DATA </span>
+          </div>
+            </div>
+          </div>
+        </div>
+        <!-- For Graph -->
+        <div class="col-4" *ngIf="entityType == 'USER'">
+          <div class="chart-container">
+            <div id="entityGraph"></div>
+          </div>
+          
+        </div>
+      </div>
+
+      <div class="row col-12">
+        <!-- style="margin: 15% 35%;" -->
+        <mat-spinner *ngIf="isLoading" class="mx-auto my-5">
+        </mat-spinner>
+      </div>
+      <!-- table -->
+      <div class="col-md-10"
+          style="padding: inherit; text-align: center; font-size: 20px;"
+          *ngIf="entities.length == 0 && !isLoading">
+          <p-table #entityEmpty [columns]="cols" [value]="entities">
+          <ng-template pTemplate="header" let-columns>
+            <tr>
+              <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                {{col.header}}
+                <p-sortIcon [field]="col.field"></p-sortIcon>
+            </th>
+            </tr>
+          </ng-template>
+        </p-table>
+          <p>No Entities found</p>
+      </div>
+
+      <div class="row ml-auto mr-auto entitiesTable " *ngIf="entities.length > 0 && !isLoading">
+         <!-- <p-table #entity [columns]="cols" [value]="entities" [resizableColumns]="true" sortMode="multiple" [globalFilterFields]= "filterFields"
+          [(selection)]="selectedItems" [paginator]="true" [rows]=" rowSize" [totalRecords]="totalRows" [lazy]="true" (onLazyLoad)="loadEntityLazy($event)"  [loading]="isLoading"> -->
+          <p-table #entity [columns]="cols" [value]="entities" [resizableColumns]="true" sortMode="multiple" [globalFilterFields]= "filterFields"
+          [(selection)]="selectedItems" [paginator]="true" [rows]=" rowSize" [totalRecords]="totalRows" (onLazyLoad)="loadEntityLazy($event)">
+          <!-- <ng-template pTemplate="caption">
+            Users List
+              </ng-template> -->
+          <ng-template pTemplate="header" let-columns>
+            <tr>
+              <!-- <th *ngFor="let col of columns">
+                {{col.header}}
+              </th> -->
+              <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                {{col.header}}
+                <p-sortIcon [field]="col.field"></p-sortIcon>
+            </th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-entity let-columns="columns">
+            <tr>
+              <td *ngFor="let col of columns">
+                <span title="{{entity[col.field]}}" *ngIf="(col.field == 'url')" class="big-font">
+                  {{entity[col.field]}}
+                </span>
+                <span title="{{entity[col.field]}}" *ngIf="(col.field == 'riskScore')" [ngClass]="[entity[col.field] <= 65 ? 'green big-font' : ((entity[col.field] >= 66 && entity[col.field] <= 85) ? 'orange big-font' : 'red big-font')]">
+                  {{entity[col.field]| number:'.0-1'}}
+                </span>
+                <span title="{{entity[col.field]}}" *ngIf="(col.field == 'empId')" class="big-font emp-id">
+                  <a [routerLink]="['/riskyUser/', entity[col.field]]">{{entity[col.field]}}</a>
+                </span>
+                <span title="{{entity[col.field]}}" *ngIf="(col.field == 'name' && entityType == 'HOST')" class="big-font">
+                  <a [routerLink]="['/riskyHost/', entity[col.field]]">{{entity[col.field]}}</a>
+                </span>
+                <span title="{{entity[col.field]}}" *ngIf="(col.field == 'name' && entityType == 'IP')" class="big-font">
+                  <a [routerLink]="['/riskyIP/', entity[col.field]]">{{entity[col.field]}}</a>
+                </span>
+                <span title="{{entity[col.field]}}" *ngIf="!(col.field == 'riskScore' || col.field == 'url' || col.field == 'name' || col.field == 'empId')">
+                  {{entity[col.field]}}
+                </span>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+  </div>
+</div>

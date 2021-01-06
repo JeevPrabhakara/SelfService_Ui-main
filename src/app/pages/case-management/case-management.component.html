@@ -1,0 +1,292 @@
+<div class="row mt-2 title-main ml-2 d-inline-block">
+    <div *ngIf="path == 'policyViolation'"><span class="h5">Insights</span></div>
+    <div *ngIf="path == 'caseManagement'"><span class="h5">Incident Management</span></div>
+</div>
+
+<div class="row ml-2 mr-1 mt-4 mb-3 d-inline-block">
+    <div class="tab-content">
+        <div *ngIf="path == 'policyViolation'" role="tabpanel">
+            <div class="card">
+                <div class="card-header policy-filter-row row rightPaddingInitial">
+                    <div class="col-md-12">
+                        <div class="col-md-6 row rightPaddingInitial">
+                            <div class="col-md-4 leftPaddingInitial">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" pInputText placeholder="Search By Keywords"
+                                        (input)="policy.filterGlobal($event.target.value,'contains')">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">
+                                            <i class="fa fa-search"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-2 rightPaddingInitial m-auto">
+                                <div class="highcheckbox">
+                                    <p-checkbox value="High" label="High" (onChange)="selectPolicyClick($event)">
+                                    </p-checkbox>
+                                </div>
+                            </div>
+
+                            <div class="col-md-5 rightPaddingInitial text-center">
+                                <div class="input-group">
+                                    <p-calendar [(ngModel)]="policyRangeDates" placeholder="Date Range"
+                                        selectionMode="range" [readonlyInput]="true" showButtonBar="true"
+                                        dateFormat="dd/mm/yy" clearButtonStyleClass="ui-secondary-button">
+                                    </p-calendar>
+                                    <div class="input-group-append" (click)="setDateRange()">
+                                        <span class="input-group-text">
+                                            <i class="fa fa-search"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 row centerAlign m-auto rightPaddingInitial text-center">
+                            <div class="col-md-3 rightPaddingInitial">
+                                <span class="topStages Total">{{totalItem}}</span>
+                                <span class="labels">&nbsp;&nbsp;Total</span>
+                            </div>
+                            <div class="col-md-3 rightPaddingInitial">
+                                <span class="topStages High">{{highItem}}</span>
+                                <span class="labels">&nbsp;&nbsp;High</span>
+                            </div>
+                            <div class="col-md-3 rightPaddingInitial">
+                                <span class="topStages Medium">{{mediumItem}}</span>
+                                <span class="labels">&nbsp;&nbsp;Medium</span>
+                            </div>
+                            <div class="col-md-3 rightPaddingInitial">
+                                <span class="topStages Low">{{lowItem}}</span>
+                                <span class="labels">&nbsp;&nbsp;Low</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body p-0">
+                    <div class="media">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-2 filterRow policy-violation-date-table">
+                                    <p-table #day [paginator]="true" [rows]="10" class="policy sortingDate"
+                                        [value]="myDays">
+                                        <ng-template pTemplate="header">
+                                            <tr>
+                                                <th style="width:5%"></th>
+                                                <th style="text-align: center;">Violation Triggered Day</th>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template class="policy" pTemplate="body" let-rowData let-myDay
+                                            let-rowIndex="rowIndex" width="100%">
+                                            <tr [pSelectableRow]="rowData">
+                                                <td (click)="daySelected(myDay,rowIndex)" class="rowdata"></td>
+
+                                                <td (click)="daySelected(myDay,rowIndex)" class="day"
+                                                    [ngStyle]="{'background-color':selectedIndex === rowIndex ? '#34434E' : '#041421' }">
+                                                    {{myDay | date : 'EEEE dd/MM/yyyy'}}
+                                            </tr>
+                                        </ng-template>
+                                    </p-table>
+                                </div>
+                                <mat-spinner *ngIf="fetchingPolicyViolationsInProgress" style="margin: 15% 35%;">
+                                </mat-spinner>
+                                <div class="col-md-10"
+                                    style="padding: inherit; text-align: center; margin-top: 10%; font-size: 20px;"
+                                    *ngIf="policyViolations.length == 0 && !fetchingPolicyViolationsInProgress">
+                                    <p>No Policy Violations found</p>
+                                </div>
+
+                                <div class="col-md-10" style="padding: inherit;background:rgb(52, 67, 78);"
+                                    *ngIf="policyViolations.length > 0">
+                                    <div class="media-body policy-violation-table">
+                                        <p-table #policy class="policy" [value]="policyViolations"
+                                            [(selection)]="selectedPolicyItems"
+                                            [globalFilterFields]="['generationTime','ruleName','eventDateTime','entity','indicatorsOfAttack','status','priority']"
+                                            sortMode="multiple" [paginator]="true" [rows]="10">
+                                            <ng-template pTemplate="header">
+                                                <tr>
+                                                    <!--  <th style="width:10%" [pSortableColumn]="'violationId'">PV ID
+                                                            <p-sortIcon [field]="'violationId'"></p-sortIcon></th>-->
+                                                    <th style="width:16%" [pSortableColumn]="'generationTime'">
+                                                        Generation
+                                                        Time
+                                                        <p-sortIcon [field]="'generationTime'"></p-sortIcon>
+                                                    </th>
+                                                    <th style="width:20%" [pSortableColumn]="'ruleName'">Policy
+                                                        Violation Name
+                                                        <p-sortIcon [field]="'ruleName'"></p-sortIcon>
+                                                    </th>
+                                                    <th style="width:15%" [pSortableColumn]="'eventDateTime'">Event
+                                                        Day/Time
+                                                        <p-sortIcon [field]="'eventDateTimeFormatted'"></p-sortIcon>
+                                                    </th>
+                                                    <th style="width:14%" [pSortableColumn]="'entity'">Entity
+                                                        <p-sortIcon [field]="'entity'"></p-sortIcon>
+                                                    </th>
+
+                                                    <th style="width:13%" [pSortableColumn]="'indicatorsOfAttack'">
+                                                        Event Count
+                                                        <p-sortIcon [field]="'indicatorsOfAttack'"></p-sortIcon>
+                                                    </th>
+                                                    <th style="width:14%" [pSortableColumn]="'status'">Status
+                                                        <p-sortIcon [field]="'status'"></p-sortIcon>
+                                                    </th>
+                                                    <th style="width:12%" [pSortableColumn]="'priority'">Priority
+                                                        <p-sortIcon [field]="'priority'"></p-sortIcon>
+                                                    </th>
+                                                </tr>
+                                            </ng-template>
+                                            <ng-template class="policy" pTemplate="body" let-rowData let-myPolicy
+                                                let-rowIndex="rowIndex"
+                                                style="margin-left:5px;margin-right:5px;padding:5px 5px;">
+                                                <!--   <tr [pSelectableRow]="rowData"
+                                                        (click)="goToPolicyViolationSummaryPage()">-->
+                                                <tr [pSelectableRow]="rowData"
+                                                    (click)="redirectToSummaryPage(myPolicy.violationId, myPolicy.eventDateTime,myPolicy.dataAggregated)">
+                                                    <td>{{myPolicy.generationTimeFormatted | date: ' hh:mm:ss'}}
+                                                    </td>
+                                                    <td style="color:#099bb5;">{{myPolicy.ruleName}}</td>
+                                                    <td>{{myPolicy.eventDateTimeFormatted | date: 'dd/MM/yyyy hh:mm:ss'}}
+                                                    </td>
+                                                    <td
+                                                        (click)="redirectToEntityDetailPage(myPolicy.violationType,myPolicy.entity)">
+                                                        {{myPolicy.entity | uppercase}}</td>
+                                                    <td (click)="fetchEnrichIndexKibanaURL(myPolicy.violationId)">
+                                                        {{myPolicy.indicatorsOfAttack}}</td>
+                                                    <td>{{myPolicy.status}}</td>
+                                                    <td>
+                                                        <div class="{{myPolicy.priority}} tableStages"></div>
+                                                        <span class="priority">{{myPolicy.priority}}</span>
+                                                    </td>
+                                                </tr>
+                                            </ng-template>
+                                        </p-table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="path == 'caseManagement'" role="tabpanel">
+            <div class="col-md-12 mb-3">
+                <div class="row incident-filter-row">
+                    <div class="mr-4 mb-4 mt-1">
+                        <p-dropdown [options]="shows" placeholder="Show All" optionLabel="name" [showClear]="true"
+                            (onChange)="selectFilterDate($event.value)">
+                        </p-dropdown>
+                    </div>
+
+                    <div class="mr-4 mb-4">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search by Keyword"
+                                (keyup)="incident.filterGlobal($event.target.value, 'contains')">
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fa fa-search"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="width-200 mr-4 mb-4 mt-1">
+                        <ejs-daterangepicker  #ejDateRangePicker id='daterangepicker' placeholder='Select a range' (open)="onOpen($event)"
+                            [startDate]='startDate' [endDate]='endDate'>
+                        </ejs-daterangepicker>
+                        <!-- <div class="input-group">
+                            <p-calendar [(ngModel)]="incidentRangeDates" placeholder="Date Range" showButtonBar="true"
+                                dateFormat="dd/mm/yy" clearButtonStyleClass="ui-secondary-button" selectionMode="range"
+                                [readonlyInput]="true" (focusout)="onIncidentDataSelect($event)"></p-calendar>
+                            <div class="input-group-append">
+                                <span class="input-group-text">
+                                    <i class="fa fa-search"></i>
+                                </span>
+                            </div>
+                        </div> -->
+                    </div>
+
+                    <div class="mt-1 mr-4 mb-4">
+                        <p-dropdown [options]="incidentType" placeholder="Incident Type" optionLabel="name"
+                            [showClear]="true" (onChange)="incidentFilter($event,'incidentType')"></p-dropdown>
+                    </div>
+
+                    <div class="mt-1 mr-4 mb-4">
+                        <p-dropdown [options]="outcome" placeholder="Outcome" optionLabel="name" [showClear]="true"
+                            (onChange)="incidentFilter($event,'outcome')"></p-dropdown>
+                    </div>
+
+                    <div class="mt-1 mr-4 mb-4">
+                        <p-dropdown [options]="assignee" placeholder="Case Owner" optionLabel="name" [showClear]="true"
+                            (onChange)="incidentFilter($event,'ownerName')"></p-dropdown>
+                    </div>
+
+                    <div class="mb-4 mt-2">
+                        <span class="topStages Total">{{incident.totalRecords }}</span>
+                        <span class="labels">&nbsp;&nbsp;Records found</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row ml-auto mr-auto policy-incident-table">
+                <p-table #incident
+                    [globalFilterFields]="['incId', 'incidentCreatedTime', 'categories', 'entity', 'incidentType', 'ruleIds','outcome', 'ownerName']"
+                    [resizableColumns]="true" [value]="incidents" sortMode="multiple" [(selection)]="selectedItems"
+                    [paginator]="true" [rows]="12">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <!-- <th style="width: 3em;background:#000000">
+                                <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                            </th> -->
+
+                            <th [pSortableColumn]="'incId'">INCIDENT ID
+                                <p-sortIcon [field]="'incId'"></p-sortIcon>
+                            </th>
+                            <th [pSortableColumn]="'incidentCreatedTime'">CREATED
+                                <p-sortIcon [field]="'incidentCreatedTime'"></p-sortIcon>
+                            </th>
+                            <th style="width:28em;" [pSortableColumn]="'categories'">CATEGORIES TRIGGERED
+                                <p-sortIcon [field]="'categories'"></p-sortIcon>
+                            </th>
+                            <th [pSortableColumn]="'entity'">ENTITY
+                                <p-sortIcon [field]="'entity'"></p-sortIcon>
+                            </th>
+                            <th [pSortableColumn]="'incidentType'">INCIDENT TYPE
+                                <p-sortIcon [field]="'incidentType'">
+                                </p-sortIcon>
+                            </th>
+                            <th style="width:12em;" [pSortableColumn]="'ruleIds'">MODELS TRIGGERED
+                                <p-sortIcon [field]="'ruleIds'"></p-sortIcon>
+                            </th>
+                            <th style="width:12em;" [pSortableColumn]="'outcome'">OUTCOME
+                                <p-sortIcon [field]="'outcome'"></p-sortIcon>
+                            </th>
+                            <th [pSortableColumn]="'ownerName'">CASE OWNER
+                                <p-sortIcon [field]="'ownerName'">
+                                </p-sortIcon>
+                            </th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-rowData let-incident>
+                        <tr [pSelectableRow]="rowData" [routerLink]="['/incidentSummary', incident.incId]">
+                            <!-- <td>
+                                <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
+                            </td> -->
+                            <td>INC {{incident.incId}}</td>
+                            <td>{{incident.incidentCreatedTime | date : 'dd/MM/yyyy HH:mm:ss'}}</td>
+                            <td style="color:#099bb5;">{{incident.categories}}</td>
+                            <td>{{incident.entity}}</td>
+                            <td>
+                                <!-- <div class="{{incident.entity}} tableStages"></div> -->
+                                <span class="priority1">{{incident.incidentType}}</span>
+                            </td>
+                            <td>{{incident.ruleIds}}</td>
+                            <td>{{incident.outcome}}</td>
+                            <td>{{incident.ownerName}}</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+    </div>
+</div>

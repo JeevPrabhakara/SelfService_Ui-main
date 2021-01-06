@@ -1,0 +1,233 @@
+@import "~ag-grid-community/dist/styles/ag-grid.css";
+@import "~ag-grid-community/dist/styles/ag-theme-material.css";
+@import "~ag-grid-community/dist/styles/ag-theme-balham.css";
+
+#preloader {
+  overflow: hidden;
+  background-color: #fff;
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 999999;
+}
+
+.colorlib-load {
+  -webkit-animation: 1000ms linear 0s normal none infinite running colorlib-load;
+  animation: 1000ms linear 0s normal none infinite running colorlib-load;
+  background: transparent none repeat scroll 0 0;
+  border-color: #dddddd #dddddd #fb397d;
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 2px;
+  height: 40px;
+  left: calc(50% - 20px);
+  position: relative;
+  top: calc(50% - 20px);
+  width: 40px;
+  z-index: 9;
+}
+
+@-webkit-keyframes colorlib-load {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes colorlib-load {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+// ~~~~~~~~~spinner~~~~~~~~~~~~
+.preloaderSpinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%); // IE 9
+  -webkit-transform: translate(-50%, -50%); // Safari
+  transform: translate(-50%, -50%); // Standard syntax
+  width: 70px;
+  height: 70px;
+  > div {
+    width: 18px;
+    height: 18px;
+    background-color: #333;
+
+    border-radius: 100%;
+    display: inline-block;
+    -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+    animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+  }
+  .bounce1 {
+    -webkit-animation-delay: -0.32s;
+    animation-delay: -0.32s;
+  }
+
+  .bounce2 {
+    -webkit-animation-delay: -0.16s;
+    animation-delay: -0.16s;
+  }
+}
+
+@-webkit-keyframes sk-bouncedelay {
+  0%,
+  80%,
+  100% {
+    -webkit-transform: scale(0);
+  }
+  40% {
+    -webkit-transform: scale(1);
+  }
+}
+
+@keyframes sk-bouncedelay {
+  0%,
+  80%,
+  100% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+  40% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+.commentUser {
+  font-weight: 500;
+  padding-right: 3rem;
+  color: #099bb5;
+  background-color: transparent;
+}
+
+// Common Header Color
+.commonHeader {
+  color: #b5b5b5;
+}
+
+// Common Ag-Grid Styles
+.commonAgGrid {
+  // header title row
+  /* .ag-header-cell.ag-header-cell-sortable {
+    background: teal;
+    color: tomato;
+  } */
+
+  // sorting icon
+  .ag-theme-material .ag-icon-asc:before,
+  .ag-theme-material .ag-icon-desc:before {
+    color: white;
+  }
+
+  // header & filter row
+  .ag-theme-material .ag-header-cell {
+    text-transform: uppercase;
+    background-color: black !important;
+    color: white !important;
+  }
+
+  // filter values
+  .ag-theme-material .ag-input-wrapper input:not([type="date | text"]) {
+    color: white;
+    padding-top: 8px !important;
+  }
+
+  // header & filter hover style
+  .ag-theme-material .ag-header-cell:focus .ag-header-cell:hover {
+    text-transform: lowercase;
+    background-color: black !important;
+    color: white !important;
+  }
+
+  // last cell action column - align into center
+  .ag-theme-material .ag-header-cell:last-child {
+    padding-left: 2.8rem;
+  }
+
+  // body record
+  .ag-theme-material .ag-center-cols-viewport {
+    background: #34434e;
+    border-bottom: 1px solid #5f6e79;
+    color: black;
+    font-weight: 500;
+    font-size: small;
+    color: #a0a0a0;
+    background-color: #34434e;
+    font-family: sans-serif;
+  }
+
+  // all data row hover
+  .ag-row.ag-row-position-absolute {
+    background: #34434e !important;
+    border-top: none !important;
+    border-bottom: 1px solid #5f6e79 !important;
+    word-break: break-all !important;
+
+    /* color: #a0a0a0;
+    background-color: #34434e; */
+  }
+
+  // last row
+  /* .ag-row.ag-row-position-absolute.ag-row-last {
+    border: none !important;
+  } */
+
+  // footer with pagination
+  .ag-theme-material .ag-paging-panel {
+    background: rgba(0, 0, 0, 0.54);
+    color: black;
+    border: none !important;
+    max-height: 2.8rem;
+  }
+
+  // list selection box
+  .ag-icon-checkbox-checked:before {
+    color: #b5b5b5;
+  }
+}
+
+// EJS Date Range Picker Styles
+// selected date color
+input#daterangepicker_input,
+input#daterangepicker_input::placeholder {
+  color: #bdbdbd !important;
+}
+
+// date select icon color
+.e-input-group-icon.e-range-icon,
+.e-control-wrapper .e-input-group-icon.e-range-icon {
+  color: #0aadc8 !important;
+}
+
+// selected date range color
+.e-daterangepicker.e-popup .e-calendar .e-content .e-range-hover,
+.e-bigger.e-small .e-daterangepicker.e-popup .e-calendar .e-content .e-range-hover {
+  background-color: #e0cacabd;
+}
+
+// selected date range color
+.e-daterangepicker.e-popup .e-calendar .e-content .e-range-hover span,
+.e-bigger.e-small .e-daterangepicker.e-popup .e-calendar .e-content .e-range-hover span {
+  background: #e0d4d4b0;
+}
+
+// bottom border color
+span.e-input-group.e-control-wrapper.e-date-range-wrapper,
+span.e-input-group.e-control-wrapper.e-date-range-wrapper:hover {
+  border-color: #bfbfbf !important;
+}

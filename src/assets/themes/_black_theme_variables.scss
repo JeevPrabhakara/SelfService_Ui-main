@@ -1,0 +1,122 @@
+$font-family: "Roboto", sans-serif;
+$brand-color: #0aadc8;
+$brand-white: #ffffff;
+$brand-red: #ff0000;
+$brand-black: #000000;
+$cnetiz-boxShadow-1: 0 1px 2px 0 rgba(0, 0, 0, 0.2),
+    0 2px 4px 0 rgba(0, 0, 0, 0.2);
+$cnetiz-boxShadow-2: 0 2px 4px 0 rgba(0, 0, 0, 0.2),
+    0 4px 8px 0 rgba(0, 0, 0, 0.2);
+$cnetiz-boxShadow-3: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+    0 8px 16px 0 rgba(0, 0, 0, 0.2);
+$cnetiz-boxShadow-4: 0 8px 16px 0 rgba(0, 0, 0, 0.2),
+    0 20px 16px -8px rgba(0, 0, 0, 0.2);
+$cnetiz-boxShadow-5: 0 16px 24px 0 rgba(0, 0, 0, 0.2),
+    0 32px 24px -16px rgba(0, 0, 0, 0.2);
+$cnetiz-white: #d8d8d8;
+$cnetiz-black: #000000;
+$cnetiz-gray-40: #c8d1e0;
+$cnetiz-gray-70: #585858;
+$cnetiz-gray-80: #58606e;
+//login
+$auth-block-bg-color: #041421;
+//Header & left Nav
+$menu-color: $brand-color;
+// $header-bg-color: #041421;
+$header-bg-color: #101E2E;
+$header-border-bottom: #2c4255;
+$header-profile-dropdown-arrow: $cnetiz-white;
+// $left-nav-bg-color: #041421;
+$left-nav-bg-color: #101E2E;
+$left-nav-active-bg-color: #023a67;
+$left-nav-top-pos: 6rem;
+// modal
+$modal-header-bg-color: #041421;
+// button
+$button-bg-color: #0aadc8;
+// Card Component variables
+$card-box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.2);
+$card-bg-color: white;
+$card-text-color: #d8d8d8;
+// Top Details component
+$top-detail-seperator-color: #545454;
+// $top-details-header-bg-color: #041421;
+$top-details-header-bg-color: #0D1726;
+// $top-details-header-text-color: #a0a0a0;
+$top-details-header-text-color: #787E98;
+$top-details-header-settings-icon-color: $brand-color;
+// $top-details-bg-color: #041421;
+$top-details-bg-color: #0D1726;
+$top-details-box-shadow: 0 0 13px 3px rgba(41, 41, 41, 0.14);
+$top-details-border-color: #424242;
+$pie-card-text: #c6c7c8;
+//Theme specific
+// $theme-main-bg-color: #202c36;
+$theme-main-bg-color: white;
+$black-bg-color: #0D1726;
+$black-bg-box-shadow: 0 0 13px 3px rgba(41, 41, 41, 0.14);
+$text-white: #a0a0a0;
+//risky users component
+$risky-user-text-color: #bdbdbd;
+$risky-user-btn-text: #979797;
+$risky-chart-bg: #0f2231;
+
+$risky-user-header-bg-color: white;
+$risky-user-header-box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.25);
+$risky-users-text-color: #a0a0a0;
+$risky-users-bg-color: $black-bg-color;
+$risky-user-bg-color: #005d6d;
+$risky-user-link-color: $brand-color;
+$risky-separator-bg-color: #0891a9;
+$risk-time-stamp-color: $risky-separator-bg-color;
+$risk-dot-bg-color: $risky-separator-bg-color;
+// $risk-dot-border-color: #041421;
+$risk-dot-border-color: #0D1726;
+$risk-title-bg-color: #d7eafd;
+$risk-title-text-color: #000000;
+$risk-user-container-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.6);
+$risky-users-header-separator: #989898;
+$risky-users-sub-header-bg-color: #e5e5e5;
+$risky-users-sub-header-border-color: #ccc;
+$risky-users-log-date-bg-color: #00c7da;
+$risky-users-sub-header-separator: #adadad;
+$riksy-users-sub-header-risk-score: #ff6500;
+$riksy-user-detail-risk-title-border: 3px solid #2b4e6a;
+$riksy-user-detail-dd: #8e8e8e;
+$ngxChart: #0f2231;
+$ngxChart-text-color: #6e6e6e;
+$ngxChart-border-color: #595959;
+$buttonBackGround: #6185a4;
+$risk-accord-border-color: #3f596c;
+$risk-accord-th-color: #202c36;
+$nav-pills-active-bg: #099bb5;
+$nav-pills-bg: #1b2f41;
+$nav-pills-color: $nav-pills-active-bg;
+$risk-accord-action-dropdown-color: #50e3c2;
+//Case management
+$active-nav-pills-bg: #099bb5;
+$drop-down-aero: #09adc7;
+$filter-row-border: #34434e;
+$case-header-bg-color: #041421;
+$case-header-color: $cnetiz-white;
+$case-text-color: #a0a0a0;
+$case-btn-text-color: #a0a0a0;
+$case-bg-color: #202c36;
+$case-check-bg-color: #0aadc8;
+$case-border-color: #c8c8c8;
+$case-filters-border-color: #bfbfbf;
+$case-alert-tspan-row-bg-color: #2d3944;
+$case-alert-texpand-row-bg-color: #38444f;
+$case-alert-text-color: #bdbdbd;
+$case-table-head-bg: #000000;
+$case-table-border-bottom: #656565;
+$case-critical: #f00;
+$case-medium: #ffa500;
+$case-high: #f00;
+$case-low: #ffff00;
+
+//Policy-Violation-summary
+$header-text: #a0a0a0;
+$button-bg:#1E364A;
+$button-color:#F6F6F9;
+$hr-border: #4b5965;

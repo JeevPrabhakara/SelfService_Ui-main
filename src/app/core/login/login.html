@@ -1,0 +1,76 @@
+<div class="auth-main">
+
+    <div class="overlay"></div>
+    <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop" oncanplay="this.play()"
+        onloadedmetadata="this.muted = true">
+        <source src="../../../assets/video/login_bg.mp4" type="video/mp4">
+    </video>
+
+    <div class="content row">
+        <div class="col-md-7 col-xs-12">
+            <div class="text-block">
+                <p class="font-style-1">"The biggest problem in incident response is understanding how the business is
+                    using
+                    its servers, its data, and who has access."</p>
+                <p class="font-style-2">- Incident Response panel at SecureWorld Chicago</p>
+            </div>
+        </div>
+        <div class="col-md-4 col-xs-12 login-block">
+            <div class="text-center logo-container">
+                <!-- <img src="../../../assets/images/{{themeName}}-logo.png" alt="CyberNetiz Logo" /> -->
+                <img src="../../../../assets/images/new-logo.png" class="pointerCursor" alt="CyberNetiz Logo"
+                style="width:55%;" />
+            </div>
+            <div *ngIf="isError && !inValidPermissionUserError" class="alert alert-error">
+                <p>Invalid Username or password!</p>
+            </div>
+            <!-- <div *ngIf="isError && !showSecurityTokenInput && !inValidPermissionUserError" class="alert alert-error">
+                <p>Invalid Username or password!</p>
+            </div> -->
+            <!-- <div *ngIf="showSecurityTokenInput" class="alert alert-error">
+                <p>Please enter 2FA secret token!</p>
+            </div> -->
+            <div *ngIf="inValidPermissionUserError" class="alert alert-error">
+                <p>Permissions Not Allowed!</p>
+            </div>
+            <form [formGroup]="form" (ngSubmit)="loginSubmit()" class="form-horizontal">
+
+                <mat-form-field appearance="outline"
+                    [ngClass]="{'has-error': (!username.valid && username.touched), 'has-success': (username.valid && username.touched)}">
+                    <input type="text" matInput [formControl]="username" placeholder="{{'login.username' | translate}}"
+                        autocomplete="off">
+                    <mat-icon color="white" matPrefix>person</mat-icon>
+                    <mat-error *ngIf="(!username.valid && username.touched)">Enter valid username</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline"
+                    [ngClass]="{'has-error': (!password.valid && password.touched), 'has-success': (password.valid && password.touched)}">
+                    <input type="password" matInput [formControl]="password"
+                        placeholder="{{'login.password' | translate}}" autocomplete="off">
+                    <mat-icon color="white" matPrefix>lock</mat-icon>
+                    <mat-error *ngIf="(!password.valid && password.touched)">Enter valid password</mat-error>
+                </mat-form-field>
+
+                <!-- <span *ngIf="showSecurityTokenInput">
+
+                    <mat-form-field appearance="outline"
+                        [ngClass]="{'has-error': (token.touched), 'has-success': (token.touched)}">
+                        <input type="password" matInput [formControl]="token" placeholder="Authentication secret token"
+                            autocomplete="off">
+                        <mat-icon color="white" matPrefix>lock</mat-icon>
+                    </mat-form-field>
+
+                    <span class="cursorPointer" (click)="openSecreteKeyPupup()" style="color: #e1e1a5"> * Click here to
+                        generate
+                        secret code/QR.</span>
+                </span> -->
+
+                <div class="form-group btn-container mt-4">
+                    <button mat-raised-button type="submit" class="btn- btn-default- btn-auth">
+                        {{'login.sign_in' | translate}}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,158 @@
+.basicColor {
+  color: #a0a0a0;
+}
+
+.fullWidth {
+  width: 99%;
+}
+
+.insightConfigForm {
+  box-shadow: inset 0 0 7px #000000b0;
+  padding: 0.8rem;
+
+  hr {
+    margin-top: -0.1rem;
+    margin-bottom: 1.2rem;
+    border-top: 1.5px solid rgba(10, 4, 4, 0.37);
+  }
+
+  select {
+    background: transparent !important;
+  }
+
+  input[type="text"] {
+    border-right-color: #6e7a86 !important;
+    border-radius: 5px !important;
+  }
+
+  input[type="radio"]:checked ~ .custom-control-label::after {
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    border-radius: 50%;
+  }
+
+  textarea.form-control {
+    height: auto;
+    background: transparent;
+  }
+
+  .form-control {
+    color: #bdbdbd !important;
+    border: 1px solid #6e7a86;
+  }
+
+  .form-control:focus {
+    color: #bdbdbd;
+    background-color: transparent;
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+
+  button.btn {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    background-color: #050606;
+  }
+
+  .contentCenter {
+    display: inline-grid;
+    align-items: center;
+  }
+
+  .c-btn:focus {
+    color: #bdbdbd;
+    background-color: transparent;
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25) !important;
+  }
+}
+
+// angular2-multiselect-dropdown box
+:host ::ng-deep.c-btn {
+  border: 1px solid #6e7a86 !important;
+  border-radius: 5px !important;
+  color: #bdbdbd !important;
+  font-size: 1rem;
+}
+
+:host ::ng-deep.c-btn:focus {
+  color: #bdbdbd;
+  background-color: transparent;
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25) !important;
+}
+
+:host ::ng-deep.selected-list .c-angle-down svg,
+:host ::ng-deep.selected-list .c-angle-up svg {
+  fill: #bdbdbd !important;
+  display: flex;
+  align-items: center;
+}
+/* 
+:host ::ng-deep.list-area {
+  border: 1px solid #f3e5e5;
+  border-radius: 3px;
+  background: #f3e5e5;
+  margin: 0;
+  margin-top: -6px;
+  margin-bottom: -6px;
+}
+
+:host ::ng-deep.arrow-down,
+:host ::ng-deep.arrow-up {
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid #f3e5e5;
+  margin-left: 15px;
+  position: absolute;
+  top: 0;
+}
+
+:host ::ng-deep.arrow-2 {
+  border-bottom: 9px solid #ccc;
+  top: -1px;
+}
+
+:host ::ng-deep.dropdown-list ul li {
+  font-weight: 700 !important;
+  font-size: smaller !important;
+}
+ */
+
+// filter search box
+:host ::ng-deep.list-filter .c-search svg {
+  fill: #888;
+  display: flex;
+  align-items: center;
+}
+
+// selected value box
+:host ::ng-deep.c-token {
+  background: #455454d1;
+}
+
+// all group (entire buttons)
+.mat-button-toggle-group {
+  height: 2.2rem;
+  align-items: center;
+}
+
+// not-selected
+.mat-button-toggle {
+  background: white;
+  color: red;
+}
+
+// selected
+.mat-button-toggle-checked {
+  background: green;
+  color: black !important;
+}
+
+.btn {
+  height: 2.1rem !important;
+}

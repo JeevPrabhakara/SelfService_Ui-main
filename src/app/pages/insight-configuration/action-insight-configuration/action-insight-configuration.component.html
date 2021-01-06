@@ -1,0 +1,308 @@
+<form class="" [formGroup]="insightConfForm">
+  <div class="ml-2 mr-1 mt-2 mb-2">
+    <div class="d-inline-block w-100">
+      <h4 class="basicColor pull-left">{{pageTitle}}</h4>
+
+      <span class="pull-right">
+        <mat-button-toggle-group name="fontStyle" aria-label="Font Style" class="mr-3" formControlName="insightStatus">
+          <mat-button-toggle value="enable">Enable</mat-button-toggle>
+          <mat-button-toggle value="disable">Disable</mat-button-toggle>
+        </mat-button-toggle-group>
+        <button type="button" class="btn btn-primary btn-sm" (click)="previousPage()"><i class="fa fa-chevron-left"
+            aria-hidden="false"></i> &nbsp;Back</button>
+      </span>
+    </div>
+  </div>
+
+  <div class="ml-2 mr-1 mt-2 mb-2 rounded insightConfigForm basicColor">
+    <div class="h5  mb-4">
+      Insight Details
+    </div>
+
+    <div class="row ml-4 mr-2">
+      <div class="" [ngClass]="addPage?'col-10':'col-7'">
+        <div class="form-group row">
+          <label for="insightName" class="col-form-label" [ngClass]="addPage?'col-2':'col-3'">Insight Name</label>
+          <div class="" [ngClass]="addPage?'col-10':'col-9'">
+            <input type="text" class="form-control" id="insightName" formControlName="insightName">
+            <small class="text-danger"
+              *ngIf="(insightName.touched || formSubmitted) && (insightName.errors?.required || insightName.value.trim()=='')">Insight
+              Name
+              is required</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-5 mb-1" *ngIf="!addPage">
+        <div class="form-group row">
+          <label for="author" class="offset-1 col-5 col-form-label pl-4">Author</label>
+          <div class="col-6">
+            <input type="text" class="form-control" id="author" formControlName="author">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row ml-4 mr-2 mb-3">
+      <div class="" [ngClass]="addPage?'col-10':'col-7'">
+        <div class="form-group row mt-1">
+          <label for="insightDescription" class="col-form-label" [ngClass]="addPage?'col-2':'col-3'">Insight
+            Description</label>
+          <div class="" [ngClass]="addPage?'col-10':'col-9'">
+            <textarea class="form-control" id="insightDescription" [rows]="addPage ? 2 : 3"
+              formControlName="insightDescription"></textarea>
+            <small class="text-danger"
+              *ngIf="(insightDescription.touched || formSubmitted) && (insightDescription.errors?.required || insightDescription.value.trim()=='')">Insight
+              Description is required</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-5" *ngIf="!addPage">
+        <div class="form-group row mb-4">
+          <label for="lastModifiedBy" class="offset-1 col-5 col-form-label pl-4">Last Modified By</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" id="lastModifiedBy" formControlName="lastModifiedBy">
+          </div>
+        </div>
+
+        <div class="form-group row mb-4">
+          <label for="lastModifiedOn" class="offset-1 col-5 col-form-label pl-4">Last Modified On</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" id="lastModifiedOn" formControlName="lastModifiedOn">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr />
+
+    <div class="h5 basicColor mb-4">
+      Insight Mapping
+    </div>
+
+    <div class="row ml-4 mr-2 mb-3">
+      <div class="col-5">
+        <div class="form-group row mb-0">
+          <label for="severity" class="col-5 col-form-label">Severity</label>
+          <div class="col-sm-7">
+            <angular2-multiselect [data]="severityItemList" (onDeSelectAll)="clearValues('severity')"
+              (click)="markAsTouched('severity')"
+              [settings]="{ singleSelection: 'true', text: 'Select Severity', formControlName:'severity'}"
+              formControlName="severity">
+            </angular2-multiselect>
+          </div>
+        </div>
+        <small class="text-danger offset-5 col mb-1"
+          *ngIf="(severity.touched || formSubmitted) && (severity.errors?.required || severity.value=='')">Severity
+          is
+          required</small>
+      </div>
+      <div class="offset-1 col-5">
+        <div class="form-group row mb-0">
+          <label for="mitreTactic" class="col-5 col-form-label">MITRE Tactic Name</label>
+          <div class="col-sm-7 ">
+            <angular2-multiselect [data]="mitreTacticList" formControlName="mitreTactic"
+              (onDeSelectAll)="clearValues('mitreTactic')" (click)="markAsTouched('mitreTactic')"
+              (onSelect)="onMitreTacticSelect($event)"
+              [settings]="{ singleSelection: 'true', text: 'Select MITRE Tactic', primaryKey:'id', labelKey:'value' }">
+            </angular2-multiselect>
+          </div>
+        </div>
+        <small class="text-danger offset-5 col mb-1"
+          *ngIf="(mitreTactic.touched || formSubmitted) && (mitreTactic.errors?.required || mitreTactic.value=='')">MITRE
+          Tactic is
+          required</small>
+      </div>
+    </div>
+
+    <div class="row ml-4 mr-2 mb-3">
+      <div class="col-5 ">
+        <div class="form-group row mb-0">
+          <label for="threatCategory" class="col-5 col-form-label">Threat Category</label>
+          <div class="col-sm-7 ">
+            <angular2-multiselect [data]="mitreTacticList" formControlName="threatCategory"
+              (onSelect)="onMitreTacticSelect($event)" (onDeSelectAll)="clearValues('threatCategory')"
+              (click)="markAsTouched('threatCategory')"
+              [settings]="{ singleSelection: 'true', text: 'Select Threat Category' , primaryKey:'id', labelKey:'value'}">
+            </angular2-multiselect>
+          </div>
+        </div>
+        <small class="text-danger offset-5 col mb-1"
+          *ngIf="(threatCategory.touched || formSubmitted) && (threatCategory.errors?.required || threatCategory.value=='')">Threat
+          Category is required</small>
+      </div>
+      <div class="offset-1 col-5">
+        <div class="form-group row mb-0">
+          <label for="mitreTechnique" class="col-5 col-form-label">MITRE Technique Name</label>
+          <div class="col-sm-7 ">
+            <angular2-multiselect [data]="mitreTechniqueList" formControlName="mitreTechnique"
+              (onDeSelectAll)="clearValues('mitreTechnique')" (click)="markAsTouched('mitreTechnique')"
+              [settings]="{ singleSelection: 'true', text: 'Select MITRE Technique', primaryKey:'id', labelKey:'value' }">
+            </angular2-multiselect>
+          </div>
+        </div>
+        <small class="text-danger offset-5 col mb-1"
+          *ngIf="(mitreTechnique.touched || formSubmitted) && (mitreTechnique.errors?.required || mitreTechnique.value=='')">MITRE
+          Technique is required</small>
+      </div>
+    </div>
+
+    <div class="row ml-4 mr-2 mb-3">
+      <div class="col-5 ">
+        <div class="form-group row mb-0">
+          <label for="threatSubCategory" class="col-5 col-form-label">Threat Sub-Category</label>
+          <div class="col-sm-7 ">
+            <angular2-multiselect [data]="mitreTechniqueList" formControlName="threatSubCategory"
+              (onDeSelectAll)="clearValues('threatSubCategory')" (click)="markAsTouched('threatSubCategory')"
+              [settings]="{ singleSelection: 'true', text: 'Select Threat Sub-Category' , primaryKey:'id', labelKey:'value' }">
+            </angular2-multiselect>
+          </div>
+        </div>
+        <small class="text-danger mt-1 offset-5 col mb-1"
+          *ngIf="(threatSubCategory.touched || formSubmitted) && (threatSubCategory.errors?.required || threatSubCategory.value=='')">Threat
+          Sub-Category is required</small>
+      </div>
+      <div class="offset-1 col-5">
+        <div class="form-group row mb-0">
+          <label for="nistControl" class="col-5 col-form-label">NIST Control Name</label>
+          <div class="col-sm-7">
+            <angular2-multiselect [data]="NISTList" formControlName="nistControl"
+              (onDeSelectAll)="clearValues('nistControl')" (click)="markAsTouched('nistControl')"
+              [settings]="{ singleSelection: 'true', text: 'Select NIST Control', primaryKey:'id', labelKey:'value' }">
+            </angular2-multiselect>
+          </div>
+        </div>
+        <small class="text-danger offset-5 col mb-1"
+          *ngIf="(nistControl.touched || formSubmitted) && (nistControl.errors?.required || nistControl.value=='')">NIST
+          Control is required</small>
+      </div>
+    </div>
+
+    <div class="row ml-4 mr-2">
+      <div class="col-5 ">
+        <div class="form-group row mb-0">
+          <label for="cyberKillChain" class="col-5 col-form-label">Cyber Kill Chain</label>
+          <div class="col-sm-7">
+            <angular2-multiselect [data]="cyberKillChainItemList" formControlName="cyberKillChain"
+              (onDeSelectAll)="clearValues('cyberKillChain')" (click)="markAsTouched('cyberKillChain')"
+              [settings]="{ singleSelection: 'true', text: 'Select Cyber Kill Chain' }">
+            </angular2-multiselect>
+          </div>
+        </div>
+        <small class="text-danger mt-1 offset-5 col mb-1"
+          *ngIf="(cyberKillChain.touched || formSubmitted) && (cyberKillChain.errors?.required || cyberKillChain.value=='')">Cyber
+          Kill Chain is required</small>
+      </div>
+    </div>
+
+    <hr class="mt-2" />
+
+    <div class="h5 basicColor mb-4">
+      Insight Definition
+    </div>
+
+    <div class="row ml-4 mr-2">
+      <div class="col-12">
+        <div class="row">
+          <label for="insightDefinition" class="col-2">Insight Builder</label>
+          <div class="ml-2 col-7">
+            <div class="custom-control custom-radio custom-control-inline col-3">
+              <input type="radio" id="basic" class="custom-control-input" formControlName="insightDefinition"
+                value="basicInsight">
+              <label class="custom-control-label" for="basic">Basic </label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline col-3">
+              <input type="radio" id="advance" class="custom-control-input" formControlName="insightDefinition"
+                value="advance">
+              <label class="custom-control-label" for="advance">Advance</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="form-group row mt-3">
+          <label for="insightLogic" class="col-2 col-form-label">Insight Logic</label>
+          <div class="col-9">
+            <textarea class="form-control" id="insightLogic" rows="4" formControlName="insightLogic"></textarea>
+            <small class="text-danger"
+              *ngIf="(insightLogic.touched || formSubmitted) && (insightLogic.errors?.required || insightLogic.value.trim()=='')">Insight
+              Logic is required</small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr />
+
+    <div class="h5 mb-4">
+      Output
+    </div>
+
+    <div class="row ml-4 mr-2">
+      <div class="col-12">
+        <div class="form-group row">
+          <label for="expressions" class="col-2 col-form-label">Suppression</label>
+          <div class="col-9">
+            <textarea class="form-control" id="expressions" rows="2" formControlName="expressions"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr />
+
+    <div class="row ml-4 mr-2">
+      <div class="col-12 mb-3">
+        <div class="row">
+          <label for="outputMechanism" class="col-2">Output Mechanism</label>
+          <div class="ml-2 col-7">
+            <div class="custom-control custom-radio custom-control-inline col-3">
+              <input type="radio" id="email" class="custom-control-input" formControlName="outputMechanism"
+                value="emailOutput">
+              <label class="custom-control-label" for="email">Email </label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline col-3">
+              <input type="radio" id="syslog" class="custom-control-input" formControlName="outputMechanism"
+                value="syslogOutput">
+              <label class="custom-control-label" for="syslog">Syslog</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <div class="col-5" *ngIf="outputMechanism.value=='emailOutput'">
+          <div class="form-group row mb-4">
+            <label for="emailTo" class="col-5 col-form-label">Email To</label>
+            <div class="col-sm-7">
+              <input type="text" class="form-control" id="emailTo" formControlName="emailTo">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-5" *ngIf="outputMechanism.value=='syslogOutput'">
+          <div class="form-group row mb-4">
+            <label for="syslogReceiver" class="col-5 col-form-label">Syslog Receiver</label>
+            <div class="col-sm-7">
+              <input type="text" class="form-control" id="syslogReceiver" formControlName="syslogReceiver">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-2 ml-2">
+      <span class="mr-3" *ngIf="!viewPage">
+        <button type="button" class="btn btn-primary"
+          (click)="addInsightConfiguration()">{{addPage?'Save':'Update'}}</button>
+      </span>
+      <span class="ml-1" *ngIf="!viewPage">
+        <button type="button" class="btn btn-success" (click)="testInsightConfig()">Test</button>
+      </span>
+      <span>
+        <button *ngIf="viewPage" type="button" class="btn btn-warning" (click)="previousPage()">Cancel</button>
+      </span>
+    </div>
+
+  </div>
+</form>

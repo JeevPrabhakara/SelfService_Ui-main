@@ -1,0 +1,27 @@
+<div class="d-inline-block userList mt-2 ml-2">
+  <h4 class="commonHeader mb-3 pull-left">Users</h4>
+
+  <span class="pull-right" *ngIf="userRoles.includes('ROLE_ADMIN') && userPermissions.includes('Create_Profile')">
+    <button type="button" class="btn btn-primary" placement="bottom" ngbTooltip="Add User" (click)="addUser()">Add
+      User</button>
+    <button type="button" class="btn btn-primary" placement="bottom" ngbTooltip="Activate"
+      [disabled]="selectedUserIds.length==0"><i class="fa fa-unlock-alt"></i></button>
+    <button type="button" [disabled]="selectedUserIds.length==0" class="btn btn-primary ml-2" placement="bottom"
+      ngbTooltip="Deactivate"><i class="fa fa-lock"></i></button>
+  </span>
+
+  <div class="form-group has-search pull-right mr-4 w-25">
+    <span class="fa fa-search form-control-feedback m-auto"></span>
+    <input type="text" class="form-control" placeholder="Search By User Keywords" (keyup)="globalSearchUser()"
+      [(ngModel)]="globalSearchUserKey">
+  </div>
+</div>
+
+<div class="commonAgGrid ml-2 mr-1">
+  <ag-grid-angular #grid [rowData]="userList |async" [columnDefs]="columnDefs" class="ag-theme-material manoj"
+    [floatingFilter]="true" style="width: 100%; height: calc(100vh - 160px);" (gridReady)="onGridReady($event)"
+    [rowHeight]="38" [headerHeight]="40" [context]="context" [pagination]="true" [paginationAutoPageSize]="true"
+    [suppressCellSelection]="true" [frameworkComponents]="frameworkComponents" (rowSelected)="onRowSelected()"
+    [rowSelection]="'multiple'" [suppressRowClickSelection]="true" (firstDataRendered)="onGridReady($event)">
+  </ag-grid-angular>
+</div>

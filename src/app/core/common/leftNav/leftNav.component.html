@@ -1,0 +1,66 @@
+<div class="nav left-nav pt-1 d-block" [ngClass]="{'menu-opened': isMenuOpened()}" >
+    <!-- <ul style="width: auto;">
+        <ng-container>
+            <li>
+                <a class="mainMenu" (click)="isAIR('AIR')" *ngIf="(userProfile == 'AIR' || userProfile == 'AIR_AMG')">
+                    <span class="menu-title">AIR</span>
+                </a>
+            </li>
+            <li>
+                <a class="mainMenu" (click)="isAIR('AMG')" *ngIf="(userProfile == 'AMG' || userProfile == 'AIR_AMG')">
+                    <span class="menu-title">AMG</span>
+                </a>
+            </li>
+        </ng-container>
+    </ul> -->
+
+    <ul class="MenuList" style="width: auto;">
+        <ng-container *ngFor="let menuItem of menuList">
+            <li *ngIf="menuItem.access" [matTooltip]="!isMenuOpened() ? menuItem.title : null"
+                [matTooltipPosition]="'after'">
+                <a [routerLink]="[menuItem.navLink]" routerLinkActive="router-link-active" [routerLinkActiveOptions]="{ exact: true }">
+                    <span *ngIf="menuItem.ionIcon" class="icon ion" ngClass="{{menuItem.ionIcon}}"></span>
+                    <span *ngIf="menuItem.faIcon" class="fa-icon" ngClass="{{menuItem.faIcon}}"></span>
+                    <img *ngIf="menuItem.img" class="menu-icon" src="../../../../assets/images/{{menuItem.img}}" />
+                    <span class="title active-title"
+                        [ngClass]="{'top-padding': (menuItem.title == 'Violations' || menuItem.title == 'Pulse')}">{{menuItem.title}}</span>
+                </a>
+            </li>
+        </ng-container>
+        <!-- <li>
+            <a [routerLink]="['/policyViolationDetailView']">
+                <img src="../../../../assets/images/graph.png" />
+                <span class="title">Policy View</span>
+            </a>
+        </li> -->
+    </ul>
+   <!--  <ul class="MenuList">
+        <ng-container *ngFor="let menuItem of menuListAMG">
+            <li *ngIf="menuItem.access" [matTooltip]="!isMenuOpened() ? menuItem.title : null"
+                [matTooltipPosition]="'after'">
+                <a [routerLink]="[menuItem.navLink]">
+                    <span *ngIf="menuItem.ionIcon" class="icon ion" ngClass="{{menuItem.ionIcon}}"></span>
+                    <span *ngIf="menuItem.faIcon" class="fa-icon" ngClass="{{menuItem.faIcon}}"></span>
+                    <img *ngIf="menuItem.img" src="../../../../assets/images/{{menuItem.img}}" />
+                    <span class="title"
+                        [ngClass]="{'top-padding': (menuItem.title == 'Violations' || menuItem.title == 'Pulse')}">{{menuItem.title}}</span>
+                </a>
+            </li>
+        </ng-container>
+    </ul> -->
+
+    <ul class="RoleBackList">
+        <ng-container *ngFor="let menuItem of RBackList">
+            <li *ngIf="menuItem.access" [matTooltip]="!isMenuOpened() ? menuItem.title : null"
+                [matTooltipPosition]="'after'">
+                <a [routerLink]="[menuItem.navLink]" routerLinkActive="router-link-active" [routerLinkActiveOptions]="{ exact: true }">
+                    <span *ngIf="menuItem.ionIcon" class="icon ion" ngClass="{{menuItem.ionIcon}}"></span>
+                    <span *ngIf="menuItem.faIcon" class="fa-icon" ngClass="{{menuItem.faIcon}}"></span>
+                    <img *ngIf="menuItem.img" src="../../../../assets/images/{{menuItem.img}}" class="rBack" />
+                    <span class="title active-title"
+                        [ngClass]="{'top-padding': (menuItem.title == 'Violations' || menuItem.title == 'Pulse')}">{{menuItem.title}}</span>
+                </a>
+            </li>
+        </ng-container>
+    </ul>
+</div>

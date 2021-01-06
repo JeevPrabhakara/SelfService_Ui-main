@@ -1,0 +1,26 @@
+.riskScore-view{
+    background: #0F2231 !important;
+    th{
+        background: black;   
+        padding-left: 20px;  
+    }
+    td{
+        background: #041421;  
+        padding-left: 20px; 
+    }
+    .greyBg{
+        background: #202C36;
+    color: cornsilk;
+    } 
+}
+
+ .modal-header {
+    background-color: #041421 !important;
+    padding: 8px 1rem;
+    border-radius: unset;
+    color: #BDBDBD !important;
+
+    .close {
+        color: #fff;
+    }
+}

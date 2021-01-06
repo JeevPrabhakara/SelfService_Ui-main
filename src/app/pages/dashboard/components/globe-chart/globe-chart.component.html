@@ -1,0 +1,23 @@
+<div *ngIf="componentType === 'riskByDept'">
+    <div id="container" *ngIf="!noRiskByDept"></div>
+    <ng-container *ngIf="noRiskByDept" >
+        <p class="no-map">No Risk by department.</p>
+    </ng-container>
+</div>
+<div *ngIf="componentType === 'riskByLocation' && !noRiskByLocation" class="header row">
+        <div class="col-11 col-md-11 col-sm-11 title">
+            Risk By Location
+        </div>
+</div>
+ <div id="globeMap" *ngIf="componentType === 'riskByLocation' && !noRiskByLocation"></div>
+ <ng-container *ngIf="noRiskByLocation && componentType === 'riskByLocation'">
+        <p class="no-map">No Risk by location.</p>
+</ng-container>
+<div *ngIf="componentType === 'riskByTitle'" class="base-chart">
+    <ng-container *ngIf="!noRiskByTitle">
+        <div id="riskByTitleContainer"></div>
+    </ng-container> 
+    <ng-container *ngIf="noRiskByTitle">
+        <p class="no-map">No Risk by title.</p>
+    </ng-container>
+</div>
